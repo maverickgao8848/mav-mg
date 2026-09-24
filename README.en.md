@@ -1,14 +1,16 @@
 # Knowledge MG
 
-[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.16/knowledge-mg-0.1.0-preview.16.zip) · [Skill entry](SKILL.md)
+[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/knowledge-mg-0.1.0-preview.17.zip) · [Watch the sample video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
 
 **Turn Chinese narration into editable educational motion graphics.** Plan the teaching beats, choose a visual direction, demonstrate each mechanism on screen, and build a HyperFrames project for preview and rendering.
 
-![Six visual directions shown with actual preview frames](assets/showcase/style-gallery.jpg)
+[![Watch the bank-run sample video](assets/showcase/bank-run-v3-cover.jpg)](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/bank-run-v3-music.mp4)
+
+**Sample video:** *Bank Run* v3 with music, 70.7 seconds at 1920×1080 and 30 fps. Click the cover to watch or download.
 
 ## Choose a style visually
 
-These are actual HyperFrames preview frames. **Cobalt Grid and Editorial Forest are included in the public package. The other four are previews only; their applicable style specifications and resource packs are not included.** Click either public image to read its `FRAME.md`.
+These are HyperFrames preview frames and style reference images. **Cobalt Grid and Editorial Forest are included in the public package. The other four are previews only; their applicable style specifications and resource packs are not included.** Click either public image to read its `FRAME.md`. The display images show visual direction, not promised output or factual content for a new topic.
 
 <table>
 <tr>
@@ -17,11 +19,11 @@ These are actual HyperFrames preview frames. **Cobalt Grid and Editorial Forest 
 </tr>
 <tr>
 <td width="50%"><img src="assets/showcase/styles/opencode.jpg" alt="Open Code preview" width="480"><br><b>Open Code · Preview</b><br>Software and digital mechanisms</td>
-<td width="50%"><img src="assets/showcase/styles/gable-reed.jpg" alt="Gable & Reed preview" width="480"><br><b>Gable & Reed · Preview</b><br>Engineering and structural explanation</td>
+<td width="50%"><img src="assets/showcase/styles/gable-reed.png" alt="Gable & Reed style reference" width="480"><br><b>Gable & Reed · Preview</b><br>Engineering and structural explanation</td>
 </tr>
 <tr>
-<td width="50%"><img src="assets/showcase/styles/dell-1996.jpg" alt="Dell 1996 preview" width="480"><br><b>Dell 1996 · Preview</b><br>Retro technology and internet culture</td>
-<td width="50%"><img src="assets/showcase/styles/broadside.jpg" alt="Broadside preview" width="480"><br><b>Broadside · Preview</b><br>Poster scale type and emphatic ideas</td>
+<td width="50%"><img src="assets/showcase/styles/dell-1996.png" alt="Dell 1996 style reference" width="480"><br><b>Dell 1996 · Preview</b><br>Retro technology and internet culture</td>
+<td width="50%"><img src="assets/showcase/styles/broadside.png" alt="Broadside style reference" width="480"><br><b>Broadside · Preview</b><br>Poster scale type and emphatic ideas</td>
 </tr>
 </table>
 
@@ -30,7 +32,7 @@ A future paid package is planned to include the complete style collection and a 
 ## Get started
 
 1. Download and unzip the package. Put `knowledge-mg` in `~/.codex/skills/` or your project's `.agents/skills/`.
-2. Install Node.js and HyperFrames. Voice generation additionally needs the voice tool selected for your project.
+2. Install Node.js and HyperFrames. We recommend **`gpt-6-sol` or a more capable GPT-6 model**. Advanced mode also requires the runtime model check in the [input contract](references/input-contract.md). Voice generation additionally needs the voice tool selected for your project.
 3. In Codex, provide Chinese narration or timed cues and state your target duration and style:
 
 ```text

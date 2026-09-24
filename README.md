@@ -1,14 +1,16 @@
 # Knowledge MG
 
-**中文** · [English](README.en.md) · [下载公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.16/knowledge-mg-0.1.0-preview.16.zip) · [Skill 入口](SKILL.md)
+**中文** · [English](README.en.md) · [下载公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/knowledge-mg-0.1.0-preview.17.zip) · [观看样例视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
 
 **把中文讲解文稿变成可编辑的知识型 MG 动画。** 从文稿梳理教学重点，选择视觉风格，制作逐句可见的机制演示，最终交给 HyperFrames 预览与渲染。
 
-![六种视觉方向的实际预览帧](assets/showcase/style-gallery.jpg)
+[![观看《银行挤兑》样例视频](assets/showcase/bank-run-v3-cover.jpg)](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/bank-run-v3-music.mp4)
+
+**样例视频：**《银行挤兑》v3 音乐版，70.7 秒，1920×1080、30 fps。点击封面观看或下载。
 
 ## 直接看图选风格
 
-以下图片来自实际 HyperFrames 预览帧。**公开版可直接使用 Cobalt Grid 和 Editorial Forest；其余四种仅展示，不包含可应用的风格规范或素材包。** 点击公开风格图片可查看完整 `FRAME.md`。
+以下是实际 HyperFrames 预览帧与风格参考图。**公开版可直接使用 Cobalt Grid 和 Editorial Forest；其余四种仅展示，不包含可应用的风格规范或素材包。** 点击公开风格图片可查看完整 `FRAME.md`。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
 
 <table>
 <tr>
@@ -17,11 +19,11 @@
 </tr>
 <tr>
 <td width="50%"><img src="assets/showcase/styles/opencode.jpg" alt="Open Code 预览" width="480"><br><b>Open Code · 展示</b><br>终端、软件、数字机制</td>
-<td width="50%"><img src="assets/showcase/styles/gable-reed.jpg" alt="Gable & Reed 预览" width="480"><br><b>Gable & Reed · 展示</b><br>工程、结构、技术图解</td>
+<td width="50%"><img src="assets/showcase/styles/gable-reed.png" alt="Gable & Reed 风格参考图" width="480"><br><b>Gable & Reed · 展示</b><br>工程、结构、技术图解</td>
 </tr>
 <tr>
-<td width="50%"><img src="assets/showcase/styles/dell-1996.jpg" alt="Dell 1996 预览" width="480"><br><b>Dell 1996 · 展示</b><br>复古科技、索引、互联网文化</td>
-<td width="50%"><img src="assets/showcase/styles/broadside.jpg" alt="Broadside 预览" width="480"><br><b>Broadside · 展示</b><br>强观点、海报、大字节奏</td>
+<td width="50%"><img src="assets/showcase/styles/dell-1996.png" alt="Dell 1996 风格参考图" width="480"><br><b>Dell 1996 · 展示</b><br>复古科技、索引、互联网文化</td>
+<td width="50%"><img src="assets/showcase/styles/broadside.png" alt="Broadside 风格参考图" width="480"><br><b>Broadside · 展示</b><br>强观点、海报、大字节奏</td>
 </tr>
 </table>
 
@@ -30,7 +32,7 @@
 ## 开始使用
 
 1. 下载顶部 ZIP 并解压，把 `knowledge-mg` 文件夹放到 `~/.codex/skills/`，或放到项目的 `.agents/skills/`。
-2. 安装 Node.js 和 HyperFrames。若要生成旁白，还需准备项目选用的语音工具。
+2. 安装 Node.js 和 HyperFrames。推荐使用 **`gpt-6-sol` 或更强的 GPT-6 模型**；`advanced` 模式还须满足[输入契约](references/input-contract.md)中的模型确认要求。若要生成旁白，还需准备项目选用的语音工具。
 3. 在 Codex 中提供中文文稿或带时间码的讲解材料，说明目标时长和风格。例如：
 
 ```text
