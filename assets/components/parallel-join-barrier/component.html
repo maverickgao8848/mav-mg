@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; color:#17312d; background:#f4efe3; font-family:system-ui,sans-serif; }
+        .join-ground { position:absolute; inset:0; background:radial-gradient(circle at 13% 16%,rgba(220,116,50,.15),transparent 28%),radial-gradient(circle at 87% 76%,rgba(31,113,95,.15),transparent 30%),#f4efe3; }
+        .join-frame { position:absolute; inset:52px; border:2px solid rgba(23,49,45,.18); border-radius:34px; }
+        .join-eyebrow { position:absolute; left:94px; top:72px; color:#a34c25; font:850 15px/1 ui-monospace,monospace; letter-spacing:.16em; }
+        .join-title { position:absolute; left:94px; top:106px; margin:0; font-size:48px; line-height:1; letter-spacing:-.045em; }
+        .join-contract { position:absolute; right:94px; top:90px; color:#52615c; font:750 14px/1 ui-monospace,monospace; letter-spacing:.09em; }
+        #join-field { position:absolute; left:86px; right:86px; top:188px; height:742px; border-radius:30px; background:rgba(255,252,243,.76); box-shadow:inset 0 0 0 2px rgba(23,49,45,.1); overflow:hidden; }
+        #fork-node { position:absolute; z-index:5; left:58px; top:282px; width:160px; height:160px; display:grid; place-items:center; border-radius:50%; border:5px solid #17312d; background:#fff9ec; box-shadow:0 16px 34px rgba(23,49,45,.13); }
+        #fork-node::after { content:""; position:absolute; right:-55px; width:54px; height:6px; border-radius:999px; background:#17312d; }
+        .fork-copy { text-align:center; }
+        .fork-copy span { display:block; color:#a64e26; font:900 11px/1 ui-monospace,monospace; letter-spacing:.14em; }
+        .fork-copy strong { display:block; margin-top:11px; font-size:24px; line-height:1; }
+        #fork-trunk { position:absolute; z-index:1; left:266px; top:133px; width:8px; height:476px; border-radius:999px; background:#17312d; transform-origin:center center; }
+        .fork-arm { position:absolute; z-index:1; left:218px; width:132px; height:6px; border-radius:999px; background:#17312d; transform-origin:left center; }
+        #fork-arm-a { top:136px; } #fork-arm-b { top:368px; } #fork-arm-c { top:600px; }
+        .task { position:absolute; z-index:3; left:330px; width:930px; height:154px; border:3px solid rgba(23,49,45,.31); border-radius:26px; background:#fff9ec; box-shadow:0 14px 30px rgba(23,49,45,.08); }
+        #task-fuel { top:60px; } #task-weather { top:292px; } #task-crew { top:524px; }
+        .task-index { position:absolute; left:24px; top:22px; width:50px; height:34px; display:grid; place-items:center; border-radius:999px; background:#17312d; color:#fff9ec; font:900 12px/1 ui-monospace,monospace; }
+        .task-copy { position:absolute; left:94px; top:22px; }
+        .task-copy span { display:block; color:#68736f; font:850 10px/1 ui-monospace,monospace; letter-spacing:.14em; }
+        .task-copy strong { display:block; margin-top:9px; font-size:24px; line-height:1; letter-spacing:.01em; }
+        .task-state { position:absolute; right:28px; top:24px; width:86px; height:34px; display:grid; place-items:center; border:2px solid #7b351b; border-radius:999px; color:#703017; background:#fff3e8; font:900 11px/1 ui-monospace,monospace; letter-spacing:.08em; }
+        .task-state span { grid-area:1/1; }
+        .status-done { opacity:0; }
+        .track { position:absolute; left:94px; right:72px; top:102px; height:12px; border-radius:999px; background:#d8d3c5; overflow:hidden; }
+        .track-fill { width:100%; height:100%; border-radius:999px; background:#cf6938; transform-origin:left center; }
+        .runner { position:absolute; z-index:7; left:84px; top:90px; width:36px; height:36px; display:grid; place-items:center; border:5px solid #fff9ec; border-radius:50%; background:#783018; box-shadow:0 0 0 4px #a64e26,0 8px 18px rgba(23,49,45,.22); color:#fff9ec; font:1000 15px/1 system-ui,sans-serif; }
+        .task-check { position:absolute; z-index:6; right:21px; top:88px; width:46px; height:46px; display:grid; place-items:center; border-radius:50%; background:#26705f; color:#fff9ec; font:1000 21px/1 system-ui,sans-serif; opacity:0; }
+        #join-barrier { position:absolute; z-index:4; left:1320px; top:78px; width:190px; height:584px; border-radius:30px; background:#17312d; box-shadow:0 18px 36px rgba(23,49,45,.2); }
+        .barrier-label { position:absolute; left:24px; top:24px; color:#d9e6df; font:900 11px/1 ui-monospace,monospace; letter-spacing:.15em; }
+        .barrier-count { position:absolute; left:24px; right:24px; top:58px; height:55px; display:grid; place-items:center; border-radius:16px; background:#fff9ec; color:#17312d; font:950 24px/1 ui-monospace,monospace; }
+        .count-state { position:absolute; opacity:0; }
+        #count-0 { opacity:1; }
+        .socket { position:absolute; left:48px; width:94px; height:72px; border:3px dashed #8aa49b; border-radius:22px; background:rgba(255,255,255,.06); }
+        #socket-fuel { top:154px; } #socket-weather { top:270px; } #socket-crew { top:386px; }
+        .socket-label { position:absolute; inset:0; display:grid; place-items:center; color:#b8c9c3; font:850 11px/1 ui-monospace,monospace; letter-spacing:.12em; }
+        .dock-token { position:absolute; z-index:9; left:1251px; width:42px; height:42px; display:grid; place-items:center; border:5px solid #fff9ec; border-radius:50%; background:#783018; box-shadow:0 0 0 4px #a64e26; color:#fff9ec; font:950 15px/1 system-ui,sans-serif; opacity:0; }
+        #dock-fuel { top:247px; } #dock-weather { top:363px; } #dock-crew { top:479px; }
+        #gate { position:absolute; left:42px; right:42px; bottom:35px; height:74px; border-radius:18px; overflow:hidden; background:#0c1f1c; }
+        .gate-half { position:absolute; left:0; width:100%; height:37px; background:#cf6938; }
+        #gate-top { top:0; border-bottom:3px solid #fff9ec; } #gate-bottom { bottom:0; border-top:3px solid #fff9ec; }
+        #gate-lock { position:absolute; z-index:3; left:50%; top:50%; width:46px; height:46px; display:grid; place-items:center; margin:-23px 0 0 -23px; border-radius:50%; background:#fff9ec; color:#17312d; font:1000 18px/1 system-ui,sans-serif; }
+        #release-line { position:absolute; z-index:2; left:1510px; top:368px; width:124px; height:8px; border-radius:999px; background:#26705f; transform-origin:left center; }
+        #release-card { position:absolute; z-index:6; left:1560px; top:294px; width:156px; height:156px; display:grid; place-items:center; border:5px solid #26705f; border-radius:50%; background:#e2f1e9; box-shadow:0 18px 34px rgba(23,49,45,.16); opacity:0; }
+        .release-copy { text-align:center; }
+        .release-copy span { display:block; color:#26705f; font:900 10px/1 ui-monospace,monospace; letter-spacing:.1em; }
+        .release-copy strong { display:block; margin-top:10px; color:#17312d; font-size:20px; line-height:1.05; }
+        #join-result { position:absolute; z-index:10; left:448px; bottom:8px; width:852px; padding:12px 24px; border-radius:999px; background:#17312d; color:#fff9ec; text-align:center; opacity:0; font:850 14px/1.2 ui-monospace,monospace; letter-spacing:.06em; }
+      </style>
+      <div id="root" data-composition-id="parallel-join-barrier" data-width="1920" data-height="1080" data-duration="6.6">
+        <div id="join-ground" class="join-ground clip" data-start="0" data-duration="6.6" data-track-index="0"></div>
+        <div class="join-frame"></div>
+        <div class="join-eyebrow">PARALLEL JOIN BARRIER</div>
+        <h1 class="join-title">Fast tasks wait. The last task releases the gate.</h1>
+        <div class="join-contract">ONE FORK · 3 REQUIRED TASKS · ALL COMPLETE</div>
+        <div id="join-field">
+          <div id="fork-node"><div class="fork-copy"><span>START</span><strong>T−30</strong></div></div>
+          <div id="fork-trunk"></div><div id="fork-arm-a" class="fork-arm"></div><div id="fork-arm-b" class="fork-arm"></div><div id="fork-arm-c" class="fork-arm"></div>
+          <div id="task-fuel" class="task" data-task-id="fuel" data-task-order="1" data-required="true" data-completion-order="1">
+            <span class="task-index">01</span><div class="task-copy"><span>REQUIRED CHECK</span><strong>FUEL SYSTEM</strong></div><span class="task-state"><span class="status-running">RUNNING</span><span class="status-done">DONE</span></span><div class="track"><div class="track-fill"></div></div><div class="runner">F</div><div class="task-check">✓</div>
+          </div>
+          <div id="task-weather" class="task" data-task-id="weather" data-task-order="2" data-required="true" data-completion-order="2">
+            <span class="task-index">02</span><div class="task-copy"><span>REQUIRED CHECK</span><strong>WEATHER WINDOW</strong></div><span class="task-state"><span class="status-running">RUNNING</span><span class="status-done">DONE</span></span><div class="track"><div class="track-fill"></div></div><div class="runner">W</div><div class="task-check">✓</div>
+          </div>
+          <div id="task-crew" class="task" data-task-id="crew" data-task-order="3" data-required="true" data-completion-order="3">
+            <span class="task-index">03</span><div class="task-copy"><span>REQUIRED CHECK</span><strong>CREW READY</strong></div><span class="task-state"><span class="status-running">RUNNING</span><span class="status-done">DONE</span></span><div class="track"><div class="track-fill"></div></div><div class="runner">C</div><div class="task-check">✓</div>
+          </div>
+          <div id="join-barrier" data-required-count="3">
+            <div class="barrier-label">JOIN BARRIER</div><div class="barrier-count"><span id="count-0" class="count-state">0 / 3</span><span id="count-1" class="count-state">1 / 3</span><span id="count-2" class="count-state">2 / 3</span><span id="count-3" class="count-state">3 / 3</span></div>
+            <div id="socket-fuel" class="socket" data-task-id="fuel"><span class="socket-label">WAIT</span></div><div id="socket-weather" class="socket" data-task-id="weather"><span class="socket-label">WAIT</span></div><div id="socket-crew" class="socket" data-task-id="crew"><span class="socket-label">WAIT</span></div>
+            <div id="gate"><div id="gate-top" class="gate-half" data-layout-allow-overflow></div><div id="gate-bottom" class="gate-half" data-layout-allow-overflow></div><div id="gate-lock">×</div></div>
+          </div>
+          <div id="dock-fuel" class="dock-token" data-task-id="fuel">F</div><div id="dock-weather" class="dock-token" data-task-id="weather">W</div><div id="dock-crew" class="dock-token" data-task-id="crew">C</div>
+          <div id="release-line"></div><div id="release-card"><div class="release-copy"><span>RELEASED</span><strong>LAUNCH GO</strong></div></div>
+          <div id="join-result">FUEL ✓ + WEATHER ✓ + CREW ✓ → GATE OPEN</div>
+        </div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="parallel-join-barrier"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused:true });
+        tl.set(q('.track-fill'),{scaleX:0},0)
+          .set(q('.runner'),{x:0,opacity:1},0)
+          .set(q('.task-check'),{opacity:0,scale:1},0)
+          .set(q('.status-running'),{opacity:1},0)
+          .set(q('.status-done'),{opacity:0},0)
+          .set(q('.socket-label'),{opacity:1},0)
+          .set(q('.dock-token'),{opacity:0,scale:.7},0)
+          .set(q('.gate-half'),{y:0},0)
+          .set(q('#release-line'),{scaleX:0},0)
+          .fromTo(q('#join-field'),{opacity:0,scale:.985},{opacity:1,scale:1,duration:.42,ease:'power3.out'},.08)
+          .fromTo(q('#fork-node'),{opacity:0,scale:.86},{opacity:1,scale:1,duration:.42,ease:'back.out(1.35)'},.2)
+          .fromTo(q('#fork-trunk'),{scaleY:0},{scaleY:1,duration:.42,ease:'power2.out'},.34)
+          .fromTo(q('.fork-arm'),{scaleX:0},{scaleX:1,duration:.34,stagger:.06,ease:'power2.out'},.5)
+          .fromTo(q('.task'),{opacity:0,x:-24},{opacity:1,x:0,duration:.3,stagger:.04,ease:'power3.out'},.42)
+          .fromTo(q('#join-barrier'),{opacity:0,x:24},{opacity:1,x:0,duration:.34,ease:'power3.out'},.5)
+          .addLabel('establish-fork',.92)
+          .to(q('#task-fuel .track-fill'),{scaleX:1,duration:1.2,ease:'none'},1.08)
+          .to(q('#task-weather .track-fill'),{scaleX:1,duration:2.2,ease:'none'},1.08)
+          .to(q('#task-crew .track-fill'),{scaleX:1,duration:3,ease:'none'},1.08)
+          .to(q('#task-fuel .runner'),{x:764,duration:1.2,ease:'none'},1.08)
+          .to(q('#task-weather .runner'),{x:764,duration:2.2,ease:'none'},1.08)
+          .to(q('#task-crew .runner'),{x:764,duration:3,ease:'none'},1.08)
+          .addLabel('run-parallel',2.05)
+          .set(q('#task-fuel .runner'),{opacity:0},2.28)
+          .set(q('#task-fuel .status-running'),{opacity:0},2.28).set(q('#task-fuel .status-done'),{opacity:1},2.28)
+          .set(q('#task-fuel .task-check'),{opacity:1},2.28).fromTo(q('#task-fuel .task-check'),{scale:.72},{scale:1,duration:.2,ease:'back.out(1.5)'},2.28)
+          .to(q('#task-fuel .task-state'),{backgroundColor:'#e2f1e9',borderColor:'#26705f',color:'#1f6254',duration:.2},2.28)
+          .set(q('#socket-fuel .socket-label'),{opacity:0},2.3).set(q('#dock-fuel'),{opacity:1},2.3).to(q('#dock-fuel'),{x:143,scale:1,duration:.28,ease:'power2.out'},2.3)
+          .to(q('#socket-fuel'),{borderColor:'#67ad9a',backgroundColor:'rgba(103,173,154,.18)',duration:.16},2.5)
+          .to(q('#count-0'),{opacity:0,duration:.01},2.58).to(q('#count-1'),{opacity:1,duration:.14},2.58)
+          .addLabel('hold-completed-branches',3)
+          .set(q('#task-weather .runner'),{opacity:0},3.28)
+          .set(q('#task-weather .status-running'),{opacity:0},3.28).set(q('#task-weather .status-done'),{opacity:1},3.28)
+          .set(q('#task-weather .task-check'),{opacity:1},3.28).fromTo(q('#task-weather .task-check'),{scale:.72},{scale:1,duration:.2,ease:'back.out(1.5)'},3.28)
+          .to(q('#task-weather .task-state'),{backgroundColor:'#e2f1e9',borderColor:'#26705f',color:'#1f6254',duration:.2},3.28)
+          .set(q('#socket-weather .socket-label'),{opacity:0},3.3).set(q('#dock-weather'),{opacity:1},3.3).to(q('#dock-weather'),{x:143,scale:1,duration:.28,ease:'power2.out'},3.3)
+          .to(q('#socket-weather'),{borderColor:'#67ad9a',backgroundColor:'rgba(103,173,154,.18)',duration:.16},3.5)
+          .to(q('#count-1'),{opacity:0,duration:.01},3.58).to(q('#count-2'),{opacity:1,duration:.14},3.58)
+          .set(q('#task-crew .runner'),{opacity:0},4.08)
+          .set(q('#task-crew .status-running'),{opacity:0},4.08).set(q('#task-crew .status-done'),{opacity:1},4.08)
+          .set(q('#task-crew .task-check'),{opacity:1},4.08).fromTo(q('#task-crew .task-check'),{scale:.72},{scale:1,duration:.2,ease:'back.out(1.5)'},4.08)
+          .to(q('#task-crew .task-state'),{backgroundColor:'#e2f1e9',borderColor:'#26705f',color:'#1f6254',duration:.2},4.08)
+          .set(q('#socket-crew .socket-label'),{opacity:0},4.1).set(q('#dock-crew'),{opacity:1},4.1).to(q('#dock-crew'),{x:143,scale:1,duration:.28,ease:'power2.out'},4.1)
+          .to(q('#socket-crew'),{borderColor:'#67ad9a',backgroundColor:'rgba(103,173,154,.18)',duration:.16},4.3)
+          .to(q('#count-2'),{opacity:0,duration:.01},4.38).to(q('#count-3'),{opacity:1,duration:.14},4.38)
+          .to(q('#gate-lock'),{opacity:0,scale:.6,duration:.24,ease:'power2.in'},4.45)
+          .to(q('#gate-top'),{y:-24,duration:.28,ease:'power3.out'},4.48).to(q('#gate-bottom'),{y:24,duration:.28,ease:'power3.out'},4.48)
+          .addLabel('satisfy-barrier',4.75)
+          .to(q('#release-line'),{scaleX:1,duration:.4,ease:'power2.out'},4.82)
+          .fromTo(q('#release-card'),{opacity:0,scale:.72},{opacity:1,scale:1,duration:.48,ease:'back.out(1.35)'},5.08)
+          .fromTo(q('#join-result'),{opacity:0,y:12},{opacity:1,y:0,duration:.01,ease:'none'},5.48)
+          .addLabel('release-result',5.94).to({}, {duration:.66});
+        window.__timelines['parallel-join-barrier'] = tl;
+      </script>
+    </template>
+  </body>
+</html>

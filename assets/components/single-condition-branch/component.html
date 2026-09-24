@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; color:#25322d; background:#f2eee2; font-family:system-ui,sans-serif; }
+        .ground { position:absolute; inset:0; background:radial-gradient(circle at 50% 50%,rgba(212,142,57,.19),transparent 31%),radial-gradient(circle at 22% 78%,rgba(61,107,80,.13),transparent 28%),#f5f0e5; }
+        .frame { position:absolute; inset:54px; border:2px solid rgba(37,50,45,.2); border-radius:34px; }
+        .eyebrow { position:absolute; left:94px; top:72px; color:#955a28; font:800 15px/1 ui-monospace,monospace; letter-spacing:.16em; }
+        .title { position:absolute; left:94px; top:108px; margin:0; font-size:44px; letter-spacing:-.035em; }
+        .contract { position:absolute; right:94px; top:92px; color:#52635b; font:750 14px/1 ui-monospace,monospace; letter-spacing:.09em; }
+        #input-card { position:absolute; left:710px; top:205px; width:500px; padding:20px 28px; border:3px solid #a96831; border-radius:22px; background:#fff7e8; text-align:center; opacity:0; box-shadow:0 16px 32px rgba(70,45,25,.09); }
+        #input-card .kicker,.branch-card .kicker { color:#89542c; font:850 13px/1 ui-monospace,monospace; letter-spacing:.12em; }
+        #input-card strong { display:block; margin-top:9px; font-size:25px; }
+        #decision { position:absolute; z-index:2; left:810px; top:382px; width:300px; height:300px; border:4px solid #a96831; border-radius:34px; background:#fff4d8; transform:rotate(45deg); box-shadow:0 22px 42px rgba(71,47,28,.11); }
+        #decision-inner { position:absolute; inset:28px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; transform:rotate(-45deg); }
+        #decision-inner .kicker { color:#89542c; font:900 13px/1 ui-monospace,monospace; letter-spacing:.13em; }
+        #decision-inner strong { display:block; width:240px; margin-top:11px; font-size:27px; line-height:1.12; }
+        #condition-result { margin-top:14px; padding:8px 14px; border-radius:999px; background:#25322d; color:#fff7e8; opacity:0; font:900 13px/1 ui-monospace,monospace; letter-spacing:.12em; }
+        .branch-card { position:absolute; z-index:2; top:740px; width:430px; height:190px; padding:28px; border:3px solid rgba(37,50,45,.24); border-radius:28px; background:rgba(255,253,247,.9); opacity:0; text-align:center; box-shadow:0 16px 34px rgba(37,50,45,.07); }
+        #true-branch { left:265px; } #false-branch { right:265px; }
+        .branch-card h2 { margin:17px 0 0; font-size:31px; letter-spacing:-.02em; }
+        .branch-card p { margin:11px 0 0; color:#53615b; font:750 13px/1.2 ui-monospace,monospace; letter-spacing:.07em; }
+        .branch-tag { position:absolute; left:22px; top:20px; padding:8px 11px; border-radius:999px; color:#fff8e9; font:900 12px/1 ui-monospace,monospace; letter-spacing:.1em; }
+        #true-branch .branch-tag { background:#3d6b50; } #false-branch .branch-tag { background:#7a6657; }
+        .selected-seal { position:absolute; right:22px; top:20px; padding:8px 11px; border-radius:999px; background:#3d6b50; color:#fff8e9; opacity:0; font:900 11px/1 ui-monospace,monospace; letter-spacing:.09em; }
+        #route-map { position:absolute; inset:0; width:1920px; height:1080px; overflow:visible; pointer-events:none; }
+        .route-base { fill:none; stroke:#c7b99b; stroke-width:9; stroke-linecap:round; stroke-linejoin:round; }
+        .route-selected { fill:none; stroke:#3d6b50; stroke-width:12; stroke-linecap:round; stroke-linejoin:round; }
+        #decision-token { position:absolute; z-index:1; left:942px; top:299px; width:36px; height:36px; border:6px solid #fff8e9; border-radius:50%; background:#a96831; opacity:0; box-shadow:0 8px 18px rgba(72,42,20,.2); }
+        #result { position:absolute; left:50%; bottom:62px; width:760px; margin-left:-380px; padding:17px 28px; border-radius:999px; background:#25322d; color:#fff8e9; text-align:center; opacity:0; font:850 15px/1.2 ui-monospace,monospace; letter-spacing:.08em; }
+      </style>
+      <div id="root" data-composition-id="single-condition-branch" data-selected-branch="true" data-width="1920" data-height="1080" data-duration="6">
+        <div id="branch-ground" class="ground clip" data-start="0" data-duration="6" data-track-index="0"></div><div class="frame"></div>
+        <div class="eyebrow">SINGLE CONDITION BRANCH</div><h1 class="title">Should the greenhouse vent open?</h1>
+        <div class="contract">ONE INPUT · ONE CONDITION · TWO EXCLUSIVE OUTCOMES</div>
+        <div id="input-card"><span class="kicker">INPUT</span><strong>GREENHOUSE AIR · 31°C</strong></div>
+        <svg id="route-map" viewBox="0 0 1920 1080" aria-hidden="true">
+          <path class="route-base" d="M960 310V382"/><path class="route-base" d="M810 532H560V740"/><path class="route-base" d="M1110 532H1360V740"/>
+          <path id="entry-path" class="route-selected" d="M960 310V382" stroke-dasharray="72" stroke-dashoffset="72"/>
+          <path id="true-path" class="route-selected" d="M810 532H560V740" stroke-dasharray="458" stroke-dashoffset="458"/>
+          <path id="false-path" class="route-selected" d="M1110 532H1360V740" stroke-dasharray="458" stroke-dashoffset="458"/>
+        </svg>
+        <div id="decision"><div id="decision-inner"><span class="kicker">CONDITION</span><strong>TEMPERATURE ABOVE 28°C?</strong><span id="condition-result">TRUE</span></div></div>
+        <div id="true-branch" class="branch-card"><span class="branch-tag">YES</span><span id="true-selected-seal" class="selected-seal">SELECTED</span><h2>OPEN VENT</h2><p>RELEASE WARM AIR</p></div>
+        <div id="false-branch" class="branch-card"><span class="branch-tag">NO</span><span id="false-selected-seal" class="selected-seal">SELECTED</span><h2>KEEP CLOSED</h2><p>RETAIN CURRENT STATE</p></div>
+        <div id="decision-token"></div>
+        <div id="result">RESULT · CONDITION TRUE → OPEN THE GREENHOUSE VENT</div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="single-condition-branch"]');
+        const q = gsap.utils.selector(root);
+        const branchRoot = root.matches('[data-selected-branch]') ? root : root.querySelector('[data-selected-branch]');
+        const selectedIsTrue = branchRoot.dataset.selectedBranch !== "false";
+        const selectedPath = q(selectedIsTrue ? "#true-path" : "#false-path");
+        const selectedCard = q(selectedIsTrue ? "#true-branch" : "#false-branch");
+        const inactiveCard = q(selectedIsTrue ? "#false-branch" : "#true-branch");
+        const selectedSeal = q(selectedIsTrue ? "#true-selected-seal" : "#false-selected-seal");
+        gsap.set(q("#decision-token"), { x: 0, y: 0 });
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo(q("#input-card"), { opacity:0, y:-18 }, { opacity:1, y:0, duration:.42, ease:"power3.out" }, .12)
+          .set(q("#decision-token"), { opacity:1 }, .42)
+          .addLabel("establish-input", .78)
+          .to(q("#entry-path"), { strokeDashoffset:0, duration:.58, ease:"power2.inOut" }, .86)
+          .to(q("#decision-token"), { y:140, duration:.58, ease:"power2.inOut" }, .86)
+          .to(q("#decision"), { backgroundColor:"#f5ddb0", borderColor:"#8f5222", duration:.24, ease:"power2.out" }, 1.42)
+          .fromTo(q("#condition-result"), { opacity:0, scale:.72 }, { opacity:1, scale:1, duration:.24, ease:"back.out(1.6)" }, 1.48)
+          .addLabel("evaluate-condition", 1.8)
+          .fromTo(q(".branch-card"), { opacity:0, y:24, scale:.96 }, { opacity:1, y:0, scale:1, duration:.42, stagger:.1, ease:"power3.out" }, 2.08)
+          .addLabel("reveal-options", 3)
+          .to(selectedPath, { strokeDashoffset:0, duration:.78, ease:"power2.inOut" }, 3.16)
+          .to(q("#decision-token"), { x:selectedIsTrue ? -400 : 400, y:430, duration:.78, ease:"power2.inOut" }, 3.16)
+          .to(selectedCard, { borderColor:"#3d6b50", backgroundColor:"#eef4e8", scale:1.04, duration:.3, ease:"power2.out" }, 3.88)
+          .to(inactiveCard, { scale:.97, backgroundColor:"#e9e4da", borderColor:"#a99c89", duration:.3, ease:"power2.out" }, 3.88)
+          .fromTo(selectedSeal, { opacity:0, scale:.72 }, { opacity:1, scale:1, duration:.22, ease:"back.out(1.6)" }, 4.02)
+          .addLabel("select-branch", 4.44)
+          .fromTo(q("#result"), { opacity:0, y:16 }, { opacity:1, y:0, duration:.38, ease:"power3.out" }, 4.72)
+          .addLabel("resolve-outcome", 5.4);
+        window.__timelines["single-condition-branch"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

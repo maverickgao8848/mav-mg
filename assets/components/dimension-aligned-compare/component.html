@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          color: #20322f;
+          background: #f3efe3;
+          font-family: system-ui, sans-serif;
+        }
+        .ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 48%, rgba(190, 139, 45, 0.12), transparent 30%), linear-gradient(145deg, #faf7ed, #e5eee8); }
+        .frame { position: absolute; inset: 54px; border: 2px solid rgba(32, 50, 47, 0.2); border-radius: 34px; }
+        .eyebrow { position: absolute; left: 94px; top: 72px; color: #805c22; font: 800 15px/1 ui-monospace, monospace; letter-spacing: 0.16em; }
+        .title { position: absolute; left: 94px; top: 104px; margin: 0; font-size: 42px; letter-spacing: -0.035em; }
+        .contract { position: absolute; right: 94px; top: 92px; color: #536761; font: 750 14px/1 ui-monospace, monospace; letter-spacing: 0.1em; }
+        .subject {
+          position: absolute;
+          top: 184px;
+          width: 560px;
+          height: 118px;
+          padding: 24px 30px;
+          border: 3px solid var(--subject-color);
+          border-radius: 28px;
+          background: rgba(255, 253, 247, 0.94);
+          opacity: 0;
+          box-shadow: 0 16px 34px rgba(32, 50, 47, 0.08);
+          will-change: transform, opacity;
+        }
+        #subject-a { left: 106px; --subject-color: #24708a; }
+        #subject-b { right: 106px; --subject-color: #ad522e; text-align: right; }
+        .subject-kicker { color: var(--subject-color); font: 850 13px/1 ui-monospace, monospace; letter-spacing: 0.14em; }
+        .subject-name { display: block; margin-top: 12px; font-size: 34px; line-height: 1; letter-spacing: -0.025em; }
+        .comparison-field { position: absolute; left: 106px; right: 106px; top: 338px; height: 518px; }
+        .axis-rail { position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; margin-left: -2px; border-radius: 99px; background: #c9b88d; opacity: 0; transform-origin: 50% 0%; will-change: transform, opacity; }
+        .dimension-row { position: relative; height: 116px; margin-bottom: 12px; display: grid; grid-template-columns: minmax(0, 1fr) 250px minmax(0, 1fr); align-items: center; }
+        .dimension-label { position: relative; z-index: 2; justify-self: center; width: 218px; padding: 13px 12px; border: 2px solid #c9b88d; border-radius: 999px; background: #f7f1df; color: #5f5132; text-align: center; opacity: 0; font: 850 14px/1 ui-monospace, monospace; letter-spacing: 0.12em; will-change: transform, opacity; }
+        .value { position: relative; min-height: 80px; padding: 20px 26px; border-radius: 22px; background: rgba(255, 253, 247, 0.96); opacity: 0; font-size: 24px; font-weight: 750; line-height: 1.18; box-shadow: 0 10px 24px rgba(32, 50, 47, 0.06); will-change: transform, opacity, background-color; }
+        .value-a { margin-right: 22px; border-left: 5px solid #24708a; text-align: right; }
+        .value-b { margin-left: 22px; border-right: 5px solid #b65c35; }
+        .shared .value { border-color: #a47b2d; background: #fff5cf; }
+        .shared-bridge { position: absolute; left: calc(50% - 305px); top: 43px; width: 610px; height: 30px; border-top: 5px solid #a47b2d; opacity: 0; transform-origin: 50% 50%; will-change: transform, opacity; }
+        .shared-seal { position: absolute; left: 50%; top: 0; width: 76px; height: 28px; margin-left: -38px; border-radius: 999px; background: #785619; color: #fff8df; display: grid; place-items: center; opacity: 0; font: 900 12px/1 ui-monospace, monospace; letter-spacing: 0.08em; will-change: transform, opacity; }
+        .difference-mark { position: absolute; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; border: 4px solid #687c75; border-radius: 50%; background: #f3efe3; opacity: 0; will-change: transform, opacity; }
+        #summary { position: absolute; left: 50%; bottom: 62px; width: 860px; margin-left: -430px; padding: 17px 28px; border-radius: 999px; background: #20322f; color: #fff9ea; text-align: center; opacity: 0; font: 820 16px/1.2 ui-monospace, monospace; letter-spacing: 0.07em; will-change: transform, opacity; }
+      </style>
+      <div id="root" data-composition-id="dimension-aligned-compare" data-width="1920" data-height="1080" data-duration="6">
+        <div id="compare-ground" class="ground clip" data-start="0" data-duration="6" data-track-index="0"></div>
+        <div class="frame"></div>
+        <div class="eyebrow">GENERAL COMPARISON</div>
+        <h1 class="title">Same purpose, different form</h1>
+        <div class="contract">TWO SUBJECTS · FOUR SHARED DIMENSIONS</div>
+        <article id="subject-a" class="subject"><span class="subject-kicker">SUBJECT A</span><strong class="subject-name">PAPER BOOK</strong></article>
+        <article id="subject-b" class="subject"><span class="subject-kicker">SUBJECT B</span><strong class="subject-name">E-BOOK</strong></article>
+        <section class="comparison-field" aria-label="paper book and e-book aligned across four dimensions">
+          <div id="axis-rail" class="axis-rail"></div>
+          <div id="row-purpose" class="dimension-row shared" data-kind="shared">
+            <div class="value value-a">LONG-FORM READING</div>
+            <div class="dimension-label">PURPOSE</div>
+            <div class="value value-b">LONG-FORM READING</div>
+            <div class="shared-bridge"></div><div class="shared-seal">SAME</div>
+          </div>
+          <div id="row-medium" class="dimension-row difference" data-kind="difference">
+            <div class="value value-a">PRINTED PAGES</div>
+            <div class="dimension-label">MEDIUM</div>
+            <div class="value value-b">DIGITAL DISPLAY</div>
+            <div class="difference-mark"></div>
+          </div>
+          <div id="row-power" class="dimension-row difference" data-kind="difference">
+            <div class="value value-a">NO POWER NEEDED</div>
+            <div class="dimension-label">POWER</div>
+            <div class="value value-b">BATTERY POWERED</div>
+            <div class="difference-mark"></div>
+          </div>
+          <div id="row-navigation" class="dimension-row difference" data-kind="difference">
+            <div class="value value-a">TURN PAGES</div>
+            <div class="dimension-label">NAVIGATION</div>
+            <div class="value value-b">TAP AND SEARCH</div>
+            <div class="difference-mark"></div>
+          </div>
+        </section>
+        <div id="summary">ONE PURPOSE · THREE VISIBLE TRADE-OFFS · NO OVERALL RANKING</div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="dimension-aligned-compare"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused: true });
+        tl.set(q(".subject"), { opacity: 1 }, 0.12)
+          .fromTo(q("#subject-a"), { x: -34, scale: 0.96 }, { x: 0, scale: 1, duration: 0.46, ease: "power3.out" }, 0.12)
+          .fromTo(q("#subject-b"), { x: 34, scale: 0.96 }, { x: 0, scale: 1, duration: 0.46, ease: "power3.out" }, 0.12)
+          .addLabel("establish-subjects", 0.78)
+          .fromTo(q("#axis-rail"), { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.72, ease: "power3.out" }, 0.88)
+          .fromTo(q(".dimension-label"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.32, stagger: 0.1, ease: "back.out(1.45)" }, 1.08)
+          .addLabel("align-dimensions", 1.98)
+          .fromTo(q("#row-purpose .value"), { opacity: 0, x: (index) => index === 0 ? -24 : 24 }, { opacity: 1, x: 0, duration: 0.42, ease: "power3.out" }, 2.12)
+          .fromTo(q("#row-purpose .shared-bridge"), { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.52, ease: "power2.out" }, 2.48)
+          .fromTo(q("#row-purpose .shared-seal"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.34, ease: "back.out(1.7)" }, 2.82)
+          .addLabel("reveal-shared", 3.3)
+          .fromTo(q(".difference .value"), { opacity: 0, x: (index) => index % 2 === 0 ? -22 : 22 }, { opacity: 1, x: 0, duration: 0.34, stagger: 0.09, ease: "power3.out" }, 3.38)
+          .fromTo(q(".difference-mark"), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.24, stagger: 0.18, ease: "back.out(1.6)" }, 3.88)
+          .fromTo(q("#summary"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 4.48)
+          .addLabel("resolve-differences", 5.04);
+        window.__timelines["dimension-aligned-compare"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

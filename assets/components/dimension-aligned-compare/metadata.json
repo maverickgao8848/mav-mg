@@ -1,0 +1,65 @@
+{
+  "id": "dimension-aligned-compare",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "two subjects are aligned against the same ordered dimensions so shared traits and differences can be read row by row",
+  "teachingUse": [
+    "general qualitative comparison",
+    "same-versus-different explanation",
+    "option trade-off explanation"
+  ],
+  "slots": [
+    { "id": "subjectA", "kind": "objects", "required": true },
+    { "id": "subjectB", "kind": "objects", "required": true },
+    { "id": "dimensions", "kind": "label", "required": true },
+    { "id": "valuesA", "kind": "text", "required": true },
+    { "id": "valuesB", "kind": "text", "required": true },
+    { "id": "comparisonSummary", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-subjects", "at": 0.13, "observable": "two subjects are readable at equal visual weight" },
+    { "id": "align-dimensions", "at": 0.33, "observable": "the same ordered dimension labels visibly govern both sides" },
+    { "id": "reveal-shared", "at": 0.55, "observable": "at least one shared trait visibly connects across the aligned row" },
+    { "id": "resolve-differences", "at": 0.84, "observable": "the remaining aligned rows expose side-specific values and a comparison summary" }
+  ],
+  "layout": {
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "minWidth": 720,
+    "safeInset": "project frame safe area"
+  },
+  "styleRoles": [
+    "ground",
+    "subject-a",
+    "subject-b",
+    "dimension-axis",
+    "shared-trait",
+    "difference-trait"
+  ],
+  "handoff": {
+    "entry": ["subject-a", "subject-b"],
+    "exit": ["aligned-comparison", "comparison-summary"]
+  },
+  "limits": [
+    "exactly two subjects",
+    "two to four shared dimensions in one fixed order",
+    "each row compares both subjects on the same dimension",
+    "no quantity-conservation claim",
+    "no score, weight, ranking, or aggregate unless supplied",
+    "comparison does not imply causality"
+  ],
+  "implementation": {
+    "entry": "component.html",
+    "runtime": "gsap"
+  },
+  "evidence": {
+    "project": "videos/p19-dimension-aligned-compare-gallery",
+    "scene": "dimension-aligned-compare",
+    "checks": [
+      "strict HyperFrames gate",
+      "three-domain fixed-stage visual inspection",
+      "single canonical runtime across generated instances",
+      "aligned-row state verification",
+      "out-of-order seek equivalence"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "nested-spatial-containment",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one focal member is visibly enclosed by an inner boundary that is wholly enclosed by one outer boundary, while direct outer contents and outside references remain distinguishable",
+  "teachingUse": ["nested container explanation", "inside versus outside explanation", "direct versus nested membership explanation"],
+  "slots": [
+    { "id": "outerBoundary", "kind": "container", "required": true },
+    { "id": "innerBoundary", "kind": "container", "required": true },
+    { "id": "focalMember", "kind": "object", "required": true },
+    { "id": "outerOnlyMember", "kind": "object", "required": true },
+    { "id": "outsideReference", "kind": "object", "required": true },
+    { "id": "result", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-outer-boundary", "at": 0.13, "observable": "one outer enclosure appears with a clearly readable inside and outside" },
+    { "id": "reveal-inner-boundary", "at": 0.27, "observable": "one complete inner enclosure appears wholly inside the outer boundary" },
+    { "id": "place-context-members", "at": 0.46, "observable": "one direct outer member and one outside reference establish distinct membership zones" },
+    { "id": "cross-nested-boundaries", "at": 0.72, "observable": "the focal member crosses the outer boundary and then the inner boundary in that order" },
+    { "id": "resolve-containment", "at": 0.92, "observable": "the final frame keeps both enclosing boundaries visible and states the focal member to inner to outer containment chain" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "outer-boundary", "inner-boundary", "focal-member", "outer-only-member", "outside-reference", "boundary-crossing", "result"],
+  "handoff": { "entry": ["outer-boundary", "inner-boundary", "members"], "exit": ["outer-boundary", "inner-boundary", "focal-member", "result"] },
+  "limits": [
+    "exactly one outer boundary and one inner boundary",
+    "the inner boundary is wholly inside the outer boundary",
+    "the focal member ends wholly inside the inner boundary",
+    "one direct outer member remains inside the outer boundary but outside the inner boundary",
+    "one outside reference remains outside the outer boundary",
+    "no taxonomy edge, set overlap, free-association edge, sequence claim, branch decision, ranking, or causal claim"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p20-nested-spatial-containment-harness",
+    "scene": "nested-spatial-containment",
+    "checks": ["strict HyperFrames gate", "fixed-stage visual inspection", "nested boundary verification", "out-of-order seek equivalence"]
+  }
+}

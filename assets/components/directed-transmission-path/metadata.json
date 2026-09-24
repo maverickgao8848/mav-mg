@@ -1,0 +1,59 @@
+{
+  "id": "directed-transmission-path",
+  "version": "0.1.0",
+  "status": "candidate",
+  "relation": "one payload travels from one source through one continuous directed medium to one receiver",
+  "teachingUse": [
+    "signal transmission",
+    "material transfer",
+    "one-way causal delivery"
+  ],
+  "slots": [
+    { "id": "source", "kind": "objects", "required": true },
+    { "id": "medium", "kind": "objects", "required": true },
+    { "id": "receiver", "kind": "objects", "required": true },
+    { "id": "payload", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "source-emphasis", "at": 0.12, "observable": "the single source becomes the sole active origin" },
+    { "id": "transit", "at": 0.36, "observable": "the payload advances along one continuous directed medium" },
+    { "id": "arrival", "at": 0.68, "observable": "the payload reaches the single receiver" },
+    { "id": "response", "at": 0.9, "observable": "the receiver shows one observable response after arrival" }
+  ],
+  "layout": {
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "minWidth": 640,
+    "safeInset": "project frame safe area"
+  },
+  "styleRoles": [
+    "ground",
+    "source-ink",
+    "medium-ink",
+    "receiver-ink",
+    "payload-accent"
+  ],
+  "handoff": {
+    "entry": ["source", "payload"],
+    "exit": ["receiver", "response-state"]
+  },
+  "limits": [
+    "one source only",
+    "one continuous directed path only",
+    "one receiver only",
+    "no branches",
+    "no feedback"
+  ],
+  "implementation": {
+    "entry": "component.html",
+    "runtime": "gsap"
+  },
+  "evidence": {
+    "project": "videos/p14-directed-transmission-harness",
+    "scene": "directed-transmission-path",
+    "checks": [
+      "strict HyperFrames gate",
+      "out-of-order seek equivalence",
+      "representative snapshots inspected"
+    ]
+  }
+}

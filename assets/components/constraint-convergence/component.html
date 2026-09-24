@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          color: #17352a;
+          background: #f5f2e7;
+          font-family: system-ui, sans-serif;
+        }
+        .ground { position: absolute; inset: 0; background: radial-gradient(circle at 58% 50%, rgba(255, 202, 88, 0.16), transparent 26%), linear-gradient(135deg, #f8f5eb, #e4eee5); }
+        .frame { position: absolute; inset: 60px; border: 2px solid rgba(23, 53, 42, 0.2); border-radius: 30px; }
+        .title { position: absolute; left: 92px; top: 72px; margin: 0; font-size: 42px; letter-spacing: -0.035em; }
+        .contract { position: absolute; right: 92px; top: 90px; font: 750 14px/1 ui-monospace, monospace; letter-spacing: 0.09em; color: #a45231; }
+        .factor {
+          position: absolute;
+          left: 110px;
+          width: 330px;
+          height: 170px;
+          padding: 26px 24px;
+          border: 3px solid var(--factor-color);
+          border-radius: 26px;
+          background: rgba(255, 253, 246, 0.94);
+          display: grid;
+          grid-template-columns: 60px 1fr;
+          align-items: center;
+          gap: 18px;
+          opacity: 0;
+          will-change: transform, opacity;
+        }
+        #factor-a { top: 195px; --factor-color: #9a4f0d; }
+        #factor-b { top: 455px; --factor-color: #075f8d; }
+        #factor-c { top: 715px; --factor-color: #426725; }
+        .factor-icon { width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: var(--factor-color); color: #fffdf6; font: 800 23px/1 ui-monospace, monospace; }
+        .factor strong { display: block; color: #17352a; font-size: 28px; letter-spacing: 0.02em; }
+        .factor span { display: block; margin-top: 10px; color: #5b6a62; font: 700 14px/1.2 ui-monospace, monospace; letter-spacing: 0.06em; }
+        .paths { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; }
+        .inward-path, #outward-path { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+        #path-a { stroke: #b66a20; }
+        #path-b { stroke: #1874a4; }
+        #path-c { stroke: #4f7532; }
+        #outward-path { stroke: #17352a; }
+        #merge-glow { position: absolute; left: 858px; top: 418px; width: 244px; height: 244px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 202, 88, 0.55), rgba(255, 202, 88, 0)); opacity: 0; }
+        #merge {
+          position: absolute;
+          left: 912px;
+          top: 472px;
+          width: 136px;
+          height: 136px;
+          border-radius: 50%;
+          border: 5px solid #17352a;
+          background: conic-gradient(from 25deg, #b66a20, #1874a4, #4f7532, #b66a20);
+          box-shadow: inset 0 0 0 20px #fff8df;
+          display: grid;
+          place-items: center;
+          color: #17352a;
+          font: 900 16px/1 ui-monospace, monospace;
+          opacity: 0;
+          will-change: transform, opacity;
+        }
+        #merge-label { position: absolute; left: 840px; top: 632px; width: 280px; text-align: center; font: 800 14px/1 ui-monospace, monospace; letter-spacing: 0.08em; color: #6e5a2f; opacity: 0; }
+        #outcome {
+          position: absolute;
+          right: 110px;
+          top: 334px;
+          width: 430px;
+          height: 410px;
+          border: 4px solid #176b55;
+          border-radius: 34px;
+          background: #fffdf5;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          will-change: transform, opacity;
+        }
+        .plant { position: relative; width: 160px; height: 170px; margin: 0 auto 24px; }
+        .stem { position: absolute; left: 76px; bottom: 18px; width: 9px; height: 112px; border-radius: 999px; background: #397344; }
+        .leaf { position: absolute; width: 74px; height: 46px; border-radius: 80% 10% 80% 10%; background: #63a953; }
+        .leaf-left { left: 12px; top: 58px; transform: rotate(22deg); }
+        .leaf-right { right: 8px; top: 26px; transform: scaleX(-1) rotate(16deg); }
+        .soil { position: absolute; left: 18px; right: 18px; bottom: 0; height: 28px; border-radius: 50%; background: #9c653b; }
+        #outcome strong { display: block; font-size: 44px; letter-spacing: -0.02em; }
+        #outcome span { display: block; margin-top: 12px; font: 750 15px/1.2 ui-monospace, monospace; color: #5b6a62; letter-spacing: 0.08em; }
+        #conclusion { position: absolute; right: 150px; top: 785px; width: 350px; padding: 15px 20px; border-radius: 999px; background: #17352a; color: #fffdf5; text-align: center; font: 800 15px/1 ui-monospace, monospace; opacity: 0; }
+        .phase-strip { position: absolute; left: 92px; right: 92px; bottom: 70px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .phase-strip span { padding: 11px 12px; border-top: 3px solid #176b55; color: #5b6a62; font: 700 12px/1 ui-monospace, monospace; }
+      </style>
+      <div id="root" data-composition-id="constraint-convergence" data-width="1920" data-height="1080" data-duration="4">
+        <div id="convergence-ground" class="ground clip" data-start="0" data-duration="4" data-track-index="0"></div>
+        <div class="frame"></div>
+        <h1 class="title">What makes a plant grow?</h1>
+        <div class="contract">THREE FACTORS · ONE MERGE · ONE OUTCOME</div>
+        <article id="factor-a" class="factor"><div class="factor-icon">A</div><div><strong>SUNLIGHT</strong><span>ENERGY INPUT</span></div></article>
+        <article id="factor-b" class="factor"><div class="factor-icon">B</div><div><strong>WATER</strong><span>TRANSPORT MEDIUM</span></div></article>
+        <article id="factor-c" class="factor"><div class="factor-icon">C</div><div><strong>NUTRIENTS</strong><span>BUILDING MATERIAL</span></div></article>
+        <svg class="paths" viewBox="0 0 1920 1080" aria-label="three factors converge into one outcome">
+          <path id="path-a" class="inward-path" d="M 440 280 C 680 280 740 540 912 540" />
+          <path id="path-b" class="inward-path" d="M 440 540 C 690 540 760 540 912 540" />
+          <path id="path-c" class="inward-path" d="M 440 800 C 680 800 740 540 912 540" />
+          <path id="outward-path" d="M 1048 540 C 1170 540 1240 540 1380 540" />
+        </svg>
+        <div id="merge-glow"></div>
+        <div id="merge">MERGE</div>
+        <div id="merge-label">ALL THREE PRESENT</div>
+        <article id="outcome"><div><div class="plant"><div class="stem"></div><div class="leaf leaf-left"></div><div class="leaf leaf-right"></div><div class="soil"></div></div><strong>PLANT GROWTH</strong><span>COMBINED OUTCOME</span></div></article>
+        <div id="conclusion">TOGETHER → GROWTH</div>
+        <div class="phase-strip"><span>01 ESTABLISH FACTORS</span><span>02 ROUTE INWARD</span><span>03 CONVERGE</span><span>04 RESOLVE OUTCOME</span></div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="constraint-convergence"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused: true });
+        const paths = q(".inward-path");
+        paths.forEach((path) => {
+          const length = path.getTotalLength();
+          path.style.strokeDasharray = String(length);
+          path.style.strokeDashoffset = String(length);
+        });
+        const outward = q("#outward-path")[0];
+        const outwardLength = outward.getTotalLength();
+        outward.style.strokeDasharray = String(outwardLength);
+        outward.style.strokeDashoffset = String(outwardLength);
+        tl.set(q(".factor"), { opacity: 1 }, 0.12)
+          .fromTo(q(".factor"), { scale: 0.94, x: -24 }, { scale: 1, x: 0, duration: 0.36, stagger: 0.06, ease: "power3.out" }, 0.12)
+          .addLabel("establish-factors", 0.64)
+          .to(paths, { strokeDashoffset: 0, duration: 0.72, stagger: 0.08, ease: "power2.out" }, 0.9)
+          .addLabel("route-inward", 1.84)
+          .fromTo(q("#merge"), { opacity: 0, scale: 0.72 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 2.1)
+          .fromTo(q("#merge-glow"), { opacity: 0, scale: 0.82 }, { opacity: 0.4, scale: 1, duration: 0.52, ease: "power2.out" }, 2.1)
+          .fromTo(q("#merge-label"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" }, 2.32)
+          .addLabel("converge", 2.6)
+          .to(outward, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, 2.9)
+          .fromTo(q("#outcome"), { opacity: 0, scale: 0.94, x: 22 }, { opacity: 1, scale: 1, x: 0, duration: 0.42, ease: "power3.out" }, 3.15)
+          .fromTo(q("#conclusion"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.24, ease: "power2.out" }, 3.58)
+          .addLabel("resolve-outcome", 3.84);
+        window.__timelines["constraint-convergence"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

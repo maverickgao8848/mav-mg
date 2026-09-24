@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;background:#efe9dc;color:#162b31;font-family:Montserrat,Arial,sans-serif}
+        *{box-sizing:border-box}
+        .ground{position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,rgba(190,137,43,.13),transparent 28%),linear-gradient(115deg,rgba(21,69,83,.06) 0 42%,transparent 42% 58%,rgba(173,74,42,.06) 58% 100%)}
+        .grain{position:absolute;inset:0;opacity:.18;background-image:repeating-linear-gradient(0deg,transparent 0 19px,rgba(22,43,49,.1) 20px),repeating-linear-gradient(90deg,transparent 0 39px,rgba(22,43,49,.08) 40px)}
+        .frame{position:absolute;inset:44px;border:3px solid #162b31;border-radius:38px;box-shadow:12px 12px 0 rgba(22,43,49,.1)}
+        .eyebrow{position:absolute;left:84px;top:70px;color:#7d5d24;font:700 18px/1 'Space Mono',monospace;letter-spacing:.16em}
+        .title{position:absolute;left:82px;top:104px;margin:0;font-family:'Archivo Black',Montserrat,sans-serif;font-size:58px;font-weight:400;line-height:1;letter-spacing:-.035em}
+        .contract{position:absolute;right:82px;top:84px;width:500px;text-align:right;color:#56666a;font:700 16px/1.35 'Space Mono',monospace;letter-spacing:.08em}
+        .system{position:absolute;top:205px;width:590px;height:650px;border:4px solid var(--ink);border-radius:34px;background:rgba(250,247,238,.96);box-shadow:14px 16px 0 var(--shadow);opacity:0;will-change:transform,opacity}
+        #source-panel{left:104px;--ink:#15566c;--shadow:rgba(21,86,108,.15)}
+        #target-panel{right:104px;--ink:#a8492b;--shadow:rgba(168,73,43,.15)}
+        .system-head{height:100px;padding:24px 30px;border-bottom:3px solid var(--ink);display:flex;align-items:center;justify-content:space-between}
+        .domain{color:var(--ink);font:700 15px/1 'Space Mono',monospace;letter-spacing:.15em}
+        .system-name{font-family:'Archivo Black',Montserrat,sans-serif;font-size:34px;font-weight:400;letter-spacing:-.025em}
+        .role-stack{position:absolute;left:38px;right:38px;top:130px;bottom:42px;display:grid;grid-template-rows:126px 126px 126px;gap:38px}
+        .role{position:relative;border:3px solid var(--ink);border-radius:26px;background:#fffaf0;display:grid;grid-template-columns:104px 1fr;align-items:center;opacity:0;will-change:transform,opacity,background-color}
+        .role-symbol{height:100%;border-right:3px solid var(--ink);display:grid;place-items:center;color:var(--ink);font-family:'Archivo Black',Montserrat,sans-serif;font-size:48px;font-weight:400}
+        .role-copy{padding:0 24px}
+        .role-kicker{display:block;color:var(--ink);font:700 14px/1 'Space Mono',monospace;letter-spacing:.13em}
+        .role-name{display:block;margin-top:9px;font-size:28px;font-weight:900;line-height:1.05;letter-spacing:-.025em}
+        .relation-svg{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+        .relation-path{fill:none;stroke:var(--ink);stroke-width:8;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+        .relation-arrow{fill:var(--ink);opacity:0}
+        .signal{position:absolute;left:18px;top:154px;width:22px;height:22px;border:4px solid #fffaf0;border-radius:50%;background:var(--ink);opacity:0;will-change:transform,opacity}
+        .mapping-field{position:absolute;left:716px;top:205px;width:488px;height:650px}
+        .mapping-spine{position:absolute;left:50%;top:58px;bottom:72px;width:6px;margin-left:-3px;border-radius:9px;background:#b58b35;opacity:0;transform-origin:50% 0;will-change:transform,opacity}
+        .equals{position:absolute;left:50%;top:8px;width:104px;height:68px;margin-left:-52px;border-radius:20px;background:#162b31;color:#fff9ec;display:grid;place-items:center;opacity:0;font:700 45px/1 'Space Mono',monospace;will-change:transform,opacity}
+        .mapping{position:absolute;left:0;width:100%;height:106px;opacity:0;will-change:opacity}
+        #map-1{top:148px}#map-2{top:312px}#map-3{top:476px}
+        .bridge-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+        .bridge-line{fill:none;stroke:#b58b35;stroke-width:8;stroke-linecap:round}
+        .bridge-seal{position:absolute;left:50%;top:50%;width:190px;height:54px;margin:-27px 0 0 -95px;border:3px solid #b58b35;border-radius:999px;background:#f6efdc;color:#654713;display:grid;place-items:center;font:700 14px/1 'Space Mono',monospace;letter-spacing:.1em;opacity:0;will-change:transform,opacity}
+        .pattern-proof{position:absolute;left:50%;bottom:98px;width:590px;margin-left:-295px;padding:14px 22px;border:3px solid #162b31;border-radius:999px;background:#f7f1e4;text-align:center;opacity:0;font:700 15px/1.25 'Space Mono',monospace;letter-spacing:.08em;will-change:transform,opacity}
+        #analogy-boundary{position:absolute;left:50%;bottom:38px;width:980px;margin-left:-490px;padding:17px 28px;border-radius:18px;background:#162b31;color:#fff9ec;text-align:center;opacity:0;font:700 18px/1.2 'Space Mono',monospace;letter-spacing:.08em;will-change:transform,opacity}
+        .boundary-accent{color:#f1c45e}
+      </style>
+      <div id="root" data-composition-id="structural-analogy-map" data-width="1920" data-height="1080" data-duration="8">
+        <div id="analogy-ground" class="ground clip" data-start="0" data-duration="8" data-track-index="0"></div>
+        <div class="grain" data-layout-ignore></div><div class="frame"></div>
+        <div class="eyebrow">STRUCTURAL ANALOGY</div>
+        <h1 class="title">Same roles. Different stuff.</h1>
+        <div class="contract">TRANSFER THE RELATION PATTERN<br>KEEP THE DOMAINS DISTINCT</div>
+        <section id="source-panel" class="system" aria-label="electrical loop source system">
+          <header class="system-head"><span class="domain">SOURCE SYSTEM</span><strong class="system-name">ELECTRICAL LOOP</strong></header>
+          <div class="role-stack">
+            <article id="source-driver" class="role"><div class="role-symbol">+</div><div class="role-copy"><span class="role-kicker">DRIVER</span><strong class="role-name">VOLTAGE DIFFERENCE</strong></div></article>
+            <article id="source-opposition" class="role"><div class="role-symbol">Ω</div><div class="role-copy"><span class="role-kicker">OPPOSITION</span><strong class="role-name">RESISTANCE</strong></div></article>
+            <article id="source-throughput" class="role"><div class="role-symbol">I</div><div class="role-copy"><span class="role-kicker">THROUGHPUT</span><strong class="role-name">CURRENT</strong></div></article>
+          </div>
+          <svg class="relation-svg" viewBox="0 0 590 650" aria-hidden="true"><path id="source-relation" class="relation-path" d="M66 304 L66 468"/><path id="source-relation-2" class="relation-path" d="M66 468 L66 632"/><path class="relation-arrow" d="M54 452 L66 472 L78 452 Z"/><path class="relation-arrow" d="M54 616 L66 636 L78 616 Z"/></svg>
+          <div id="source-signal" class="signal"></div>
+        </section>
+        <section class="mapping-field" aria-label="three one-to-one role correspondences">
+          <div id="mapping-spine" class="mapping-spine"></div><div id="equals" class="equals">≃</div>
+          <div id="map-1" class="mapping"><svg class="bridge-svg" viewBox="0 0 488 106"><path class="bridge-line" d="M0 53 L488 53"/></svg><div class="bridge-seal">DRIVER ↔ DRIVER</div></div>
+          <div id="map-2" class="mapping"><svg class="bridge-svg" viewBox="0 0 488 106"><path class="bridge-line" d="M0 53 L488 53"/></svg><div class="bridge-seal">OPPOSITION ↔ OPPOSITION</div></div>
+          <div id="map-3" class="mapping"><svg class="bridge-svg" viewBox="0 0 488 106"><path class="bridge-line" d="M0 53 L488 53"/></svg><div class="bridge-seal">THROUGHPUT ↔ THROUGHPUT</div></div>
+        </section>
+        <section id="target-panel" class="system" aria-label="water loop target system">
+          <header class="system-head"><span class="domain">TARGET SYSTEM</span><strong class="system-name">WATER LOOP</strong></header>
+          <div class="role-stack">
+            <article id="target-driver" class="role"><div class="role-symbol">P</div><div class="role-copy"><span class="role-kicker">DRIVER</span><strong class="role-name">PRESSURE DIFFERENCE</strong></div></article>
+            <article id="target-opposition" class="role"><div class="role-symbol">↘</div><div class="role-copy"><span class="role-kicker">OPPOSITION</span><strong class="role-name">PIPE RESTRICTION</strong></div></article>
+            <article id="target-throughput" class="role"><div class="role-symbol">Q</div><div class="role-copy"><span class="role-kicker">THROUGHPUT</span><strong class="role-name">WATER FLOW</strong></div></article>
+          </div>
+          <svg class="relation-svg" viewBox="0 0 590 650" aria-hidden="true"><path id="target-relation" class="relation-path" d="M66 304 L66 468"/><path id="target-relation-2" class="relation-path" d="M66 468 L66 632"/><path class="relation-arrow" d="M54 452 L66 472 L78 452 Z"/><path class="relation-arrow" d="M54 616 L66 636 L78 616 Z"/></svg>
+          <div id="target-signal" class="signal"></div>
+        </section>
+        <div id="pattern-proof" class="pattern-proof">DRIVER → OPPOSITION → THROUGHPUT</div>
+        <div id="analogy-boundary"><span class="boundary-accent">STRUCTURE ALIGNS</span> · CHARGE IS NOT WATER · THE OBJECTS DO NOT BECOME THE SAME</div>
+      </div>
+      <script>
+        window.__timelines=window.__timelines||{};
+        const root=document.querySelector('[data-composition-id="structural-analogy-map"]');
+        const q=gsap.utils.selector(root);const tl=gsap.timeline({paused:true});
+        const prepPath=(selector)=>q(selector).forEach((path)=>{const length=path.getTotalLength();gsap.set(path,{strokeDasharray:length,strokeDashoffset:length});});
+        prepPath('.relation-path');prepPath('.bridge-line');
+        tl.set(q('.system'),{opacity:1},.12)
+          .fromTo(q('#source-panel'),{x:-48,rotation:-1.2},{x:0,rotation:0,duration:.68,ease:'power4.out'},.12)
+          .fromTo(q('#target-panel'),{x:48,rotation:1.2},{x:0,rotation:0,duration:.68,ease:'power4.out'},.18)
+          .set(q('.role'),{opacity:1},.46)
+          .fromTo(q('#source-panel .role'),{x:-24,scale:.96},{x:0,scale:1,duration:.36,stagger:.1,ease:'power3.out'},.46)
+          .fromTo(q('#target-panel .role'),{x:24,scale:.96},{x:0,scale:1,duration:.36,stagger:.1,ease:'expo.out'},.5)
+          .addLabel('establish-two-systems',.96)
+          .set(q('#source-panel .relation-arrow'),{opacity:1},1.12)
+          .fromTo(q('#source-relation'),{opacity:1},{opacity:1,strokeDashoffset:0,duration:.5,ease:'power2.inOut'},1.12)
+          .fromTo(q('#source-relation-2'),{opacity:1},{opacity:1,strokeDashoffset:0,duration:.5,ease:'power2.inOut'},1.56)
+          .set(q('#source-signal'),{opacity:1},1.18)
+          .fromTo(q('#source-signal'),{y:0},{y:164,duration:.5,ease:'power2.inOut'},1.18)
+          .to(q('#source-signal'),{y:328,duration:.5,ease:'power2.inOut'},1.62)
+          .to(q('#source-panel .role'),{backgroundColor:'#f1ead6',duration:.18,stagger:.16,ease:'none'},1.12)
+          .addLabel('trace-source-relation',2.32)
+          .fromTo(q('#mapping-spine'),{opacity:0,scaleY:0},{opacity:1,scaleY:1,duration:.54,ease:'power3.out'},2.38)
+          .fromTo(q('#equals'),{opacity:0,scale:.55,rotation:-12},{opacity:1,scale:1,rotation:0,duration:.42,ease:'power3.out'},2.46)
+          .set(q('.mapping'),{opacity:1},2.7)
+          .to(q('#map-1 .bridge-line'),{strokeDashoffset:0,duration:.44,ease:'power3.out'},2.7)
+          .fromTo(q('#map-1 .bridge-seal'),{opacity:0,scale:.65},{opacity:1,scale:1,duration:.3,ease:'power3.out'},3.02)
+          .to(q('#map-2 .bridge-line'),{strokeDashoffset:0,duration:.44,ease:'power3.out'},3.12)
+          .fromTo(q('#map-2 .bridge-seal'),{opacity:0,scale:.65},{opacity:1,scale:1,duration:.3,ease:'power3.out'},3.44)
+          .to(q('#map-3 .bridge-line'),{strokeDashoffset:0,duration:.44,ease:'power3.out'},3.54)
+          .fromTo(q('#map-3 .bridge-seal'),{opacity:0,scale:.65},{opacity:1,scale:1,duration:.3,ease:'power3.out'},3.86)
+          .addLabel('pair-role-correspondences',4.08)
+          .set(q('#target-panel .relation-arrow'),{opacity:1},4.2)
+          .fromTo(q('#target-relation'),{opacity:1},{opacity:1,strokeDashoffset:0,duration:.5,ease:'power2.inOut'},4.2)
+          .fromTo(q('#target-relation-2'),{opacity:1},{opacity:1,strokeDashoffset:0,duration:.5,ease:'power2.inOut'},4.64)
+          .set(q('#target-signal'),{opacity:1},4.26)
+          .fromTo(q('#target-signal'),{y:0},{y:164,duration:.5,ease:'power2.inOut'},4.26)
+          .to(q('#target-signal'),{y:328,duration:.5,ease:'power2.inOut'},4.7)
+          .to(q('#target-panel .role'),{backgroundColor:'#f1ead6',duration:.18,stagger:.16,ease:'none'},4.2)
+          .fromTo(q('#pattern-proof'),{opacity:0,y:14,scale:.96},{opacity:1,y:0,scale:1,duration:.42,ease:'power3.out'},5.14)
+          .addLabel('transfer-relation-pattern',5.6)
+          .to(q('.bridge-seal'),{backgroundColor:'#f1c45e',duration:.22,stagger:.12,ease:'none'},5.82)
+          .fromTo(q('#analogy-boundary'),{opacity:0,y:20,scaleX:.94},{opacity:1,y:0,scaleX:1,duration:.54,ease:'power4.out'},6.18)
+          .fromTo(q('.boundary-accent'),{color:'#fff9ec'},{color:'#f1c45e',duration:.5,ease:'power2.inOut'},6.58)
+          .addLabel('state-analogy-boundary',7.04)
+          .to(q('#equals'),{scale:1.08,duration:.24,yoyo:true,repeat:1,ease:'sine.inOut'},7.12)
+          .addLabel('hold-proof',7.68)
+          .to(q('#equals'),{scale:1.03,duration:.16,yoyo:true,repeat:1,ease:'sine.inOut'},7.68);
+        window.__timelines['structural-analogy-map']=tl;
+      </script>
+    </template>
+  </body>
+</html>

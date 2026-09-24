@@ -1,0 +1,100 @@
+<template>
+  <style>
+    * { box-sizing:border-box; }
+    #root { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; color:#18312d; background:#f3eee1; font-family:system-ui,sans-serif; }
+    #state-ground { position:absolute; inset:0; background:radial-gradient(circle at 52% 47%,rgba(220,116,61,.1),transparent 31%),linear-gradient(135deg,#f7f1e5,#eef0e7); }
+    .eyebrow { position:absolute; left:94px; top:72px; color:#a54b25; font:900 15px/1 ui-monospace,monospace; letter-spacing:.16em; }
+    h1 { position:absolute; left:94px; top:103px; width:1180px; margin:0; font:900 52px/.98 system-ui,sans-serif; letter-spacing:-.045em; }
+    .contract { position:absolute; right:94px; top:94px; color:#51625d; font:800 13px/1 ui-monospace,monospace; letter-spacing:.1em; }
+    #state-board { position:absolute; left:86px; right:86px; top:192px; bottom:90px; border:2px solid #c1c7bd; border-radius:34px; background:rgba(255,250,239,.78); box-shadow:0 30px 70px rgba(24,49,45,.11); }
+    .state-bay { position:absolute; top:182px; width:510px; height:334px; border:3px solid #aeb8b0; border-radius:30px; background:#fff9ed; }
+    #source-bay { left:92px; }
+    #target-bay { right:92px; }
+    .state-index { position:absolute; left:28px; top:26px; color:#53625c; font:900 11px/1 ui-monospace,monospace; letter-spacing:.14em; }
+    .state-name { position:absolute; left:28px; top:54px; font:950 34px/1 system-ui,sans-serif; letter-spacing:-.035em; }
+    .state-status { position:absolute; right:26px; top:28px; padding:10px 17px; border:2px solid #9ca8a1; border-radius:999px; color:#53625c; font:900 11px/1 ui-monospace,monospace; letter-spacing:.1em; }
+    #source-bay .state-status { border-color:#a64d27; color:#8a3f21; background:#fff0e5; }
+    .bay-grid { position:absolute; left:28px; right:28px; top:112px; bottom:28px; border-radius:20px; background:repeating-linear-gradient(90deg,rgba(24,49,45,.055) 0 1px,transparent 1px 42px),repeating-linear-gradient(0deg,rgba(24,49,45,.055) 0 1px,transparent 1px 42px); }
+    #entity-token { position:absolute; z-index:12; left:252px; top:350px; width:190px; height:220px; padding:18px; border:5px solid #fff9ed; border-radius:26px; background:#18312d; box-shadow:0 0 0 4px #a64d27,0 18px 34px rgba(24,49,45,.23); }
+    .identity-frame { position:relative; width:100%; height:150px; display:grid; place-items:center; overflow:hidden; border:7px solid #fff9ed; border-bottom-width:12px; background:repeating-linear-gradient(135deg,rgba(255,249,237,.09) 0 8px,transparent 8px 17px); }
+    .entity-core { position:relative; z-index:1; width:104px; height:104px; display:grid; place-items:center; transform-origin:center; border:4px solid #18312d; border-radius:25px; background:linear-gradient(135deg,#f0a56f,#db713d); box-shadow:8px 8px 0 rgba(255,249,237,.24); color:#18312d; font:950 42px/1 system-ui,sans-serif; letter-spacing:-.07em; }
+    .entity-caption { position:absolute; z-index:2; left:10px; top:9px; padding:5px 7px; border-radius:5px; background:#18312d; color:#fff9ed; font:900 9px/1 ui-monospace,monospace; letter-spacing:.12em; }
+    .entity-label { margin-top:14px; color:#fff9ed; text-align:center; font:900 12px/1 ui-monospace,monospace; letter-spacing:.11em; }
+    #route-base { position:absolute; left:602px; top:345px; width:440px; height:10px; border-radius:999px; background:#d4d4c8; }
+    #route-active { position:absolute; inset:0; border-radius:inherit; background:#db713d; transform-origin:left center; }
+    #route-arrow { position:absolute; right:-2px; top:-13px; width:0; height:0; border-top:18px solid transparent; border-bottom:18px solid transparent; border-left:28px solid #db713d; }
+    #transition-gate { position:absolute; z-index:8; left:755px; top:284px; width:134px; height:134px; display:grid; place-items:center; border:4px solid #18312d; border-radius:50%; background:#fff9ed; box-shadow:0 16px 30px rgba(24,49,45,.16); }
+    #transition-gate::before { content:""; position:absolute; inset:13px; border:2px dashed #8b9993; border-radius:50%; }
+    .gate-copy { position:relative; text-align:center; }
+    .gate-copy span { display:block; color:#8a3f21; font:900 10px/1 ui-monospace,monospace; letter-spacing:.12em; }
+    .gate-copy strong { display:block; margin-top:9px; font:950 17px/1 system-ui,sans-serif; }
+    #event-token { position:absolute; z-index:14; left:687px; top:54px; width:270px; padding:17px 20px; border:3px solid #a64d27; border-radius:18px; background:#ffe7d4; color:#71351e; text-align:center; box-shadow:0 14px 26px rgba(127,57,29,.16); }
+    #event-token span { display:block; font:900 10px/1 ui-monospace,monospace; letter-spacing:.13em; }
+    #event-token strong { display:block; margin-top:9px; font:950 19px/1 system-ui,sans-serif; }
+    #event-stem { position:absolute; z-index:7; left:817px; top:123px; width:8px; height:171px; border-radius:999px; background:#a64d27; transform-origin:top center; }
+    #rule-card { position:absolute; left:264px; right:264px; bottom:48px; height:92px; display:flex; align-items:center; justify-content:center; gap:22px; border:2px solid #b6beb7; border-radius:24px; background:#f8f3e8; color:#52615c; font:900 15px/1 ui-monospace,monospace; letter-spacing:.06em; }
+    #rule-event { color:#8a3f21; }
+    .rule-arrow { color:#a64d27; font-size:28px; }
+    #audit-result { position:absolute; z-index:18; left:386px; right:386px; bottom:8px; padding:13px 24px; border-radius:999px; background:#18312d; color:#fff9ed; text-align:center; font:900 14px/1.2 ui-monospace,monospace; letter-spacing:.055em; opacity:0; }
+  </style>
+  <div id="root" data-composition-id="event-driven-state-transition" data-width="1920" data-height="1080" data-duration="6.6">
+    <div id="state-ground" class="clip" data-start="0" data-duration="6.6" data-track-index="0"></div>
+    <div id="state-scene" class="clip" data-start="0" data-duration="6.6" data-track-index="1">
+      <div class="eyebrow">EVENT-DRIVEN STATE TRANSITION</div>
+      <h1>What changed the fire door?</h1>
+      <div class="contract">ONE ENTITY · ONE EVENT · ONE LEGAL TRANSITION</div>
+      <section id="state-board">
+        <div id="source-bay" class="state-bay" data-state-id="open" data-state-role="source"><span class="state-index">SOURCE STATE</span><strong class="state-name">OPEN</strong><span class="state-status">CURRENT</span><div class="bay-grid"></div></div>
+        <div id="target-bay" class="state-bay" data-state-id="closed" data-state-role="target"><span class="state-index">TARGET STATE</span><strong class="state-name">CLOSED</strong><span class="state-status">INACTIVE</span><div class="bay-grid"></div></div>
+        <div id="route-base"><div id="route-active"></div><div id="route-arrow"></div></div>
+        <div id="transition-gate" data-event-id="smoke-detected" data-from-state="open" data-to-state="closed"><div class="gate-copy"><span>TRANSITION</span><strong>LOCKED</strong></div></div>
+        <div id="event-stem"></div>
+        <div id="event-token"><span>TRIGGER EVENT</span><strong>SMOKE DETECTED</strong></div>
+        <div id="entity-token" data-entity-id="fire-door" data-current-state="open"><div class="identity-frame"><span class="entity-caption">STABLE ENTITY</span><div class="entity-core">FD</div></div><div class="entity-label">FIRE DOOR / FD-01</div></div>
+        <div id="rule-card"><span>OPEN</span><span class="rule-arrow">→</span><span id="rule-event">SMOKE DETECTED</span><span class="rule-arrow">→</span><span>CLOSED</span></div>
+        <div id="audit-result">FD-01: OPEN → CLOSED · CAUSED BY SMOKE DETECTED</div>
+      </section>
+    </div>
+  </div>
+  <script>
+    window.__timelines=window.__timelines||{};
+    {
+      const q=(selector)=>document.querySelector(selector);
+      const tl=gsap.timeline({paused:true});
+      tl.set(q('#root'),{visibility:'visible'},0)
+        .set([q('#source-bay'),q('#target-bay'),q('#entity-token'),q('#transition-gate'),q('#rule-card')],{opacity:0,y:16},0)
+        .set(q('#event-token'),{opacity:0,y:-26},0)
+        .set(q('#event-stem'),{scaleY:0},0)
+        .set(q('#route-active'),{scaleX:0},0)
+        .set(q('#route-arrow'),{opacity:0},0)
+        .set(q('#target-bay .state-status'),{opacity:1},0)
+        .set(q('#audit-result'),{opacity:0,y:10},0)
+        .set(q('#entity-token .entity-core'),{scale:.72,rotation:-7},0)
+        .addLabel('establish-source-state',.92)
+        .to([q('#source-bay'),q('#target-bay')],{opacity:1,y:0,duration:.36,stagger:.08,ease:'power3.out'},.24)
+        .to(q('#entity-token'),{opacity:1,y:0,duration:.38,ease:'back.out(1.3)'},.54)
+        .to([q('#transition-gate'),q('#rule-card')],{opacity:1,y:0,duration:.34,stagger:.08,ease:'power3.out'},.7)
+        .addLabel('present-trigger-event',2.05)
+        .to(q('#event-token'),{opacity:1,y:0,duration:.36,ease:'power3.out'},1.44)
+        .to(q('#event-stem'),{scaleY:1,duration:.44,ease:'power2.out'},1.78)
+        .addLabel('authorize-transition',3.1)
+        .to(q('#transition-gate'),{backgroundColor:'#ffe7d4',borderColor:'#a64d27',duration:.18},2.72)
+        .set(q('#transition-gate strong'),{textContent:'AUTHORIZED'},2.86)
+        .to(q('#route-active'),{scaleX:1,duration:.46,ease:'power2.out'},2.94)
+        .set(q('#route-arrow'),{opacity:1},3.22)
+        .to(q('#source-bay .state-status'),{backgroundColor:'#edf0e9',borderColor:'#87958e',color:'#53625c',duration:.2},3.18)
+        .set(q('#source-bay .state-status'),{textContent:'PREVIOUS'},3.2)
+        .to(q('#entity-token'),{x:992,duration:1.16,ease:'power3.inOut'},3.28)
+        .to(q('#entity-token .entity-core'),{scale:1,rotation:0,duration:.78,ease:'power2.inOut'},3.55)
+        .addLabel('enter-target-state',4.75)
+        .to(q('#target-bay'),{borderColor:'#2c7465',backgroundColor:'#edf8f2',duration:.2},4.42)
+        .to(q('#target-bay .state-status'),{backgroundColor:'#dff2e9',borderColor:'#2c7465',color:'#175447',duration:.2},4.44)
+        .set(q('#target-bay .state-status'),{textContent:'CURRENT'},4.46)
+        .set(q('#entity-token'),{attr:{'data-current-state':'closed'}},4.48)
+        .addLabel('confirm-current-state',5.94)
+        .fromTo(q('#audit-result'),{opacity:0,y:10},{opacity:1,y:0,duration:.01,ease:'none'},5.42)
+        .to({}, {duration:1.17});
+      window.__timelines['event-driven-state-transition']=tl;
+    }
+  </script>
+</template>

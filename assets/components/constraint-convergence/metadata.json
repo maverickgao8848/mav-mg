@@ -1,0 +1,62 @@
+{
+  "id": "constraint-convergence",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "three independent conditions converge at one merge point to produce one combined outcome",
+  "teachingUse": [
+    "multi-factor explanation",
+    "necessary-condition convergence",
+    "combined-cause outcome"
+  ],
+  "slots": [
+    { "id": "factorA", "kind": "objects", "required": true },
+    { "id": "factorB", "kind": "objects", "required": true },
+    { "id": "factorC", "kind": "objects", "required": true },
+    { "id": "outcome", "kind": "objects", "required": true },
+    { "id": "conclusion", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-factors", "at": 0.16, "observable": "three independent factors are individually readable" },
+    { "id": "route-inward", "at": 0.46, "observable": "three separate paths visibly reach the same merge point" },
+    { "id": "converge", "at": 0.65, "observable": "the three paths have met once and formed one combined state" },
+    { "id": "resolve-outcome", "at": 0.96, "observable": "one outcome is readable only after convergence" }
+  ],
+  "layout": {
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "minWidth": 720,
+    "safeInset": "project frame safe area"
+  },
+  "styleRoles": [
+    "ground",
+    "factor-a",
+    "factor-b",
+    "factor-c",
+    "merge-accent",
+    "outcome-ink"
+  ],
+  "handoff": {
+    "entry": ["factor-a", "factor-b", "factor-c"],
+    "exit": ["combined-state", "outcome"]
+  },
+  "limits": [
+    "exactly three factors",
+    "one merge point only",
+    "one outcome only",
+    "no factor weights",
+    "no feedback or post-merge branching"
+  ],
+  "implementation": {
+    "entry": "component.html",
+    "runtime": "gsap"
+  },
+  "evidence": {
+    "project": "videos/p15-constraint-convergence-gallery",
+    "scene": "constraint-convergence",
+    "checks": [
+      "strict HyperFrames gate",
+      "three-domain fixed-stage visual inspection",
+      "single canonical runtime across generated instances",
+      "out-of-order seek equivalence"
+    ]
+  }
+}

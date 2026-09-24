@@ -1,0 +1,63 @@
+{
+  "id": "cyclic-exchange-loop",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one conserved set changes location through three reservoirs and returns to its starting reservoir without gain or loss",
+  "teachingUse": [
+    "closed material-cycle explanation",
+    "reservoir exchange explanation",
+    "conserved quantity circulation explanation"
+  ],
+  "slots": [
+    { "id": "reservoirA", "kind": "objects", "required": true },
+    { "id": "reservoirB", "kind": "objects", "required": true },
+    { "id": "reservoirC", "kind": "objects", "required": true },
+    { "id": "quantity", "kind": "label", "required": true },
+    { "id": "transferLabels", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-reservoirs", "at": 0.12, "observable": "three reservoirs and the conserved set are readable before any transfer" },
+    { "id": "transfer-a-to-b", "at": 0.34, "observable": "one visible unit leaves reservoir A and appears in reservoir B" },
+    { "id": "transfer-b-to-c", "at": 0.57, "observable": "the same visible unit leaves reservoir B and appears in reservoir C" },
+    { "id": "close-exchange", "at": 0.86, "observable": "the unit returns from reservoir C to reservoir A and the original distribution is restored" }
+  ],
+  "layout": {
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "minWidth": 720,
+    "safeInset": "project frame safe area"
+  },
+  "styleRoles": [
+    "ground",
+    "reservoir-a",
+    "reservoir-b",
+    "reservoir-c",
+    "conserved-quantity",
+    "transfer-path"
+  ],
+  "handoff": {
+    "entry": ["reservoir-a", "conserved-set"],
+    "exit": ["restored-distribution", "closed-exchange-path"]
+  },
+  "limits": [
+    "exactly three reservoirs",
+    "one conserved quantity only",
+    "one directed closed exchange loop only",
+    "every transfer changes location without changing the total set",
+    "no sources, sinks, branches, amplification, or balancing claim",
+    "no quantitative total or transfer rate unless supplied"
+  ],
+  "implementation": {
+    "entry": "component.html",
+    "runtime": "gsap"
+  },
+  "evidence": {
+    "project": "videos/p18-cyclic-exchange-loop-harness",
+    "scene": "cyclic-exchange-loop",
+    "checks": [
+      "strict HyperFrames gate",
+      "fixed-stage visual inspection",
+      "conserved-token state verification",
+      "out-of-order seek equivalence"
+    ]
+  }
+}

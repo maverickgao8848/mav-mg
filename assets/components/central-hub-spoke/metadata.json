@@ -1,0 +1,43 @@
+{
+  "id": "central-hub-spoke",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one central hub maintains one direct link to each of five independent spokes, distributes one shared signal outward, and receives one acknowledgement back from every spoke without any spoke-to-spoke relay",
+  "teachingUse": ["hub-and-spoke system", "central service distribution", "direct branch coordination"],
+  "slots": [
+    { "id": "hub", "kind": "label", "required": true },
+    { "id": "spoke1", "kind": "objects", "required": true },
+    { "id": "spoke2", "kind": "objects", "required": true },
+    { "id": "spoke3", "kind": "objects", "required": true },
+    { "id": "spoke4", "kind": "objects", "required": true },
+    { "id": "spoke5", "kind": "objects", "required": true },
+    { "id": "outboundSignal", "kind": "label", "required": true },
+    { "id": "acknowledgement", "kind": "label", "required": true },
+    { "id": "resolvedResult", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-hub", "at": 0.11, "observable": "the single coordinating hub is the dominant object before any link is active" },
+    { "id": "reveal-spokes", "at": 0.27, "observable": "five independent spokes become readable around the fixed hub with no spoke-to-spoke edge" },
+    { "id": "distribute-outbound", "at": 0.46, "observable": "one shared signal travels from the hub along every direct spoke link" },
+    { "id": "collect-acknowledgements", "at": 0.66, "observable": "each spoke returns one acknowledgement directly to the same hub" },
+    { "id": "prove-direct-star", "at": 0.86, "observable": "all five links are confirmed while the star topology and absence of peer relay remain visible" },
+    { "id": "hold-proof", "at": 0.94, "observable": "the completed five-of-five direct-link proof holds as a readable handoff state" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "central-hub", "inactive-spoke", "outbound-signal", "return-acknowledgement", "confirmed-link"],
+  "handoff": { "entry": ["hub"], "exit": ["hub", "resolved-star"] },
+  "limits": [
+    "exactly one hub and five independent spokes",
+    "each spoke has exactly one direct edge to the hub and no edge to another spoke",
+    "one shared outbound signal reaches every spoke before acknowledgements are collected",
+    "each spoke returns one acknowledgement directly along its own hub link",
+    "the resolved result appears only after all five acknowledgements are present",
+    "radial placement expresses direct central connection only and does not imply hierarchy, order, distance, coverage radius, or peer-to-peer routing"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p23-central-hub-spoke-gallery",
+    "scene": "natural-starfish, technical-fleet, social-foodbank",
+    "checks": ["three-domain data-only rebuild", "strict HyperFrames gate", "15-frame visual inspection", "canonical live seek proof", "21.6-second normal-speed gallery playback"]
+  }
+}

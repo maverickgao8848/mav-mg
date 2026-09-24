@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          color: #26342f;
+          background: #f4efe3;
+          font-family: system-ui, sans-serif;
+        }
+        .ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 62%, rgba(167, 101, 44, 0.16), transparent 34%), linear-gradient(145deg, #fbf7ed, #e8eee7); }
+        .frame { position: absolute; inset: 54px; border: 2px solid rgba(38, 52, 47, 0.2); border-radius: 34px; }
+        .eyebrow { position: absolute; left: 94px; top: 72px; color: #8b5429; font: 800 15px/1 ui-monospace, monospace; letter-spacing: 0.16em; }
+        .title { position: absolute; left: 94px; top: 104px; margin: 0; font-size: 42px; letter-spacing: -0.035em; }
+        .contract { position: absolute; right: 94px; top: 92px; color: #566760; font: 750 14px/1 ui-monospace, monospace; letter-spacing: 0.1em; }
+        #subject-label { position: absolute; left: 50%; top: 188px; width: 440px; margin-left: -220px; padding: 14px 22px; border-radius: 999px; background: #26342f; color: #fff8e8; text-align: center; font: 850 16px/1 ui-monospace, monospace; letter-spacing: 0.1em; will-change: transform; }
+        .process { position: absolute; left: 76px; right: 76px; top: 300px; height: 560px; }
+        .step-card {
+          position: absolute;
+          top: 0;
+          width: 350px;
+          height: 330px;
+          padding: 28px 28px 24px;
+          border: 3px solid rgba(38, 52, 47, 0.22);
+          border-radius: 30px;
+          background: rgba(255, 253, 247, 0.86);
+          opacity: 0;
+          box-shadow: 0 16px 34px rgba(38, 52, 47, 0.07);
+          will-change: transform, opacity, background-color, border-color;
+        }
+        #step-1 { left: 0; }
+        #step-2 { left: 470px; }
+        #step-3 { left: 940px; }
+        #step-4 { right: 0; }
+        .step-number { color: #8b5429; font: 900 18px/1 ui-monospace, monospace; letter-spacing: 0.16em; }
+        .state-icon { width: 132px; height: 116px; margin: 26px auto 18px; display: grid; place-items: center; color: #8b5429; }
+        .state-icon svg { width: 120px; height: 110px; overflow: visible; }
+        .state-icon path, .state-icon circle, .state-icon ellipse, .state-icon line { fill: none; stroke: currentColor; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+        .step-card h2 { margin: 0; text-align: center; font-size: 29px; line-height: 1.05; letter-spacing: -0.02em; }
+        .step-card p { margin: 12px 0 0; color: #56635e; text-align: center; font: 750 13px/1.2 ui-monospace, monospace; letter-spacing: 0.08em; }
+        .done-seal { position: absolute; right: 22px; top: 20px; padding: 8px 11px; border-radius: 999px; background: #3e6c50; color: #fff9eb; opacity: 0; font: 900 11px/1 ui-monospace, monospace; letter-spacing: 0.09em; will-change: transform, opacity; }
+        .route-map { position: absolute; left: 0; top: 330px; width: 1768px; height: 170px; overflow: visible; }
+        .route-base { stroke: #c8b99a; stroke-width: 8; stroke-linecap: round; }
+        .route-segment { stroke: #a35f2d; stroke-width: 10; stroke-linecap: round; }
+        .station-marker { position: absolute; top: 403px; width: 34px; height: 34px; margin-left: -17px; border: 5px solid #c8b99a; border-radius: 50%; background: #f4efe3; }
+        #marker-1 { left: 175px; } #marker-2 { left: 645px; } #marker-3 { left: 1115px; } #marker-4 { left: 1593px; }
+        #progress-token { position: absolute; left: 153px; top: 381px; width: 44px; height: 44px; border: 7px solid #fff9eb; border-radius: 50%; background: #a35f2d; opacity: 0; transform: translateX(0); box-shadow: 0 8px 18px rgba(78, 43, 20, 0.22); will-change: transform, opacity; }
+        #result { position: absolute; left: 50%; bottom: 58px; width: 900px; margin-left: -450px; padding: 17px 28px; border-radius: 999px; background: #26342f; color: #fff8e8; text-align: center; opacity: 0; font: 850 16px/1.2 ui-monospace, monospace; letter-spacing: 0.08em; will-change: transform, opacity; }
+      </style>
+      <div id="root" data-composition-id="linear-step-progression" data-width="1920" data-height="1080" data-duration="6">
+        <div id="process-ground" class="ground clip" data-start="0" data-duration="6" data-track-index="0"></div>
+        <div class="frame"></div>
+        <div class="eyebrow">LINEAR STEP PROGRESSION</div>
+        <h1 class="title">How does coffee become a brewed cup?</h1>
+        <div class="contract">ONE SUBJECT · FOUR ORDERED STEPS · NO BRANCHES</div>
+        <div id="subject-label">SUBJECT · COFFEE</div>
+        <section class="process" aria-label="coffee progressing from whole beans through grinding and brewing to a finished cup">
+          <article id="step-1" class="step-card">
+            <div class="step-number">01</div><div class="done-seal">DONE</div>
+            <div class="state-icon"><svg viewBox="0 0 120 110" aria-hidden="true"><ellipse cx="40" cy="55" rx="22" ry="34"/><ellipse cx="78" cy="55" rx="22" ry="34"/><path d="M28 76c16-10 27-27 34-48M66 81c15-13 24-30 27-50"/></svg></div>
+            <h2>WHOLE BEANS</h2><p>INPUT STATE</p>
+          </article>
+          <article id="step-2" class="step-card">
+            <div class="step-number">02</div><div class="done-seal">DONE</div>
+            <div class="state-icon"><svg viewBox="0 0 120 110" aria-hidden="true"><circle cx="32" cy="38" r="7"/><circle cx="55" cy="31" r="6"/><circle cx="79" cy="40" r="8"/><circle cx="91" cy="65" r="6"/><circle cx="62" cy="67" r="7"/><circle cx="35" cy="73" r="6"/><circle cx="74" cy="87" r="5"/></svg></div>
+            <h2>GROUND COFFEE</h2><p>SIZE REDUCED</p>
+          </article>
+          <article id="step-3" class="step-card">
+            <div class="step-number">03</div><div class="done-seal">DONE</div>
+            <div class="state-icon"><svg viewBox="0 0 120 110" aria-hidden="true"><path d="M28 18h64L76 58H44L28 18Z"/><line x1="60" y1="58" x2="60" y2="79"/><path d="M52 91h16M60 79c-8 9-8 15 0 15s8-6 0-15Z"/></svg></div>
+            <h2>BREWING</h2><p>WATER PASSES THROUGH</p>
+          </article>
+          <article id="step-4" class="step-card">
+            <div class="step-number">04</div><div class="done-seal">DONE</div>
+            <div class="state-icon"><svg viewBox="0 0 120 110" aria-hidden="true"><path d="M25 35h62v45H25V35Zm62 10h9c18 0 18 27 0 27h-9M34 91h58"/><path d="M43 24c-8-8 7-10 0-19M66 24c-8-8 7-10 0-19"/></svg></div>
+            <h2>BREWED CUP</h2><p>OUTPUT STATE</p>
+          </article>
+          <svg class="route-map" viewBox="0 0 1768 170" aria-hidden="true">
+            <line class="route-base" x1="175" y1="90" x2="1593" y2="90"/>
+            <line id="segment-1" class="route-segment" x1="175" y1="90" x2="645" y2="90" stroke-dasharray="470" stroke-dashoffset="470"/>
+            <line id="segment-2" class="route-segment" x1="645" y1="90" x2="1115" y2="90" stroke-dasharray="470" stroke-dashoffset="470"/>
+            <line id="segment-3" class="route-segment" x1="1115" y1="90" x2="1593" y2="90" stroke-dasharray="478" stroke-dashoffset="478"/>
+          </svg>
+          <div id="marker-1" class="station-marker"></div><div id="marker-2" class="station-marker"></div><div id="marker-3" class="station-marker"></div><div id="marker-4" class="station-marker"></div>
+          <div id="progress-token"></div>
+        </section>
+        <div id="result">RESULT · ONE ORDERED ROUTE FROM WHOLE BEANS TO BREWED COFFEE</div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="linear-step-progression"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused: true });
+        tl.set(q(".step-card"), { opacity: 1 }, 0.1)
+          .fromTo(q(".step-card"), { y: 24, scale: 0.96 }, { y: 0, scale: 1, duration: 0.42, stagger: 0.08, ease: "power3.out" }, 0.1)
+          .fromTo(q("#subject-label"), { y: -12 }, { y: 0, duration: 0.34, ease: "power2.out" }, 0.24)
+          .set(q("#progress-token"), { opacity: 1 }, 0.48)
+          .to(q("#step-1"), { borderColor: "#a35f2d", backgroundColor: "#fff1d8", scale: 1.035, duration: 0.24, ease: "power2.out" }, 0.48)
+          .addLabel("establish-route", 0.78)
+          .to(q("#segment-1"), { strokeDashoffset: 0, duration: 0.68, ease: "power2.inOut" }, 0.92)
+          .to(q("#progress-token"), { x: 470, duration: 0.68, ease: "power2.inOut" }, 0.92)
+          .to(q("#step-1"), { scale: 1, backgroundColor: "#f1f4e9", borderColor: "#3e6c50", duration: 0.22, ease: "power2.out" }, 1.58)
+          .fromTo(q("#step-1 .done-seal"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(1.6)" }, 1.58)
+          .to(q("#step-2"), { borderColor: "#a35f2d", backgroundColor: "#fff1d8", scale: 1.035, duration: 0.22, ease: "power2.out" }, 1.6)
+          .addLabel("complete-step-one", 1.95)
+          .to(q("#segment-2"), { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 2.08)
+          .to(q("#progress-token"), { x: 940, duration: 0.7, ease: "power2.inOut" }, 2.08)
+          .to(q("#step-2"), { scale: 1, backgroundColor: "#f1f4e9", borderColor: "#3e6c50", duration: 0.22, ease: "power2.out" }, 2.76)
+          .fromTo(q("#step-2 .done-seal"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(1.6)" }, 2.76)
+          .to(q("#step-3"), { borderColor: "#a35f2d", backgroundColor: "#fff1d8", scale: 1.035, duration: 0.22, ease: "power2.out" }, 2.78)
+          .addLabel("complete-step-two", 3.15)
+          .to(q("#segment-3"), { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 3.28)
+          .to(q("#progress-token"), { x: 1418, duration: 0.7, ease: "power2.inOut" }, 3.28)
+          .to(q("#step-3"), { scale: 1, backgroundColor: "#f1f4e9", borderColor: "#3e6c50", duration: 0.22, ease: "power2.out" }, 3.96)
+          .fromTo(q("#step-3 .done-seal"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(1.6)" }, 3.96)
+          .to(q("#step-4"), { borderColor: "#a35f2d", backgroundColor: "#fff1d8", scale: 1.035, duration: 0.22, ease: "power2.out" }, 3.98)
+          .addLabel("complete-step-three", 4.35)
+          .to(q("#step-4"), { scale: 1.055, backgroundColor: "#f6dfb8", duration: 0.32, ease: "power3.out" }, 4.5)
+          .fromTo(q("#step-4 .done-seal"), { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.22, ease: "back.out(1.6)" }, 4.7)
+          .fromTo(q("#result"), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 4.78)
+          .addLabel("resolve-step-four", 5.28);
+        window.__timelines["linear-step-progression"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

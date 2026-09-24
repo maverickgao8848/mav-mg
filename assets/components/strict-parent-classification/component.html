@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; color:#27322d; background:#f3efe3; font-family:system-ui,sans-serif; }
+        .taxonomy-ground { position:absolute; inset:0; background:radial-gradient(circle at 50% 38%,rgba(58,108,82,.17),transparent 30%),radial-gradient(circle at 82% 77%,rgba(184,117,52,.13),transparent 25%),#f5f1e7; }
+        .taxonomy-frame { position:absolute; inset:54px; border:2px solid rgba(39,50,45,.2); border-radius:34px; }
+        .taxonomy-eyebrow { position:absolute; left:94px; top:70px; color:#9a5c27; font:850 15px/1 ui-monospace,monospace; letter-spacing:.16em; }
+        .taxonomy-title { position:absolute; left:94px; top:105px; margin:0; font-size:48px; line-height:1; letter-spacing:-.045em; }
+        .taxonomy-contract { position:absolute; right:94px; top:88px; color:#53625b; font:750 14px/1 ui-monospace,monospace; letter-spacing:.09em; }
+        #tree-field { position:absolute; left:86px; right:86px; top:182px; height:690px; border-radius:28px; background:rgba(255,252,243,.62); box-shadow:inset 0 0 0 2px rgba(39,50,45,.1); }
+        #tree-connectors { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+        .base-link { fill:none; stroke:#a9b1a7; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+        .trace-link { fill:none; stroke:#c36d2d; stroke-width:11; stroke-linecap:round; stroke-linejoin:round; filter:drop-shadow(0 0 8px rgba(195,109,45,.34)); }
+        .tree-node { position:absolute; z-index:2; height:112px; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid #67776e; border-radius:22px; background:#fffaf0; box-shadow:0 14px 28px rgba(51,59,54,.09); text-align:center; opacity:0; }
+        .tree-node .rank { color:#4e5b54; font:850 11px/1 ui-monospace,monospace; letter-spacing:.13em; }
+        .tree-node strong { margin-top:10px; font-size:24px; line-height:1; letter-spacing:.02em; }
+        #node-animals { left:754px; top:62px; width:324px; }
+        #node-vertebrates { left:448px; top:260px; width:330px; }
+        #node-invertebrates { left:1050px; top:260px; width:330px; }
+        #node-mammals { left:118px; top:493px; width:300px; }
+        #node-birds { left:505px; top:493px; width:300px; }
+        #node-arthropods { left:1018px; top:493px; width:300px; }
+        #node-mollusks { left:1402px; top:493px; width:300px; }
+        #instance-card { position:absolute; z-index:5; left:1482px; top:822px; width:286px; height:128px; display:flex; align-items:center; gap:18px; padding:18px 22px; border:4px solid #c36d2d; border-radius:24px; background:#fff4de; box-shadow:0 18px 34px rgba(91,54,26,.16); opacity:0; }
+        .orca-mark { position:relative; flex:0 0 78px; height:58px; border-radius:60% 45% 50% 55%; background:#27322d; }
+        .orca-mark::before { content:""; position:absolute; left:14px; top:24px; width:29px; height:18px; border-radius:50%; background:#f5f1e7; transform:rotate(-12deg); }
+        .orca-mark::after { content:""; position:absolute; right:-19px; top:17px; width:32px; height:25px; background:#27322d; clip-path:polygon(0 50%,100% 0,75% 50%,100% 100%); }
+        .instance-copy span { display:block; color:#9a5c27; font:850 11px/1 ui-monospace,monospace; letter-spacing:.12em; }
+        .instance-copy strong { display:block; margin-top:9px; font-size:27px; line-height:1; }
+        #dock-slot { position:absolute; z-index:1; left:204px; top:785px; width:308px; height:166px; border:3px dashed rgba(195,109,45,.48); border-radius:28px; opacity:0; }
+        #parent-badge { position:absolute; z-index:6; left:525px; top:816px; padding:10px 15px; border-radius:999px; background:#71401f; color:#fff9ed; opacity:0; font:900 11px/1 ui-monospace,monospace; letter-spacing:.1em; }
+        #lineage-result { position:absolute; z-index:7; left:424px; bottom:57px; width:1072px; padding:18px 28px; border-radius:999px; background:#27322d; color:#fff9ed; opacity:0; text-align:center; font:850 16px/1.15 ui-monospace,monospace; letter-spacing:.065em; }
+      </style>
+      <div id="root" data-composition-id="strict-parent-classification" data-width="1920" data-height="1080" data-duration="6.4">
+        <div id="taxonomy-ground" class="taxonomy-ground clip" data-start="0" data-duration="6.4" data-track-index="0"></div>
+        <div class="taxonomy-frame"></div>
+        <div class="taxonomy-eyebrow">STRICT PARENT CLASSIFICATION</div>
+        <h1 class="taxonomy-title">Where does the orca belong?</h1>
+        <div class="taxonomy-contract">ONE INSTANCE · ONE DIRECT PARENT · ONE ROOT PATH</div>
+        <div id="tree-field">
+          <svg id="tree-connectors" viewBox="0 0 1748 690" aria-hidden="true">
+            <path id="base-root-left" class="base-link" d="M916 174 C916 220 613 210 613 260"/>
+            <path id="base-root-right" class="base-link" d="M916 174 C916 220 1215 210 1215 260"/>
+            <path id="base-vertebrates-mammals" class="base-link" d="M613 372 C613 430 268 430 268 493"/>
+            <path id="base-vertebrates-birds" class="base-link" d="M613 372 C613 430 655 430 655 493"/>
+            <path id="base-invertebrates-arthropods" class="base-link" d="M1215 372 C1215 430 1168 430 1168 493"/>
+            <path id="base-invertebrates-mollusks" class="base-link" d="M1215 372 C1215 430 1552 430 1552 493"/>
+            <path id="trace-instance-mammals" class="trace-link" d="M268 690 L268 605"/>
+            <path id="trace-mammals-vertebrates" class="trace-link" d="M268 493 C268 430 613 430 613 372"/>
+            <path id="trace-vertebrates-animals" class="trace-link" d="M613 260 C613 210 916 220 916 174"/>
+          </svg>
+          <div id="node-animals" class="tree-node selected-node" data-node-id="animals" data-parent-id=""><span class="rank">ROOT · KINGDOM</span><strong>ANIMALS</strong></div>
+          <div id="node-vertebrates" class="tree-node selected-node" data-node-id="vertebrates" data-parent-id="animals"><span class="rank">ANCESTOR · GROUP</span><strong>VERTEBRATES</strong></div>
+          <div id="node-invertebrates" class="tree-node sibling-node" data-node-id="invertebrates" data-parent-id="animals"><span class="rank">SIBLING · GROUP</span><strong>INVERTEBRATES</strong></div>
+          <div id="node-mammals" class="tree-node selected-node" data-node-id="mammals" data-parent-id="vertebrates"><span class="rank">DIRECT PARENT · CLASS</span><strong>MAMMALS</strong></div>
+          <div id="node-birds" class="tree-node sibling-node" data-node-id="birds" data-parent-id="vertebrates"><span class="rank">SIBLING · CLASS</span><strong>BIRDS</strong></div>
+          <div id="node-arthropods" class="tree-node sibling-node" data-node-id="arthropods" data-parent-id="invertebrates"><span class="rank">CHILD · GROUP</span><strong>ARTHROPODS</strong></div>
+          <div id="node-mollusks" class="tree-node sibling-node" data-node-id="mollusks" data-parent-id="invertebrates"><span class="rank">CHILD · GROUP</span><strong>MOLLUSKS</strong></div>
+        </div>
+        <div id="dock-slot"></div>
+        <div id="parent-badge">DIRECT PARENT</div>
+        <div id="instance-card" data-instance-id="orca" data-parent-id="mammals"><div class="orca-mark"></div><div class="instance-copy"><span>INSTANCE</span><strong>ORCA</strong></div></div>
+        <div id="lineage-result">ORCA → MAMMALS → VERTEBRATES → ANIMALS</div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="strict-parent-classification"]');
+        const q = gsap.utils.selector(root);
+        const baseLinks = q('.base-link');
+        const traceLinks = q('.trace-link');
+        [...baseLinks, ...traceLinks].forEach((path) => {
+          const length = path.getTotalLength();
+          path.style.strokeDasharray = `${length}`;
+          path.style.strokeDashoffset = `${length}`;
+        });
+        const tl = gsap.timeline({ paused:true });
+        tl.fromTo(q('#tree-field'), { opacity:0, scale:.985 }, { opacity:1, scale:1, duration:.52, ease:'power3.out' }, .12)
+          .to(baseLinks, { strokeDashoffset:0, duration:.72, stagger:.055, ease:'power2.out' }, .18)
+          .fromTo(q('.tree-node'), { opacity:0, y:18, scale:.96 }, { opacity:1, y:0, scale:1, duration:.46, stagger:.055, ease:'power3.out' }, .3)
+          .addLabel('establish-taxonomy', .95)
+          .fromTo(q('#instance-card'), { opacity:0, x:36, scale:.9 }, { opacity:1, x:0, scale:1, duration:.55, ease:'expo.out' }, 1.08)
+          .addLabel('reveal-instance', 1.65)
+          .fromTo(q('#dock-slot'), { opacity:0, scale:.94 }, { opacity:1, scale:1, duration:.38, ease:'power2.out' }, 1.82)
+          .to(q('.sibling-node'), { color:'#56625c', backgroundColor:'#f0ede4', borderColor:'#9ea8a1', duration:.4, ease:'power1.out' }, 2.12)
+          .to(q('#instance-card'), { x:-1278, y:-37, scale:.92, duration:1.08, ease:'power3.inOut' }, 2.12)
+          .to(q('#node-mammals'), { backgroundColor:'#f4d7af', borderColor:'#c36d2d', color:'#7f431d', duration:.34, ease:'power2.out' }, 3.16)
+          .fromTo(q('#parent-badge'), { opacity:0, y:10 }, { opacity:1, y:0, duration:.26, ease:'power3.out' }, 3.24)
+          .addLabel('assign-direct-parent', 3.55)
+          .to(q('#trace-instance-mammals'), { strokeDashoffset:0, duration:.34, ease:'power2.out' }, 3.62)
+          .to(q('#trace-mammals-vertebrates'), { strokeDashoffset:0, duration:.62, ease:'power2.out' }, 3.92)
+          .to(q('#node-vertebrates'), { backgroundColor:'#e1ebdd', borderColor:'#3a6c52', color:'#315f49', duration:.3, ease:'power1.out' }, 4.24)
+          .to(q('#trace-vertebrates-animals'), { strokeDashoffset:0, duration:.58, ease:'power2.out' }, 4.45)
+          .to(q('#node-animals'), { backgroundColor:'#d4e4d1', borderColor:'#3a6c52', color:'#315f49', duration:.3, ease:'power1.out' }, 4.78)
+          .addLabel('trace-ancestors', 5.1)
+          .fromTo(q('#lineage-result'), { opacity:0, y:16 }, { opacity:1, y:0, duration:.44, ease:'power3.out' }, 5.34)
+          .addLabel('resolve-lineage', 5.85);
+        window.__timelines['strict-parent-classification'] = tl;
+      </script>
+    </template>
+  </body>
+</html>

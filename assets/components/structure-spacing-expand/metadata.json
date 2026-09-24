@@ -1,0 +1,23 @@
+{
+  "id": "structure-spacing-expand",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "same objects adopt a more open spatial structure",
+  "teachingUse": ["phase structure change", "expansion without added matter", "packing density"],
+  "slots": [
+    { "id": "objects", "kind": "objects", "required": true },
+    { "id": "beforeLabel", "kind": "label", "required": true },
+    { "id": "afterLabel", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-compact", "at": 0.1, "observable": "all objects are visible in a compact arrangement" },
+    { "id": "expand-spacing", "at": 0.35, "observable": "the same object identities spread from the shared center" },
+    { "id": "label-open-state", "at": 0.72, "observable": "the expanded structure settles and its label appears" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "1:1"], "minWidth": 640, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "primary-ink", "secondary-ink", "structural-rule"],
+  "handoff": { "entry": ["object-set"], "exit": ["object-set", "expanded-bounds"] },
+  "limits": ["reference implementation currently uses 12 objects", "object identity and count must remain unchanged", "not for quantitative scale claims without supplied values"],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": { "project": "videos/knowledge-mg-p3-gallery", "scene": "candidate-structure", "checks": ["strict HyperFrames gate", "representative snapshot inspected", "user accepted 2026-09-14"] }
+}

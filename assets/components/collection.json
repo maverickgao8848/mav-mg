@@ -1,0 +1,30 @@
+{
+  "allowed": [
+    "structure-spacing-expand",
+    "conserved-set-compare",
+    "interface-support",
+    "constraint-convergence",
+    "reinforcing-feedback-loop",
+    "balancing-feedback-loop",
+    "cyclic-exchange-loop",
+    "dimension-aligned-compare",
+    "linear-step-progression",
+    "single-condition-branch",
+    "qualitative-set-filter",
+    "strict-parent-classification",
+    "nested-spatial-containment",
+    "shared-member-intersection",
+    "multi-actor-sequence",
+    "parallel-join-barrier",
+    "event-driven-state-transition",
+    "dependent-two-level-decision",
+    "ordered-layer-dependency",
+    "central-hub-spoke",
+    "multi-hop-peer-network",
+    "structural-analogy-map"
+  ],
+  "preferred": [
+    "conserved-set-compare"
+  ],
+  "unused": []
+}

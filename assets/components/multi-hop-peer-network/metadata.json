@@ -1,0 +1,42 @@
+{
+  "id": "multi-hop-peer-network",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "a source reaches a destination through a selected multi-hop path across peer nodes without a fixed center, while unused valid links remain visible and the destination returns confirmation through a different available route",
+  "teachingUse": ["peer relay network", "multi-hop message routing", "alternate return path"],
+  "slots": [
+    { "id": "source", "kind": "label", "required": true },
+    { "id": "destination", "kind": "label", "required": true },
+    { "id": "peerNodes", "kind": "objects", "required": true },
+    { "id": "availableLinks", "kind": "objects", "required": true },
+    { "id": "forwardMessage", "kind": "label", "required": true },
+    { "id": "returnMessage", "kind": "label", "required": true },
+    { "id": "resolvedResult", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-peer-field", "at": 0.12, "observable": "the source, destination, and five equally ranked relay peers are readable with no central controller" },
+    { "id": "reveal-adjacency", "at": 0.28, "observable": "all ten available peer links appear as a connected non-star graph" },
+    { "id": "route-forward", "at": 0.47, "observable": "one message advances hop by hop from source to destination through three relay peers" },
+    { "id": "deliver-endpoint", "at": 0.62, "observable": "the destination visibly receives the message after four completed hops" },
+    { "id": "return-alternate", "at": 0.78, "observable": "confirmation returns through a different three-hop route while the forward route remains visible" },
+    { "id": "prove-peer-network", "at": 0.91, "observable": "both selected routes and the unused available links remain readable, proving multi-hop routing without a fixed hub" },
+    { "id": "hold-proof", "at": 0.96, "observable": "the completed forward and alternate-return paths hold as a readable handoff state" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "peer-node", "available-link", "forward-route", "alternate-return-route", "endpoint-state"],
+  "handoff": { "entry": ["source", "peer-field"], "exit": ["destination", "resolved-routes"] },
+  "limits": [
+    "exactly one source, one destination, and five relay peers",
+    "the graph contains ten explicit peer links and no node connects to every other node",
+    "the selected forward path contains exactly four links and three relay peers",
+    "the alternate return path contains exactly three links and does not reuse a forward-path link",
+    "unused available links remain visible so the result reads as route selection inside a network rather than a fixed chain",
+    "node placement and link availability do not imply geography, latency, bandwidth, priority, hierarchy, automatic shortest-path choice, or universal network reachability"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p24-multi-hop-peer-network-gallery",
+    "scene": "natural-technical-social-peer-network-gallery",
+    "checks": ["candidate canonical rebuild", "three-domain data-only reuse", "strict HyperFrames stage gate", "animation-map audit", "fifteen-frame visual inspection", "one-times playback and reverse-seek proof"]
+  }
+}

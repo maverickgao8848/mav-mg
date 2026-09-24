@@ -1,0 +1,12 @@
+{
+  "duration": 8,
+  "assertions": [
+    { "kind": "appearsBy", "selector": "#source-panel", "bySec": 0.8 },
+    { "kind": "before", "a": "#source-panel", "b": "#map-1" },
+    { "kind": "before", "a": "#map-1", "b": "#analogy-boundary" },
+    { "kind": "staysInFrame", "selector": "#source-panel" },
+    { "kind": "staysInFrame", "selector": "#target-panel" },
+    { "kind": "staysInFrame", "selector": "#analogy-boundary" },
+    { "kind": "keepsMoving", "withinSelector": "#root", "maxStaticSec": 1.45 }
+  ]
+}

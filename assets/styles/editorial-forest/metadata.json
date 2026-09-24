@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "editorial-forest",
+  "revision": "p10.4-motion.1",
+  "provenance": {
+    "kind": "user_supplied_style_pack",
+    "sourceArchive": "editorial-forest-frame-pack.zip",
+    "sourceArchiveSha256": "76d99c0a7f4a26cfe2cad572e3d1b9bb5495a6a3a2e1ff37cd06ee74705ab4d6",
+    "originalFrameSha256": "9277d8d792740ad0683f3f6b440c7f7dcad32ba906d6b465d4af76caa937ce56",
+    "license": "not_supplied",
+    "repository": null,
+    "commit": null
+  },
+  "selection": {
+    "kind": "art_direction_only",
+    "userResponse": "2",
+    "candidateVersionSha256": "e29a6322381f7c1476c1c829fd431d85b3da289f1000de3d6a8c00bbc6d284a8"
+  },
+  "adaptationNotes": [
+    "Chinese typography follows the selected candidate implementation instead of the original Latin font specification and its conflicting CJK fallback note.",
+    "Semantic circles, paths and variable illustration stroke weights are distinguished from editorial separators and card corners.",
+    "The original tile-fill exception and two-surface rule are resolved into primary/secondary surfaces with palette inks.",
+    "Source aspect-ratio examples are omitted; supported output remains governed by release-scope.md.",
+    "Repeated source audits are replaced by the existing quality.md checkpoints; thermal rings and exact cue times remain topic-specific.",
+    "Shared camera, text timing and continuity rules are owned by motion-direction; historical project reviews retain their original scope and do not approve this motion revision."
+  ],
+  "validationScope": {
+    "basis": "P9 user-selected 40.166667-second thermal-storage candidate plus the accepted 68.514-second spoon-touch feedback rebuild",
+    "transfer": "passed_same_content_project_migration",
+    "crossTopic": "accepted_one_new_topic_with_overlap_deficit",
+    "productionArtDirection": "not_claimed",
+    "userReview": {
+      "project": "videos/spoon-touch-p10-v2",
+      "versionSha256": "bc04f5de719b52a1243f616683cafa4ef80942ddd97eba6482506930231987fc",
+      "outcome": "accepted_with_deficit",
+      "deficit": "Some frames contain overlapping elements."
+    }
+  },
+  "files": [
+    {
+      "path": "FRAME.md",
+      "sha256": "1ba5938d29ee6cfba5e20b09e101e6ee8ce9aba7ae071f4416c18d7fc23a7d13"
+    },
+    {
+      "path": "samples/sample-01.png",
+      "sha256": "242f463cdf5f014a3f542bae2aac304f46a30ea85c2c7f56d66f3080e0369279"
+    },
+    {
+      "path": "samples/sample-02.png",
+      "sha256": "0bde2e4a0c6ad923dc60cc8a118adb437442f65d6544d91db598046b061a4c63"
+    },
+    {
+      "path": "samples/sample-03.png",
+      "sha256": "87effcb32933e47727f1c22f77b15a69504c7856d61478a01b8fbb3a12181599"
+    },
+    {
+      "path": "samples/sample-04.png",
+      "sha256": "5b9f5f75720a794fd75f88080387cba98514c1bd983722435a71b4ee89f151aa"
+    },
+    {
+      "path": "samples/sample-05.png",
+      "sha256": "886fa29500b0b37c5e9bea82aca47ecaa4004350ffe7d2b65feef040eb7b6c14"
+    },
+    {
+      "path": "samples/sample-06.png",
+      "sha256": "737b3e64c2b9b851a7fce21755667183c9e18f7fe377a1107be78dadb8f72fe0"
+    },
+    {
+      "path": "samples/sample-07.png",
+      "sha256": "8a56bc4687a3a3bcaed78e96f82cd782a68f762751ea75c9c9c9e138169b25d6"
+    }
+  ]
+}

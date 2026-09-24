@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          color: var(--kmg-ink, #183126);
+          background: var(--kmg-paper, #f6f3e8);
+          font-family: system-ui, sans-serif;
+        }
+        .ground { position: absolute; inset: 0; background: linear-gradient(135deg, #f7f4e9, #e7eee4); }
+        .frame { position: absolute; inset: 70px; border: 2px solid rgba(24, 49, 38, 0.22); border-radius: 28px; }
+        .title { position: absolute; left: 96px; top: 82px; margin: 0; font-size: 38px; letter-spacing: -0.025em; }
+        .contract { position: absolute; right: 96px; top: 96px; font: 700 15px/1 ui-monospace, monospace; letter-spacing: 0.08em; color: #ad542e; }
+        .stage { position: absolute; left: 96px; right: 96px; top: 230px; height: 600px; }
+        .node { position: absolute; top: 150px; width: 240px; height: 240px; border: 4px solid #176b55; border-radius: 30px; background: #fffdf5; display: grid; place-items: center; text-align: center; }
+        .node strong { display: block; font-size: 30px; letter-spacing: 0.04em; }
+        .node span { display: block; margin-top: 12px; font: 700 14px/1.2 ui-monospace, monospace; color: #58675f; }
+        #source { left: 45px; }
+        #receiver { right: 45px; }
+        .source-core, .receiver-core { width: 88px; height: 88px; margin: 0 auto 18px; border-radius: 50%; background: #176b55; box-shadow: inset 0 0 0 18px #cfe2d8; }
+        #medium { position: absolute; left: 330px; right: 330px; top: 266px; height: 8px; border-radius: 999px; background: #176b55; opacity: 0.48; }
+        #medium::after { content: ""; position: absolute; right: -2px; top: -18px; width: 0; height: 0; border-top: 22px solid transparent; border-bottom: 22px solid transparent; border-left: 34px solid #176b55; }
+        #medium-label { position: absolute; left: 330px; right: 330px; top: 300px; text-align: center; font: 700 15px/1 ui-monospace, monospace; letter-spacing: 0.12em; color: #58675f; }
+        #payload { position: absolute; z-index: 3; left: 340px; top: 226px; width: 90px; height: 90px; border-radius: 50%; display: grid; place-items: center; background: #ffca58; border: 4px solid #183126; font: 800 13px/1 ui-monospace, monospace; will-change: transform, opacity; }
+        #arrival-ring { position: absolute; z-index: 2; right: 72px; top: 176px; width: 188px; height: 188px; border: 8px solid #ffca58; border-radius: 50%; opacity: 0; will-change: transform, opacity; }
+        #response-label { position: absolute; right: 56px; top: 430px; width: 218px; padding: 13px 16px; border-radius: 999px; background: #183126; color: #fffdf5; text-align: center; font: 750 14px/1 ui-monospace, monospace; opacity: 0; }
+        .phase-strip { position: absolute; left: 96px; right: 96px; bottom: 86px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .phase-strip span { padding: 12px 14px; border-top: 3px solid #176b55; font: 700 13px/1 ui-monospace, monospace; color: #58675f; }
+      </style>
+      <div id="root" data-composition-id="directed-transmission-path" data-width="1920" data-height="1080" data-duration="4">
+        <div id="transmission-ground" class="ground clip" data-start="0" data-duration="4" data-track-index="0"></div>
+        <div class="frame"></div>
+        <h1 class="title">Directed transmission path</h1>
+        <div class="contract">ONE SOURCE · ONE PATH · ONE RECEIVER</div>
+        <div class="stage">
+          <article id="source" class="node"><div><div class="source-core"></div><strong>SOURCE</strong><span>origin</span></div></article>
+          <div id="medium" aria-label="single continuous directed medium"></div>
+          <div id="medium-label">SINGLE CONTINUOUS MEDIUM</div>
+          <div id="payload">PAYLOAD</div>
+          <div id="arrival-ring" aria-hidden="true"></div>
+          <article id="receiver" class="node"><div><div class="receiver-core"></div><strong>RECEIVER</strong><span>destination</span></div></article>
+          <div id="response-label">RESPONSE AFTER ARRIVAL</div>
+        </div>
+        <div class="phase-strip"><span>01 SOURCE EMPHASIS</span><span>02 TRANSIT</span><span>03 ARRIVAL</span><span>04 RESPONSE</span></div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="directed-transmission-path"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused: true });
+        tl.addLabel("source-emphasis", 0.48)
+          .fromTo(q("#source"), { scale: 1 }, { scale: 1.12, duration: 0.28, ease: "power2.out" }, "source-emphasis")
+          .to(q("#source"), { scale: 1, duration: 0.26, ease: "power2.inOut", immediateRender: false }, 0.76)
+          .addLabel("transit", 1.44)
+          .fromTo(q("#medium"), { opacity: 0.48 }, { opacity: 1, duration: 0.28, ease: "power1.out" }, "transit")
+          .fromTo(q("#payload"), { opacity: 0, x: 0 }, { opacity: 1, x: 1000, duration: 1, ease: "power2.inOut" }, "transit")
+          .addLabel("arrival", 2.72)
+          .fromTo(q("#arrival-ring"), { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" }, "arrival")
+          .addLabel("response", 3.6)
+          .fromTo(q("#receiver"), { scale: 1, backgroundColor: "#fffdf5" }, { scale: 1.08, backgroundColor: "#ffedbd", duration: 0.22, ease: "power2.out" }, "response")
+          .fromTo(q("#response-label"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" }, "response")
+          .to(q("#receiver"), { scale: 1, duration: 0.18, ease: "power2.inOut", immediateRender: false }, 3.82);
+        window.__timelines["directed-transmission-path"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "id": "structural-analogy-map",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "two distinct systems align through exactly three one-to-one role correspondences and the same ordered relation pattern, while an explicit boundary prevents the analogy from being read as object identity",
+  "teachingUse": [
+    "structural analogy",
+    "cross-domain mechanism explanation",
+    "role correspondence with an explicit limit"
+  ],
+  "slots": [
+    { "id": "sourceSystem", "kind": "label", "required": true },
+    { "id": "targetSystem", "kind": "label", "required": true },
+    { "id": "sourceRoles", "kind": "objects", "required": true },
+    { "id": "targetRoles", "kind": "objects", "required": true },
+    { "id": "roleMappings", "kind": "label", "required": true },
+    { "id": "preservedRelation", "kind": "label", "required": true },
+    { "id": "analogyBoundary", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-two-systems", "at": 0.12, "observable": "two separately named systems are visible as distinct domains" },
+    { "id": "trace-source-relation", "at": 0.29, "observable": "the source system visibly demonstrates the ordered role pattern driver through opposition to throughput" },
+    { "id": "pair-role-correspondences", "at": 0.51, "observable": "exactly three one-to-one bridges connect corresponding roles across the two systems" },
+    { "id": "transfer-relation-pattern", "at": 0.7, "observable": "the target system replays the same ordered role pattern without merging its objects with the source system" },
+    { "id": "state-analogy-boundary", "at": 0.88, "observable": "a visible conclusion states that relational roles align while the physical objects remain different" },
+    { "id": "hold-proof", "at": 0.96, "observable": "both relation chains, all three mappings, and the analogy boundary remain readable together" }
+  ],
+  "layout": {
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "minWidth": 720,
+    "safeInset": "project frame safe area"
+  },
+  "styleRoles": [
+    "ground",
+    "source-system",
+    "target-system",
+    "role-node",
+    "preserved-relation",
+    "correspondence-bridge",
+    "analogy-boundary"
+  ],
+  "handoff": {
+    "entry": ["source-system", "source-relation"],
+    "exit": ["mapped-systems", "analogy-boundary"]
+  },
+  "limits": [
+    "exactly two distinct systems and exactly three roles per system",
+    "exactly three one-to-one correspondences; every role participates in one correspondence only",
+    "both systems show the same ordered relation pattern across the three roles",
+    "a visible boundary must state what the analogy preserves and what it does not equate",
+    "the mapping does not imply equal material, magnitude, efficiency, causality beyond the named relation, or interchangeability",
+    "use dimension-aligned-compare instead when the lesson compares attributes rather than transferring a relation pattern"
+  ],
+  "implementation": {
+    "entry": "component.html",
+    "runtime": "gsap"
+  },
+  "evidence": {
+    "project": "videos/p24-structural-analogy-map-gallery",
+    "scene": "biological-technical-service-analogy-gallery",
+    "checks": [
+      "candidate canonical rebuild",
+      "three-domain data-only reuse",
+      "strict HyperFrames stage gate",
+      "motion-intent audit",
+      "fifteen-frame visual inspection",
+      "one-times playback and reverse-seek proof"
+    ]
+  }
+}

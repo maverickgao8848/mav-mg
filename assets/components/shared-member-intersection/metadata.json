@@ -1,0 +1,39 @@
+{
+  "id": "shared-member-intersection",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "two partially overlapping sets preserve their exclusive members in separate lobes while members belonging to both sets resolve inside the shared intersection",
+  "teachingUse": ["set intersection explanation", "shared versus exclusive membership explanation", "two-condition overlap explanation"],
+  "slots": [
+    { "id": "setA", "kind": "container", "required": true },
+    { "id": "setB", "kind": "container", "required": true },
+    { "id": "exclusiveA", "kind": "object", "required": true },
+    { "id": "exclusiveB", "kind": "object", "required": true },
+    { "id": "sharedMembers", "kind": "object-list", "required": true },
+    { "id": "result", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-set-a", "at": 0.13, "observable": "the first set boundary and one exclusive member establish the left membership region" },
+    { "id": "establish-set-b", "at": 0.24, "observable": "the second set boundary and one exclusive member establish the right membership region" },
+    { "id": "form-intersection", "at": 0.48, "observable": "the two boundaries overlap without either boundary containing the other" },
+    { "id": "place-shared-members", "at": 0.72, "observable": "members belonging to both sets settle wholly inside the common region while exclusive members remain in separate lobes" },
+    { "id": "resolve-intersection", "at": 0.9, "observable": "the final frame keeps both boundaries, both exclusive members, and the shared members visible and names the intersection" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "set-a-boundary", "set-b-boundary", "intersection", "exclusive-a", "exclusive-b", "shared-member", "result"],
+  "handoff": { "entry": ["set-a-boundary", "set-b-boundary", "members"], "exit": ["set-a-boundary", "set-b-boundary", "intersection", "members", "result"] },
+  "limits": [
+    "exactly two set boundaries with one visible partial overlap",
+    "neither set boundary wholly contains the other",
+    "at least one exclusive member remains wholly inside each non-overlapping lobe",
+    "every shared member ends wholly inside the geometric intersection",
+    "exclusive members remain outside the geometric intersection",
+    "no nested-container, taxonomy edge, sequence, branch decision, ranking, causal, or proportional claim"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p20-shared-member-intersection-harness",
+    "scene": "shared-member-intersection",
+    "checks": ["strict HyperFrames gate", "fixed-stage visual inspection", "intersection geometry verification", "out-of-order seek equivalence"]
+  }
+}

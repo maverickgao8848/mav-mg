@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; color:#f5eede; background:#10172d; font-family:system-ui,sans-serif; }
+        .containment-ground { position:absolute; inset:0; background:radial-gradient(circle at 68% 54%,rgba(226,141,68,.18),transparent 32%),radial-gradient(circle at 16% 72%,rgba(218,75,92,.13),transparent 25%),#10172d; }
+        .containment-grid { position:absolute; inset:0; opacity:.16; background-image:linear-gradient(rgba(244,230,199,.22) 2px,transparent 2px),linear-gradient(90deg,rgba(244,230,199,.22) 2px,transparent 2px); background-size:80px 80px; }
+        .containment-frame { position:absolute; inset:48px; border:2px solid rgba(245,238,222,.24); border-radius:38px; }
+        .containment-eyebrow { position:absolute; left:86px; top:67px; color:#f0a04b; font:850 16px/1 ui-monospace,monospace; letter-spacing:.18em; }
+        .containment-title { position:absolute; left:86px; top:105px; margin:0; width:920px; font-size:52px; line-height:1; letter-spacing:-.045em; }
+        .containment-contract { position:absolute; right:88px; top:88px; color:#c3bad0; font:750 14px/1 ui-monospace,monospace; letter-spacing:.1em; }
+        .zone-caption { position:absolute; font:850 13px/1 ui-monospace,monospace; letter-spacing:.13em; }
+        #outside-caption { left:118px; top:410px; color:#aaa2b8; }
+        #outer-boundary { position:absolute; left:452px; top:220px; width:1150px; height:700px; border:5px solid #e28d44; border-radius:62px; background:rgba(35,42,66,.72); box-shadow:0 0 0 14px rgba(226,141,68,.08),inset 0 0 70px rgba(226,141,68,.08); opacity:0; transform-origin:center center; }
+        #outer-boundary::before { content:"OUTER BOUNDARY · CARRY-ON"; position:absolute; left:42px; top:32px; padding:12px 16px; border-radius:999px; background:#e28d44; color:#151a2c; font:900 14px/1 ui-monospace,monospace; letter-spacing:.12em; }
+        #outer-boundary::after { content:"INSIDE CARRY-ON"; position:absolute; right:38px; top:38px; color:#e9b27b; font:800 12px/1 ui-monospace,monospace; letter-spacing:.12em; }
+        #inner-boundary { position:absolute; left:930px; top:438px; width:505px; height:326px; border:5px solid #db4b62; border-radius:42px; background:rgba(95,34,57,.34); box-shadow:0 0 0 13px rgba(219,75,98,.09),inset 0 0 52px rgba(219,75,98,.12); opacity:0; transform-origin:center center; }
+        #inner-boundary::before { content:"INNER BOUNDARY · ZIP POUCH"; position:absolute; left:28px; top:25px; padding:11px 14px; border-radius:999px; background:#db4b62; color:#fff1e5; font:900 13px/1 ui-monospace,monospace; letter-spacing:.1em; }
+        .boundary-gate { position:absolute; left:-13px; width:21px; height:92px; border-radius:999px; background:#fff0cf; box-shadow:0 0 24px rgba(255,240,207,.7); opacity:.28; }
+        #outer-gate { top:305px; } #inner-gate { top:132px; }
+        .member { position:absolute; z-index:5; display:flex; flex-direction:column; align-items:center; justify-content:center; border:3px solid; box-shadow:0 18px 38px rgba(0,0,0,.24); opacity:0; }
+        .member-code { display:flex; align-items:center; justify-content:center; width:64px; height:48px; margin-bottom:10px; border:3px solid currentColor; border-radius:12px; font:900 15px/1 ui-monospace,monospace; letter-spacing:.08em; }
+        .member-name { font:900 15px/1 ui-monospace,monospace; letter-spacing:.09em; }
+        .member-zone { margin-top:8px; font:750 11px/1 ui-monospace,monospace; letter-spacing:.1em; opacity:.72; }
+        #passport { left:112px; top:500px; width:250px; height:154px; border-color:#db4b62; border-radius:24px; background:#451f38; color:#ffe2d6; }
+        #charger { left:592px; top:350px; width:220px; height:154px; border-color:#e28d44; border-radius:24px; background:#292f4b; color:#f4c391; }
+        #bottle { left:1660px; top:500px; width:178px; height:154px; border-color:#7d7890; border-radius:52px 52px 24px 24px; background:#222941; color:#c6bfd0; }
+        .scan-tick { position:absolute; z-index:4; width:64px; height:5px; border-radius:999px; background:#fff0cf; opacity:0; transform-origin:left center; }
+        #outer-tick { left:430px; top:576px; } #inner-tick { left:908px; top:576px; }
+        #inner-proof { position:absolute; z-index:6; left:1260px; top:680px; padding:11px 14px; border-radius:999px; background:#fff0cf; color:#4a2039; opacity:0; font:900 12px/1 ui-monospace,monospace; letter-spacing:.1em; }
+        #containment-result { position:absolute; z-index:7; left:50%; bottom:65px; width:940px; margin-left:-470px; padding:20px 30px; border:2px solid #f0a04b; border-radius:999px; background:#171d34; color:#fff0cf; opacity:0; text-align:center; font:900 17px/1.15 ui-monospace,monospace; letter-spacing:.08em; }
+        .corner-mark { position:absolute; width:32px; height:32px; border-color:#f0a04b; opacity:.65; }
+        #corner-a { left:72px; bottom:72px; border-left:4px solid; border-bottom:4px solid; } #corner-b { right:72px; bottom:72px; border-right:4px solid; border-bottom:4px solid; }
+      </style>
+      <div id="root" data-composition-id="nested-spatial-containment" data-width="1920" data-height="1080" data-duration="6.8">
+        <div id="containment-ground" class="containment-ground clip" data-start="0" data-duration="6.8" data-track-index="0"></div>
+        <div class="containment-grid"></div><div class="containment-frame"></div><div id="corner-a" class="corner-mark"></div><div id="corner-b" class="corner-mark"></div>
+        <div class="containment-eyebrow">NESTED SPATIAL CONTAINMENT</div><h1 class="containment-title">What sits inside what?</h1>
+        <div class="containment-contract">BOUNDARIES FIRST · MEMBERSHIP BY POSITION</div><div id="outside-caption" class="zone-caption">OUTSIDE CARRY-ON</div>
+        <div id="outer-boundary" data-container-id="carry-on" data-parent-container-id=""><span id="outer-gate" class="boundary-gate"></span></div>
+        <div id="inner-boundary" data-container-id="zip-pouch" data-parent-container-id="carry-on"><span id="inner-gate" class="boundary-gate"></span></div>
+        <div id="passport" class="member" data-member-id="passport" data-container-id="zip-pouch"><span class="member-code">ID</span><span class="member-name">PASSPORT</span><span class="member-zone">FOCAL MEMBER</span></div>
+        <div id="charger" class="member" data-member-id="charger" data-container-id="carry-on"><span class="member-code">USB</span><span class="member-name">CHARGER</span><span class="member-zone">OUTER ONLY</span></div>
+        <div id="bottle" class="member" data-member-id="bottle" data-container-id=""><span class="member-code">H₂O</span><span class="member-name">BOTTLE</span><span class="member-zone">OUTSIDE</span></div>
+        <span id="outer-tick" class="scan-tick"></span><span id="inner-tick" class="scan-tick"></span><span id="inner-proof">INSIDE BOTH</span>
+        <div id="containment-result">PASSPORT ∈ ZIP POUCH ∈ CARRY-ON</div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="nested-spatial-containment"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused:true });
+        tl.fromTo(q('#outer-boundary'), { opacity:0, scale:.92 }, { opacity:1, scale:1, duration:.7, ease:'expo.out' }, .14)
+          .fromTo(q('.containment-title'), { opacity:0, x:-36 }, { opacity:1, x:0, duration:.48, ease:'power3.out' }, .22)
+          .fromTo(q('.containment-contract'), { opacity:0, x:28 }, { opacity:1, x:0, duration:.34, ease:'power2.out' }, .35)
+          .addLabel('establish-outer-boundary', .9)
+          .fromTo(q('#inner-boundary'), { opacity:0, scale:.68, rotation:-4 }, { opacity:1, scale:1, rotation:0, duration:.64, ease:'back.out(1.35)' }, 1.02)
+          .fromTo(q('#inner-gate'), { opacity:.1, scaleY:.35 }, { opacity:.7, scaleY:1, duration:.42, ease:'power2.inOut' }, 1.28)
+          .addLabel('reveal-inner-boundary', 1.85)
+          .fromTo(q('#charger'), { opacity:0, y:-34, scale:.88 }, { opacity:1, y:0, scale:1, duration:.48, ease:'back.out(1.3)' }, 2.02)
+          .fromTo(q('#bottle'), { opacity:0, x:42 }, { opacity:1, x:0, duration:.38, ease:'power4.out' }, 2.22)
+          .fromTo(q('#passport'), { opacity:0, scale:.72 }, { opacity:1, scale:1, duration:.52, ease:'back.out(1.6)' }, 2.42)
+          .addLabel('place-context-members', 3.1)
+          .fromTo(q('#outer-tick'), { opacity:0, scaleX:.2 }, { opacity:1, scaleX:1, duration:.24, ease:'power2.out' }, 3.18)
+          .to(q('#outer-gate'), { opacity:1, scaleY:1.24, duration:.24, yoyo:true, repeat:1, ease:'sine.inOut' }, 3.2)
+          .to(q('#passport'), { x:500, y:18, scale:.96, duration:.68, ease:'power3.inOut' }, 3.28)
+          .fromTo(q('#inner-tick'), { opacity:0, scaleX:.2 }, { opacity:1, scaleX:1, duration:.24, ease:'power2.out' }, 4.04)
+          .to(q('#inner-gate'), { opacity:1, scaleY:1.24, duration:.2, yoyo:true, repeat:1, ease:'sine.inOut' }, 4.05)
+          .to(q('#passport'), { x:1002, y:62, scale:.88, duration:.72, ease:'power4.inOut' }, 4.12)
+          .addLabel('cross-nested-boundaries', 4.9)
+          .to(q('#inner-boundary'), { backgroundColor:'rgba(122,39,64,.52)', borderColor:'#f0657b', duration:.42, ease:'power2.out' }, 5.02)
+          .fromTo(q('#inner-proof'), { opacity:0, scale:.6 }, { opacity:1, scale:1, duration:.42, ease:'back.out(1.7)' }, 5.18)
+          .to(q('#charger'), { opacity:.72, duration:.3, ease:'sine.inOut' }, 5.32)
+          .to(q('#bottle'), { opacity:.5, duration:.3, ease:'sine.inOut' }, 5.32)
+          .fromTo(q('#containment-result'), { opacity:0, y:20 }, { opacity:1, y:0, duration:.48, ease:'power3.out' }, 5.62)
+          .addLabel('resolve-containment', 6.15);
+        window.__timelines['nested-spatial-containment'] = tl;
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "knowledge-mg-component.schema.json",
+  "title": "Knowledge MG relationship component",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "status", "relation", "teachingUse", "slots", "stageEvents", "layout", "styleRoles", "handoff", "limits", "implementation", "evidence"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "enum": ["candidate", "validated", "deprecated"] },
+    "relation": { "type": "string", "minLength": 1 },
+    "teachingUse": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "slots": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["id", "kind", "required"], "properties": { "id": { "type": "string" }, "kind": { "enum": ["text", "objects", "number", "label"] }, "required": { "type": "boolean" } }, "additionalProperties": false } },
+    "stageEvents": { "type": "array", "minItems": 2, "items": { "type": "object", "required": ["id", "at", "observable"], "properties": { "id": { "type": "string" }, "at": { "type": "number", "minimum": 0, "maximum": 1 }, "observable": { "type": "string" }, "optional": { "type": "boolean" } }, "additionalProperties": false } },
+    "layout": { "type": "object", "required": ["aspectRatios", "minWidth", "safeInset"], "properties": { "aspectRatios": { "type": "array", "items": { "enum": ["16:9", "9:16", "1:1"] } }, "minWidth": { "type": "integer", "minimum": 320 }, "safeInset": { "type": "string" } }, "additionalProperties": false },
+    "styleRoles": { "type": "array", "minItems": 2, "items": { "type": "string" } },
+    "handoff": { "type": "object", "required": ["entry", "exit"], "properties": { "entry": { "type": "array", "items": { "type": "string" } }, "exit": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false },
+    "limits": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "implementation": { "type": "object", "required": ["entry", "runtime"], "properties": { "entry": { "type": "string" }, "runtime": { "enum": ["gsap"] } }, "additionalProperties": false },
+    "evidence": { "type": "object", "required": ["project", "scene", "checks"], "properties": { "project": { "type": "string" }, "scene": { "type": "string" }, "checks": { "type": "array", "items": { "type": "string" } } }, "additionalProperties": false }
+  }
+}

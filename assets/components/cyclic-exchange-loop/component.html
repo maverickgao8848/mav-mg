@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          color: #173934;
+          background: #f4f0e5;
+          font-family: system-ui, sans-serif;
+        }
+        .ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 48%, rgba(28, 119, 148, 0.16), transparent 30%), linear-gradient(145deg, #fbf8ef, #e3eee7); }
+        .frame { position: absolute; inset: 60px; border: 2px solid rgba(23, 57, 52, 0.2); border-radius: 30px; }
+        .title { position: absolute; left: 92px; top: 72px; margin: 0; font-size: 42px; letter-spacing: -0.035em; }
+        .contract { position: absolute; right: 92px; top: 90px; font: 750 14px/1 ui-monospace, monospace; letter-spacing: 0.09em; color: #176f92; }
+        .exchange-map { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; }
+        .exchange-path { fill: none; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+        #path-a-b { stroke: #18789a; }
+        #path-b-c { stroke: #647b31; }
+        #path-c-a { stroke: #b7652c; }
+        .arrowhead { opacity: 0; }
+        #arrow-a-b { fill: #18789a; }
+        #arrow-b-c { fill: #647b31; }
+        #arrow-c-a { fill: #b7652c; }
+        .transfer-label { position: absolute; padding: 11px 18px; border-radius: 999px; color: #fffdf6; font: 850 13px/1 ui-monospace, monospace; letter-spacing: 0.08em; opacity: 0; }
+        #label-a-b { left: 555px; top: 425px; background: #176f92; }
+        #label-b-c { right: 285px; top: 445px; background: #586d2b; }
+        #label-c-a { left: 845px; top: 835px; background: #9c4f24; }
+        .reservoir {
+          position: absolute;
+          width: 430px;
+          height: 235px;
+          padding: 27px 30px;
+          border: 4px solid var(--reservoir-color);
+          border-radius: 34px;
+          background: rgba(255, 253, 247, 0.97);
+          opacity: 0;
+          box-shadow: 0 18px 38px rgba(23, 57, 52, 0.09);
+          will-change: transform, opacity, background-color;
+        }
+        #reservoir-a { left: 120px; top: 620px; --reservoir-color: #18789a; }
+        #reservoir-b { left: 745px; top: 185px; --reservoir-color: #647b31; }
+        #reservoir-c { right: 120px; top: 620px; --reservoir-color: #b7652c; }
+        .reservoir-head { display: grid; grid-template-columns: 66px 1fr; align-items: center; gap: 18px; }
+        .icon { width: 66px; height: 66px; border-radius: 22px; display: grid; place-items: center; background: var(--reservoir-color); color: #fffdf6; }
+        .icon svg { width: 42px; height: 42px; fill: none; stroke: currentColor; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+        .reservoir strong { display: block; font-size: 29px; line-height: 1.05; letter-spacing: -0.02em; }
+        .reservoir .note { display: block; margin-top: 8px; color: #5a6c66; font: 750 13px/1.2 ui-monospace, monospace; letter-spacing: 0.06em; }
+        .tokens { display: flex; gap: 14px; margin-top: 28px; padding-top: 18px; border-top: 3px solid rgba(23, 57, 52, 0.14); }
+        .token { width: 44px; height: 44px; border-radius: 50% 50% 50% 18%; transform: rotate(45deg); background: #1a82a8; box-shadow: inset 0 0 0 7px rgba(255, 255, 255, 0.45); }
+        .token.transfer-slot { opacity: 0; }
+        #conservation-seal {
+          position: absolute;
+          left: 735px;
+          top: 500px;
+          width: 450px;
+          height: 255px;
+          border: 4px solid #287e7e;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          background: rgba(251, 248, 236, 0.94);
+          opacity: 0;
+          box-shadow: inset 0 0 0 20px rgba(40, 126, 126, 0.08);
+          will-change: transform, opacity, background-color;
+        }
+        #conservation-seal strong { display: block; font: 900 26px/1.12 ui-monospace, monospace; letter-spacing: 0.08em; }
+        #conservation-seal span { display: block; margin-top: 14px; color: #176f92; font: 900 43px/1 ui-monospace, monospace; }
+        .packet { position: absolute; width: 34px; height: 34px; border-radius: 50% 50% 50% 12%; transform: rotate(45deg); background: #1a82a8; border: 5px solid #fffdf6; opacity: 0; box-shadow: 0 7px 16px rgba(20, 90, 112, 0.28); z-index: 6; will-change: transform, opacity; }
+        #packet-a-b { left: 505px; top: 645px; }
+        #packet-b-c { left: 1095px; top: 330px; }
+        #packet-c-a { left: 1340px; top: 785px; }
+        #status { position: absolute; left: 705px; top: 780px; width: 510px; padding: 16px 22px; border-radius: 999px; background: #173934; color: #fffdf6; text-align: center; font: 850 16px/1 ui-monospace, monospace; letter-spacing: 0.07em; opacity: 0; }
+        .phase-strip { position: absolute; left: 92px; right: 92px; bottom: 70px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .phase-strip span { padding: 11px 8px; border-top: 3px solid #287e7e; color: #5a6c66; font: 700 11px/1 ui-monospace, monospace; }
+      </style>
+      <div id="root" data-composition-id="cyclic-exchange-loop" data-width="1920" data-height="1080" data-duration="6">
+        <div id="exchange-ground" class="ground clip" data-start="0" data-duration="6" data-track-index="0"></div>
+        <div class="frame"></div>
+        <h1 class="title">How does the same water keep circulating?</h1>
+        <div class="contract">THREE RESERVOIRS · ONE CONSERVED SET · CLOSED EXCHANGE</div>
+        <svg class="exchange-map" viewBox="0 0 1920 1080" aria-label="water moving through surface water, atmosphere, and land storage in a closed exchange">
+          <path id="path-a-b" class="exchange-path" d="M 520 650 C 590 505 720 390 840 350" />
+          <polygon id="arrow-a-b" class="arrowhead" points="850,347 811,337 828,373" />
+          <path id="path-b-c" class="exchange-path" d="M 1120 350 C 1345 392 1480 505 1510 610" />
+          <polygon id="arrow-b-c" class="arrowhead" points="1513,620 1488,585 1529,590" />
+          <path id="path-c-a" class="exchange-path" d="M 1370 790 C 1130 930 775 930 535 790" />
+          <polygon id="arrow-c-a" class="arrowhead" points="525,784 548,819 562,780" />
+        </svg>
+        <div id="label-a-b" class="transfer-label">EVAPORATION</div>
+        <div id="label-b-c" class="transfer-label">PRECIPITATION</div>
+        <div id="label-c-a" class="transfer-label">RUNOFF</div>
+        <article id="reservoir-a" class="reservoir">
+          <div class="reservoir-head"><div class="icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M7 39c8-7 16-7 24 0s16 7 26 0M7 50c8-7 16-7 24 0s16 7 26 0M32 9c0 0-10 12-10 20a10 10 0 0 0 20 0C42 21 32 9 32 9Z" /></svg></div><div><strong>SURFACE WATER</strong><span class="note">COLLECTION RESERVOIR</span></div></div>
+          <div class="tokens"><i class="token"></i><i class="token"></i><i id="token-a-transfer" class="token"></i></div>
+        </article>
+        <article id="reservoir-b" class="reservoir">
+          <div class="reservoir-head"><div class="icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 43h29a10 10 0 0 0 1-20 15 15 0 0 0-28-5A12 12 0 0 0 17 43Z" /></svg></div><div><strong>ATMOSPHERE</strong><span class="note">VAPOR RESERVOIR</span></div></div>
+          <div class="tokens"><i class="token"></i><i id="token-b-transfer" class="token transfer-slot"></i></div>
+        </article>
+        <article id="reservoir-c" class="reservoir">
+          <div class="reservoir-head"><div class="icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M6 48 23 21l10 14 8-11 17 24H6ZM26 48c5-7 10-7 15 0" /></svg></div><div><strong>LAND STORAGE</strong><span class="note">SOIL AND RIVERS</span></div></div>
+          <div class="tokens"><i class="token"></i><i class="token"></i><i id="token-c-transfer" class="token transfer-slot"></i></div>
+        </article>
+        <div id="conservation-seal"><div><strong>TOTAL SET<br />UNCHANGED</strong><span>↻</span></div></div>
+        <div id="packet-a-b" class="packet"></div>
+        <div id="packet-b-c" class="packet"></div>
+        <div id="packet-c-a" class="packet"></div>
+        <div id="status">LOCATION CHANGES · THE WATER SET DOES NOT</div>
+        <div class="phase-strip"><span>01 ESTABLISH RESERVOIRS</span><span>02 SURFACE → AIR</span><span>03 AIR → LAND</span><span>04 LAND → SURFACE</span></div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="cyclic-exchange-loop"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused: true });
+        q(".exchange-path").forEach((path) => {
+          const length = path.getTotalLength();
+          path.style.strokeDasharray = String(length);
+          path.style.strokeDashoffset = String(length);
+        });
+        tl.set(q(".reservoir"), { opacity: 1 }, 0.1)
+          .fromTo(q(".reservoir"), { scale: 0.94, y: 18 }, { scale: 1, y: 0, duration: 0.38, stagger: 0.05, ease: "power3.out" }, 0.1)
+          .fromTo(q("#conservation-seal"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.38, ease: "power2.out" }, 0.28)
+          .addLabel("establish-reservoirs", 0.72)
+          .to(q("#path-a-b"), { strokeDashoffset: 0, duration: 0.58, ease: "power2.out" }, 0.88)
+          .set(q("#arrow-a-b, #label-a-b, #packet-a-b"), { opacity: 1 }, 1.42)
+          .to(q("#packet-a-b"), { x: 170, y: -155, duration: 0.28, ease: "power1.inOut" }, 1.42)
+          .to(q("#packet-a-b"), { x: 335, y: -300, duration: 0.28, ease: "power1.inOut" }, 1.7)
+          .set(q("#packet-a-b, #token-a-transfer"), { opacity: 0 }, 1.98)
+          .set(q("#token-b-transfer"), { opacity: 1 }, 1.98)
+          .to(q("#reservoir-b"), { scale: 1.05, duration: 0.14, ease: "power2.out" }, 1.98)
+          .to(q("#reservoir-b"), { scale: 1, duration: 0.1, ease: "power2.inOut" }, 2.12)
+          .addLabel("transfer-a-to-b", 2.16)
+          .to(q("#path-b-c"), { strokeDashoffset: 0, duration: 0.58, ease: "power2.out" }, 2.35)
+          .set(q("#arrow-b-c, #label-b-c, #packet-b-c"), { opacity: 1 }, 2.89)
+          .to(q("#packet-b-c"), { x: 195, y: 145, duration: 0.28, ease: "power1.inOut" }, 2.89)
+          .to(q("#packet-b-c"), { x: 390, y: 300, duration: 0.28, ease: "power1.inOut" }, 3.17)
+          .set(q("#packet-b-c, #token-b-transfer"), { opacity: 0 }, 3.45)
+          .set(q("#token-c-transfer"), { opacity: 1 }, 3.45)
+          .to(q("#reservoir-c"), { scale: 1.05, duration: 0.14, ease: "power2.out" }, 3.45)
+          .to(q("#reservoir-c"), { scale: 1, duration: 0.1, ease: "power2.inOut" }, 3.59)
+          .addLabel("transfer-b-to-c", 3.62)
+          .to(q("#path-c-a"), { strokeDashoffset: 0, duration: 0.62, ease: "power2.out" }, 3.82)
+          .set(q("#arrow-c-a, #label-c-a, #packet-c-a"), { opacity: 1 }, 4.4)
+          .to(q("#packet-c-a"), { x: -425, y: 90, duration: 0.3, ease: "power1.inOut" }, 4.4)
+          .to(q("#packet-c-a"), { x: -850, y: 0, duration: 0.3, ease: "power1.inOut" }, 4.7)
+          .set(q("#packet-c-a, #token-c-transfer"), { opacity: 0 }, 5)
+          .set(q("#token-a-transfer"), { opacity: 1 }, 5)
+          .to(q("#reservoir-a"), { scale: 1.05, duration: 0.14, ease: "power2.out" }, 5)
+          .to(q("#reservoir-a"), { scale: 1, duration: 0.1, ease: "power2.inOut" }, 5.14)
+          .to(q("#conservation-seal"), { scale: 1.06, backgroundColor: "#e8f3ec", duration: 0.25, ease: "power3.out" }, 5.1)
+          .set(q("#status"), { opacity: 1 }, 5.12)
+          .fromTo(q("#status"), { y: 12 }, { y: 0, duration: 0.25, ease: "power2.out" }, 5.12)
+          .addLabel("close-exchange", 5.16);
+        window.__timelines["cyclic-exchange-loop"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

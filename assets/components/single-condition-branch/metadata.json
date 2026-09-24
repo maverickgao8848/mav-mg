@@ -1,0 +1,38 @@
+{
+  "id": "single-condition-branch",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one input is evaluated by one supplied binary condition and follows exactly one of two mutually exclusive branches",
+  "teachingUse": ["binary decision explanation", "threshold routing explanation", "single-rule classification explanation"],
+  "slots": [
+    { "id": "input", "kind": "objects", "required": true },
+    { "id": "condition", "kind": "label", "required": true },
+    { "id": "trueOutcome", "kind": "objects", "required": true },
+    { "id": "falseOutcome", "kind": "objects", "required": true },
+    { "id": "selectedResult", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-input", "at": 0.13, "observable": "one input and one downstream condition are readable" },
+    { "id": "evaluate-condition", "at": 0.3, "observable": "the input reaches the condition and its supplied boolean result is visible" },
+    { "id": "reveal-options", "at": 0.5, "observable": "both mutually exclusive labeled outcomes are readable before selection" },
+    { "id": "select-branch", "at": 0.74, "observable": "exactly one branch is emphasized while the alternative stays visible but inactive" },
+    { "id": "resolve-outcome", "at": 0.9, "observable": "the selected outcome resolves to one final result" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "input", "condition", "candidate-branch", "selected-branch", "inactive-branch"],
+  "handoff": { "entry": ["input"], "exit": ["selected-outcome", "result"] },
+  "limits": [
+    "exactly one binary condition",
+    "exactly two mutually exclusive labeled outcomes",
+    "exactly one selected branch from a supplied condition result",
+    "unselected branch remains visible but inactive",
+    "no nested decision, merge, loop, parallel execution, probability, or weighting",
+    "condition order does not imply causality beyond the supplied rule"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p19-single-condition-branch-harness",
+    "scene": "single-condition-branch",
+    "checks": ["strict HyperFrames gate", "fixed-stage visual inspection", "exclusive branch verification", "out-of-order seek equivalence"]
+  }
+}

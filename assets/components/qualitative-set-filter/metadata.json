@@ -1,0 +1,38 @@
+{
+  "id": "qualitative-set-filter",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one supplied qualitative criterion partitions one finite object set into retained and excluded subsets",
+  "teachingUse": ["qualitative filtering explanation", "set membership explanation", "keep-versus-exclude explanation"],
+  "slots": [
+    { "id": "sourceSet", "kind": "objects", "required": true },
+    { "id": "criterion", "kind": "label", "required": true },
+    { "id": "retainedSet", "kind": "objects", "required": true },
+    { "id": "excludedSet", "kind": "objects", "required": true },
+    { "id": "result", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-set", "at": 0.12, "observable": "five source objects are simultaneously readable as one unsorted set" },
+    { "id": "reveal-criterion", "at": 0.25, "observable": "one qualitative criterion becomes the sole active test" },
+    { "id": "evaluate-items", "at": 0.66, "observable": "each source object visibly receives a keep or exclude verdict from that criterion" },
+    { "id": "separate-subsets", "at": 0.8, "observable": "all objects occupy exactly one of two labeled subsets while both subsets remain visible" },
+    { "id": "resolve-filter", "at": 0.92, "observable": "the retained subset resolves as the selected result without hiding excluded evidence" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "source-set", "criterion-gate", "retained-subset", "excluded-subset", "result"],
+  "handoff": { "entry": ["source-set", "criterion"], "exit": ["retained-subset", "excluded-subset", "result"] },
+  "limits": [
+    "exactly one supplied qualitative criterion",
+    "exactly five source objects",
+    "every object belongs to exactly one of retained or excluded",
+    "both retained and excluded subsets must be non-empty",
+    "no numeric conversion rate, ranking, weighting, probability, or throughput",
+    "no nested condition, sequential pipeline, merge, loop, or causal claim"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p19-qualitative-set-filter-harness",
+    "scene": "qualitative-set-filter",
+    "checks": ["strict HyperFrames gate", "fixed-stage visual inspection", "exclusive membership verification", "out-of-order seek equivalence"]
+  }
+}

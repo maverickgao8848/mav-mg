@@ -1,0 +1,65 @@
+{
+  "id": "linear-step-progression",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one subject or workpiece advances through four ordered states along one continuous non-branching route",
+  "teachingUse": [
+    "procedural sequence explanation",
+    "production pipeline explanation",
+    "ordered transformation explanation"
+  ],
+  "slots": [
+    { "id": "subject", "kind": "objects", "required": true },
+    { "id": "stepA", "kind": "objects", "required": true },
+    { "id": "stepB", "kind": "objects", "required": true },
+    { "id": "stepC", "kind": "objects", "required": true },
+    { "id": "stepD", "kind": "objects", "required": true },
+    { "id": "result", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-route", "at": 0.13, "observable": "all four ordered steps and one continuous route are readable before progression" },
+    { "id": "complete-step-one", "at": 0.325, "observable": "the subject leaves step one completed and arrives at step two" },
+    { "id": "complete-step-two", "at": 0.525, "observable": "the same subject leaves step two completed and arrives at step three" },
+    { "id": "complete-step-three", "at": 0.725, "observable": "the same subject leaves step three completed and arrives at step four" },
+    { "id": "resolve-step-four", "at": 0.88, "observable": "step four completes and one final result is readable" }
+  ],
+  "layout": {
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "minWidth": 720,
+    "safeInset": "project frame safe area"
+  },
+  "styleRoles": [
+    "ground",
+    "subject",
+    "pending-step",
+    "active-step",
+    "completed-step",
+    "process-route"
+  ],
+  "handoff": {
+    "entry": ["subject", "step-one"],
+    "exit": ["step-four", "result"]
+  },
+  "limits": [
+    "exactly four ordered steps",
+    "one subject or workpiece retains identity across all steps",
+    "one continuous non-branching route only",
+    "step order does not imply causality unless supplied",
+    "no loop, branch, parallel path, or skipped step",
+    "no duration, throughput, or success-rate claim unless supplied"
+  ],
+  "implementation": {
+    "entry": "component.html",
+    "runtime": "gsap"
+  },
+  "evidence": {
+    "project": "videos/p19-linear-step-progression-harness",
+    "scene": "linear-step-progression",
+    "checks": [
+      "strict HyperFrames gate",
+      "fixed-stage visual inspection",
+      "ordered subject-state verification",
+      "out-of-order seek equivalence"
+    ]
+  }
+}

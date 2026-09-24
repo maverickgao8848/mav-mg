@@ -1,0 +1,25 @@
+{
+  "id": "interface-support",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "an opposing force or support relation settles an object at an interface",
+  "teachingUse": ["buoyancy", "support and load", "boundary equilibrium"],
+  "slots": [
+    { "id": "subject", "kind": "objects", "required": true },
+    { "id": "interfaceLabel", "kind": "label", "required": true },
+    { "id": "upForceLabel", "kind": "label", "required": true },
+    { "id": "downForceLabel", "kind": "label", "required": false }
+  ],
+  "stageEvents": [
+    { "id": "draw-interface", "at": 0.1, "observable": "the boundary is drawn and labeled" },
+    { "id": "approach-interface", "at": 0.3, "observable": "the subject moves toward the boundary" },
+    { "id": "apply-support", "at": 0.52, "observable": "the support vector appears from the supporting medium" },
+    { "id": "settle-subject", "at": 0.72, "observable": "the subject settles in a readable supported state" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "primary-ink", "secondary-surface", "structural-rule"],
+  "handoff": { "entry": ["subject"], "exit": ["subject", "interface", "support-vector"] },
+  "limits": ["one focal subject", "one primary interface", "force labels describe direction, not unprovided magnitude"],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": { "project": "videos/knowledge-mg-p3-gallery", "scene": "candidate-support", "checks": ["strict HyperFrames gate", "buoyant rise inspected", "user accepted 2026-09-14"] }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "strict-parent-classification",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one instance is assigned to exactly one direct parent in a rooted classification tree and its unique ancestor chain remains traceable",
+  "teachingUse": ["strict taxonomy explanation", "parent class explanation", "ancestor lineage explanation"],
+  "slots": [
+    { "id": "taxonomy", "kind": "rooted-tree", "required": true },
+    { "id": "instance", "kind": "object", "required": true },
+    { "id": "directParent", "kind": "node", "required": true },
+    { "id": "ancestorChain", "kind": "ordered-nodes", "required": true },
+    { "id": "result", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-taxonomy", "at": 0.15, "observable": "one rooted tree shows seven named categories and every non-root category has one parent" },
+    { "id": "reveal-instance", "at": 0.26, "observable": "one unclassified instance appears outside the tree" },
+    { "id": "assign-direct-parent", "at": 0.55, "observable": "the instance docks beneath exactly one direct parent while sibling categories remain visible" },
+    { "id": "trace-ancestors", "at": 0.8, "observable": "one continuous highlighted path traces from the direct parent through each ancestor to the root" },
+    { "id": "resolve-lineage", "at": 0.92, "observable": "the ordered instance-to-root lineage is readable without hiding alternative branches" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "taxonomy-tree", "category-node", "instance", "direct-parent", "ancestor-trace", "result"],
+  "handoff": { "entry": ["taxonomy-tree", "instance"], "exit": ["instance", "direct-parent", "ancestor-trace", "result"] },
+  "limits": [
+    "exactly one rooted classification tree",
+    "exactly one instance is classified per run",
+    "every non-root category has exactly one direct parent",
+    "the selected instance has exactly one direct parent",
+    "the ancestor chain is ordered and terminates at the root",
+    "no free-association edge, multiple inheritance, set overlap, nested spatial containment, ranking, sequence, branch decision, or causal claim"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p20-strict-parent-classification-harness",
+    "scene": "strict-parent-classification",
+    "checks": ["strict HyperFrames gate", "fixed-stage visual inspection", "unique parent-chain verification", "out-of-order seek equivalence"]
+  }
+}

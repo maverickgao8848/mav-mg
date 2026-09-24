@@ -1,0 +1,37 @@
+{
+  "id": "parallel-join-barrier",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "required tasks start from one fork, progress independently, and release one downstream result only after every task has completed and docked at the same join barrier",
+  "teachingUse": ["parallel workflow explanation", "fork-join synchronization", "all-required completion gate"],
+  "slots": [
+    { "id": "tasks", "kind": "objects", "required": true },
+    { "id": "completionCount", "kind": "number", "required": true },
+    { "id": "joinBarrier", "kind": "label", "required": true },
+    { "id": "result", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-fork", "at": 0.14, "observable": "one start signal fans out to three required task lanes" },
+    { "id": "run-parallel", "at": 0.31, "observable": "all required tasks are visibly in progress at the same time" },
+    { "id": "hold-completed-branches", "at": 0.45, "observable": "an early completion waits at the join while unfinished tasks continue" },
+    { "id": "satisfy-barrier", "at": 0.72, "observable": "the final required completion changes the barrier count to three of three and unlocks the gate" },
+    { "id": "release-result", "at": 0.9, "observable": "one downstream result is released only after the barrier is satisfied" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "fork", "task-lane", "active-progress", "completed-task", "join-barrier", "released-result"],
+  "handoff": { "entry": ["start-signal", "task-lanes"], "exit": ["completed-tasks", "join-barrier", "result"] },
+  "limits": [
+    "two to four required tasks with unique stable IDs",
+    "all tasks begin from one declared fork and may complete at different times",
+    "each task contributes exactly one completion token to the join barrier",
+    "completed tasks remain visibly waiting while unfinished tasks continue",
+    "the downstream result remains blocked until every declared required task is complete",
+    "no factor-causation, condition branch, weighted contribution, optional task, retry loop, or post-join branch claim"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p22-parallel-join-barrier-gallery",
+    "scene": "three-domain-all-required-join",
+    "checks": ["strict HyperFrames gate", "natural-technical-social fixture reuse", "fixed-stage visual inspection", "all-required barrier verification", "out-of-order seek equivalence"]
+  }
+}

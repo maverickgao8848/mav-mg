@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          color: #183630;
+          background: #f4f0e5;
+          font-family: system-ui, sans-serif;
+        }
+        .ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 46%, rgba(231, 151, 45, 0.15), transparent 30%), linear-gradient(145deg, #faf7ef, #e4eee8); }
+        .frame { position: absolute; inset: 60px; border: 2px solid rgba(24, 54, 48, 0.2); border-radius: 30px; }
+        .title { position: absolute; left: 92px; top: 72px; margin: 0; font-size: 42px; letter-spacing: -0.035em; }
+        .contract { position: absolute; right: 92px; top: 90px; font: 750 14px/1 ui-monospace, monospace; letter-spacing: 0.09em; color: #9a4f23; }
+        .loop-map { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; }
+        .loop-path { fill: none; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+        #path-driver { stroke: #187193; }
+        #path-mechanism { stroke: #47702e; }
+        #path-return { stroke: #b96026; stroke-width: 10; }
+        .arrowhead { opacity: 0; }
+        #arrow-driver { fill: #187193; }
+        #arrow-mechanism { fill: #47702e; }
+        #arrow-return { fill: #b96026; }
+        .node {
+          position: absolute;
+          width: 420px;
+          height: 220px;
+          padding: 30px 32px;
+          border: 4px solid var(--node-color);
+          border-radius: 32px;
+          background: rgba(255, 253, 247, 0.96);
+          display: grid;
+          grid-template-columns: 68px 1fr;
+          align-items: center;
+          gap: 22px;
+          opacity: 0;
+          box-shadow: 0 18px 38px rgba(24, 54, 48, 0.08);
+          will-change: transform, opacity, background-color;
+        }
+        #driver { left: 130px; top: 265px; --node-color: #187193; }
+        #mechanism { left: 750px; top: 650px; --node-color: #47702e; }
+        #result { right: 130px; top: 265px; --node-color: #b96026; }
+        .badge { width: 68px; height: 68px; border-radius: 22px; display: grid; place-items: center; background: var(--node-color); color: #fffdf6; font: 900 27px/1 ui-monospace, monospace; }
+        .node strong { display: block; color: #183630; font-size: 31px; letter-spacing: -0.02em; }
+        #result strong { max-width: 270px; font-size: 27px; line-height: 1.08; }
+        .node span { display: block; margin-top: 12px; color: #596a64; font: 750 14px/1.25 ui-monospace, monospace; letter-spacing: 0.06em; }
+        #cycle-core {
+          position: absolute;
+          left: 790px;
+          top: 255px;
+          width: 340px;
+          height: 250px;
+          border: 3px solid rgba(24, 54, 48, 0.2);
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          background: rgba(255, 250, 235, 0.76);
+          opacity: 0;
+        }
+        #cycle-core strong { display: block; font: 900 24px/1.15 ui-monospace, monospace; letter-spacing: 0.08em; }
+        #cycle-core span { display: block; margin-top: 14px; color: #b96026; font: 900 46px/1 ui-monospace, monospace; }
+        #feedback-label { position: absolute; left: 720px; top: 150px; width: 480px; padding: 16px 22px; border-radius: 999px; background: #984019; color: #fffaf0; text-align: center; font: 850 16px/1 ui-monospace, monospace; letter-spacing: 0.07em; opacity: 0; }
+        #amplified { position: absolute; left: 175px; top: 510px; width: 330px; padding: 14px 18px; border-radius: 999px; background: #183630; color: #fffdf6; text-align: center; font: 850 15px/1 ui-monospace, monospace; letter-spacing: 0.07em; opacity: 0; }
+        .phase-strip { position: absolute; left: 92px; right: 92px; bottom: 70px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .phase-strip span { padding: 11px 12px; border-top: 3px solid #b96026; color: #596a64; font: 700 12px/1 ui-monospace, monospace; }
+      </style>
+      <div id="root" data-composition-id="reinforcing-feedback-loop" data-width="1920" data-height="1080" data-duration="5">
+        <div id="feedback-ground" class="ground clip" data-start="0" data-duration="5" data-track-index="0"></div>
+        <div class="frame"></div>
+        <h1 class="title">Why do recommendations keep improving?</h1>
+        <div class="contract">THREE STATES · ONE CLOSED LOOP · REINFORCING</div>
+        <svg class="loop-map" viewBox="0 0 1920 1080" aria-label="a reinforcing feedback loop from users to data to recommendations and back to users">
+          <path id="path-driver" class="loop-path" d="M 500 485 C 620 560 735 610 830 630" />
+          <polygon id="arrow-driver" class="arrowhead" points="850,642 812,615 819,650" />
+          <path id="path-mechanism" class="loop-path" d="M 1090 650 C 1205 620 1285 550 1370 500" />
+          <polygon id="arrow-mechanism" class="arrowhead" points="1385,487 1352,490 1366,520" />
+          <path id="path-return" class="loop-path" d="M 1430 250 C 1190 80 730 80 510 245" />
+          <polygon id="arrow-return" class="arrowhead" points="500,260 532,222 542,252" />
+        </svg>
+        <article id="driver" class="node"><div class="badge">1</div><div><strong>MORE USERS</strong><span>ORIGINAL DRIVER</span></div></article>
+        <article id="mechanism" class="node"><div class="badge">2</div><div><strong>MORE DATA</strong><span>LEARNING MATERIAL</span></div></article>
+        <article id="result" class="node"><div class="badge">3</div><div><strong>BETTER RECOMMENDATIONS</strong><span>IMPROVED RESULT</span></div></article>
+        <div id="cycle-core"><div><strong>REINFORCING<br />LOOP</strong><span>+</span></div></div>
+        <div id="feedback-label">BETTER RESULTS ATTRACT MORE USERS</div>
+        <div id="amplified">NEXT CYCLE STARTS STRONGER</div>
+        <div class="phase-strip"><span>01 ESTABLISH CYCLE</span><span>02 FORWARD CAUSE</span><span>03 AMPLIFY RESULT</span><span>04 RETURN FEEDBACK</span></div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="reinforcing-feedback-loop"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused: true });
+        q(".loop-path").forEach((path) => {
+          const length = path.getTotalLength();
+          path.style.strokeDasharray = String(length);
+          path.style.strokeDashoffset = String(length);
+        });
+        tl.set(q(".node"), { opacity: 1 }, 0.12)
+          .fromTo(q(".node"), { scale: 0.94, y: 20 }, { scale: 1, y: 0, duration: 0.38, stagger: 0.06, ease: "power3.out" }, 0.12)
+          .fromTo(q("#cycle-core"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.34, ease: "power2.out" }, 0.3)
+          .addLabel("establish-cycle", 0.7)
+          .to(q("#path-driver"), { strokeDashoffset: 0, duration: 0.68, ease: "power2.out" }, 0.92)
+          .set(q("#arrow-driver"), { opacity: 1 }, 1.58)
+          .to(q("#mechanism"), { scale: 1.06, duration: 0.12, ease: "power2.out" }, 1.58)
+          .to(q("#mechanism"), { scale: 1, duration: 0.1, ease: "power2.inOut" }, 1.7)
+          .addLabel("forward-cause", 1.8)
+          .to(q("#path-mechanism"), { strokeDashoffset: 0, duration: 0.62, ease: "power2.out" }, 1.98)
+          .set(q("#arrow-mechanism"), { opacity: 1 }, 2.58)
+          .to(q("#result"), { scale: 1.06, duration: 0.12, ease: "power2.out" }, 2.58)
+          .to(q("#result"), { scale: 1, duration: 0.1, ease: "power2.inOut" }, 2.7)
+          .addLabel("amplify-result", 2.8)
+          .to(q("#path-return"), { strokeDashoffset: 0, duration: 0.76, ease: "power2.out" }, 3.02)
+          .set(q("#arrow-return"), { opacity: 1 }, 3.76)
+          .fromTo(q("#feedback-label"), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 3.72)
+          .to(q("#driver"), { scale: 1.08, backgroundColor: "#fff0cf", duration: 0.26, ease: "power3.out" }, 3.86)
+          .fromTo(q("#amplified"), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.28, ease: "power2.out" }, 4.02)
+          .addLabel("return-feedback", 4.3);
+        window.__timelines["reinforcing-feedback-loop"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

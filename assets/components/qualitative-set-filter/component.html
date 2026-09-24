@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; color:#26332d; background:#f3efe4; font-family:system-ui,sans-serif; }
+        .filter-ground { position:absolute; inset:0; background:radial-gradient(circle at 50% 46%,rgba(205,135,53,.22),transparent 27%),radial-gradient(circle at 18% 78%,rgba(61,107,80,.15),transparent 25%),#f5f1e7; }
+        .filter-frame { position:absolute; inset:54px; border:2px solid rgba(38,51,45,.2); border-radius:34px; }
+        .filter-eyebrow { position:absolute; left:94px; top:70px; color:#945824; font:850 15px/1 ui-monospace,monospace; letter-spacing:.16em; }
+        .filter-title { position:absolute; left:94px; top:104px; margin:0; font-size:46px; line-height:1; letter-spacing:-.04em; }
+        .filter-contract { position:absolute; right:94px; top:88px; color:#53645c; font:750 14px/1 ui-monospace,monospace; letter-spacing:.09em; }
+        #source-rail { position:absolute; left:142px; right:142px; top:334px; height:5px; border-radius:999px; background:#c9b995; transform-origin:left center; }
+        .filter-item { position:absolute; z-index:4; top:178px; width:240px; height:146px; padding:18px 18px 14px; border:3px solid #ae7138; border-radius:24px; background:#fff8e9; box-shadow:0 16px 28px rgba(65,45,28,.1); opacity:0; }
+        #item-leaf { left:150px; } #item-core { left:485px; } #item-peel { left:820px; } #item-cup { left:1155px; } #item-can { left:1490px; }
+        .item-glyph { display:block; width:62px; height:62px; margin:0 auto 8px; color:#3d6b50; }
+        .glyph-code { display:flex; align-items:center; justify-content:center; border:4px solid currentColor; border-radius:17px; font:900 16px/1 ui-monospace,monospace; letter-spacing:.04em; }
+        .filter-item[data-membership="exclude"] .item-glyph { color:#876b55; }
+        .item-glyph * { fill:none; stroke:currentColor; stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+        .item-name { display:block; text-align:center; font:850 17px/1 ui-monospace,monospace; letter-spacing:.07em; }
+        .item-verdict { position:absolute; right:13px; top:12px; padding:7px 9px; border-radius:999px; color:#fff9eb; opacity:0; font:900 10px/1 ui-monospace,monospace; letter-spacing:.09em; }
+        [data-membership="keep"] .item-verdict { background:#3d6b50; } [data-membership="exclude"] .item-verdict { background:#7c6656; }
+        #criterion-lens { position:absolute; z-index:3; left:805px; top:340px; width:310px; height:330px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:34px; border:5px solid #9f622d; border-radius:48% 48% 42% 42%; background:linear-gradient(to bottom,#f8dfb2 0 42%,rgba(255,248,233,.58) 42% 100%); box-shadow:0 0 0 16px rgba(255,248,233,.86),0 22px 48px rgba(72,45,24,.15); opacity:0; text-align:center; }
+        #criterion-lens::before { content:"FILTER"; color:#8e5527; font:900 12px/1 ui-monospace,monospace; letter-spacing:.15em; }
+        #criterion-lens strong { width:230px; margin-top:13px; font-size:25px; line-height:1.08; letter-spacing:-.02em; }
+        #criterion-lens span { margin-top:13px; color:#5d665e; font:800 11px/1 ui-monospace,monospace; letter-spacing:.1em; }
+        .destination-bay { position:absolute; z-index:1; top:682px; height:284px; border:3px solid; border-radius:30px; opacity:0; }
+        #keep-bay { left:108px; width:1055px; border-color:#3d6b50; background:rgba(231,241,225,.84); }
+        #exclude-bay { right:108px; width:620px; border-color:#9b8977; background:rgba(231,226,215,.86); }
+        .bay-label { position:absolute; left:28px; top:24px; font:900 15px/1 ui-monospace,monospace; letter-spacing:.14em; }
+        #keep-bay .bay-label { color:#2e6848; } #exclude-bay .bay-label { color:#705c4c; }
+        .bay-rule { position:absolute; left:28px; right:28px; top:57px; height:3px; background:currentColor; opacity:.45; transform-origin:left center; }
+        #filter-result { position:absolute; z-index:5; left:50%; bottom:57px; width:820px; margin-left:-410px; padding:17px 30px; border-radius:999px; background:#26332d; color:#fff8e9; opacity:0; text-align:center; font:850 15px/1.2 ui-monospace,monospace; letter-spacing:.08em; }
+      </style>
+      <div id="root" data-composition-id="qualitative-set-filter" data-width="1920" data-height="1080" data-duration="6.5">
+        <div id="filter-ground" class="filter-ground clip" data-start="0" data-duration="6.5" data-track-index="0"></div><div class="filter-frame"></div>
+        <div class="filter-eyebrow">QUALITATIVE SET FILTER</div><h1 class="filter-title">Which scraps belong in the compost?</h1>
+        <div class="filter-contract">ONE SET · ONE CRITERION · KEEP OR EXCLUDE</div>
+        <div id="source-rail"></div>
+        <div id="item-leaf" class="filter-item" data-membership="keep"><span class="item-verdict">KEEP</span><svg class="item-glyph" viewBox="0 0 80 80"><path d="M17 58C15 31 32 15 64 14c1 30-15 49-43 47M22 57 57 23M34 45l-1-17M44 35l17-2"/></svg><span class="item-name">DRY LEAF</span></div>
+        <div id="item-core" class="filter-item" data-membership="keep"><span class="item-verdict">KEEP</span><svg class="item-glyph" viewBox="0 0 80 80"><path d="M28 14c7 5 17 5 24 0M28 66c7-5 17-5 24 0M30 15c7 12 7 38 0 50M50 15c-7 12-7 38 0 50M40 12v-6M40 12c7-7 13-7 18-3"/></svg><span class="item-name">APPLE CORE</span></div>
+        <div id="item-peel" class="filter-item" data-membership="keep"><span class="item-verdict">KEEP</span><svg class="item-glyph" viewBox="0 0 80 80"><path d="M16 22c12 42 35 49 50 25M20 20c9 27 24 37 46 27M36 16c-5 27 5 45 30 31"/></svg><span class="item-name">BANANA PEEL</span></div>
+        <div id="item-cup" class="filter-item" data-membership="exclude"><span class="item-verdict">EXCLUDE</span><svg class="item-glyph" viewBox="0 0 80 80"><path d="M22 21h38l-5 47H27zM19 21h44M49 20 58 6"/></svg><span class="item-name">PLASTIC CUP</span></div>
+        <div id="item-can" class="filter-item" data-membership="exclude"><span class="item-verdict">EXCLUDE</span><svg class="item-glyph" viewBox="0 0 80 80"><path d="M24 14h32v53H24zM24 22h32M24 59h32M34 18h12"/></svg><span class="item-name">TIN CAN</span></div>
+        <div id="criterion-lens"><strong>PLANT-BASED SCRAPS ONLY</strong><span>APPLY TO EVERY ITEM</span></div>
+        <div id="keep-bay" class="destination-bay"><span class="bay-label">KEEP · COMPOST MATERIAL</span><span class="bay-rule"></span></div>
+        <div id="exclude-bay" class="destination-bay"><span class="bay-label">EXCLUDE · OTHER MATERIAL</span><span class="bay-rule"></span></div>
+        <div id="filter-result">RESULT · ONLY MATCHING OBJECTS ENTER THE RETAINED SET</div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="qualitative-set-filter"]');
+        const q = gsap.utils.selector(root);
+        const items = q('.filter-item');
+        const sourceLeft = [150,485,820,1155,1490];
+        const slotCenters = {
+          keep: { 2:[380,890], 3:[320,640,960], 4:[250,500,750,1000] },
+          exclude: { 1:[1500], 2:[1320,1680], 3:[1295,1500,1705] }
+        };
+        const destinations = Array(items.length);
+        ['keep','exclude'].forEach((membership) => {
+          const members = items.map((item,index) => ({ item,index })).filter(({item}) => item.dataset.membership === membership);
+          const centers = slotCenters[membership][members.length];
+          if (!centers) throw new Error(`unsupported ${membership} count: ${members.length}`);
+          members.forEach(({index},slot) => { destinations[index] = { x:centers[slot]-(sourceLeft[index]+120), y:570 }; });
+        });
+        const tl = gsap.timeline({ paused:true });
+        tl.fromTo(q('#source-rail'), { scaleX:0 }, { scaleX:1, duration:.64, ease:'power3.out' }, .12)
+          .fromTo(items, { opacity:0, y:-22, scale:.94 }, { opacity:1, y:0, scale:1, duration:.44, stagger:.07, ease:'back.out(1.35)' }, .18)
+          .addLabel('establish-set', .78)
+          .fromTo(q('#criterion-lens'), { opacity:0, scale:.7, rotation:-8 }, { opacity:1, scale:1, rotation:0, duration:.58, ease:'back.out(1.5)' }, .88)
+          .to(q('#source-rail'), { backgroundColor:'#9f622d', duration:.28, ease:'power2.out' }, 1.25)
+          .addLabel('reveal-criterion', 1.63)
+          .fromTo(q('.destination-bay'), { opacity:0, y:22 }, { opacity:1, y:0, duration:.5, stagger:.09, ease:'power3.out' }, 2.62)
+          .fromTo(q('.bay-rule'), { scaleX:0 }, { scaleX:1, duration:.48, stagger:.08, ease:'power2.inOut' }, 2.82);
+        items.forEach((item,index) => {
+          const start = 1.7 + index * .45;
+          tl.to(item, { x:840-sourceLeft[index], y:345, scale:.9, duration:.24, ease:'power2.inOut' }, start)
+            .to(item.querySelector('.item-verdict'), { opacity:1, scale:1, duration:.15, ease:'back.out(1.7)' }, start+.2)
+            .to(item, { x:destinations[index].x, y:destinations[index].y, scale:.84, duration:.42, ease:'power3.inOut' }, start+.31);
+        });
+        tl.addLabel('evaluate-items', 4.3)
+          .to(q('#criterion-lens'), { opacity:.42, scale:.84, duration:.36, ease:'power2.out' }, 4.82)
+          .to(q('#keep-bay'), { backgroundColor:'#dcecd6', boxShadow:'0 18px 38px rgba(61,107,80,.16)', duration:.38, ease:'power2.out' }, 4.92)
+          .to(q('#exclude-bay'), { backgroundColor:'#e6e0d5', duration:.38, ease:'power2.out' }, 4.92)
+          .addLabel('separate-subsets', 5.2)
+          .fromTo(q('#filter-result'), { opacity:0, y:16 }, { opacity:1, y:0, duration:.4, ease:'power3.out' }, 5.52)
+          .addLabel('resolve-filter', 5.98);
+        window.__timelines['qualitative-set-filter'] = tl;
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "id": "dependent-two-level-decision",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one input is evaluated by a primary binary condition, and exactly one primary branch unlocks a second binary condition before resolving to one of three mutually exclusive terminal outcomes",
+  "teachingUse": ["two-level decision explanation", "dependent rule routing", "three-outcome classification explanation"],
+  "slots": [
+    { "id": "input", "kind": "objects", "required": true },
+    { "id": "primaryCondition", "kind": "label", "required": true },
+    { "id": "primaryTerminal", "kind": "objects", "required": true },
+    { "id": "secondaryCondition", "kind": "label", "required": true },
+    { "id": "secondaryTrueTerminal", "kind": "objects", "required": true },
+    { "id": "secondaryFalseTerminal", "kind": "objects", "required": true },
+    { "id": "selectedResult", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-input", "at": 0.1, "observable": "one input and the primary condition are readable while the dependent condition remains inactive" },
+    { "id": "evaluate-primary", "at": 0.27, "observable": "the primary condition displays its supplied boolean result and exactly one route continues" },
+    { "id": "unlock-secondary", "at": 0.45, "observable": "when the continuing primary result is supplied, it visibly unlocks the second condition; otherwise the primary terminal is selected and the second condition remains inactive", "optional": true },
+    { "id": "evaluate-secondary", "at": 0.62, "observable": "when unlocked, the second condition displays its supplied boolean result and both secondary terminals are readable", "optional": true },
+    { "id": "select-terminal", "at": 0.8, "observable": "exactly one of the three terminal outcomes is emphasized while the other two remain visible but inactive" },
+    { "id": "resolve-outcome", "at": 0.93, "observable": "the selected two-level route resolves to one final result with both condition results traceable" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "input", "primary-condition", "secondary-condition", "candidate-terminal", "selected-route", "inactive-route"],
+  "handoff": { "entry": ["input"], "exit": ["selected-terminal", "result"] },
+  "limits": [
+    "exactly two supplied binary conditions and three mutually exclusive terminal outcomes",
+    "exactly one primary branch terminates immediately and the other unlocks the secondary condition",
+    "the secondary condition is not evaluated before the continuing primary result is established",
+    "exactly one terminal outcome is selected; both alternatives remain visible but inactive",
+    "no arbitrary-depth tree, merge, loop, probability, weighting, or parallel execution",
+    "condition order expresses routing dependency only and does not add causal claims beyond supplied rules"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p23-dependent-two-level-decision-gallery",
+    "scene": "natural-seed / technical-deploy / social-shelter",
+    "checks": ["strict HyperFrames gate", "three-domain fixed-stage visual inspection", "all-terminal-route verification", "canonical out-of-order seek equivalence"]
+  }
+}

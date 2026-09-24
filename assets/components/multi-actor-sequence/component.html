@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; color:#1f2b28; background:#f4efe3; font-family:system-ui,sans-serif; }
+        .sequence-ground { position:absolute; inset:0; background:radial-gradient(circle at 16% 14%,rgba(206,104,50,.13),transparent 28%),radial-gradient(circle at 86% 78%,rgba(41,105,91,.14),transparent 28%),#f4efe3; }
+        .sequence-frame { position:absolute; inset:52px; border:2px solid rgba(31,43,40,.18); border-radius:34px; }
+        .sequence-eyebrow { position:absolute; left:94px; top:72px; color:#a34d26; font:850 15px/1 ui-monospace,monospace; letter-spacing:.16em; }
+        .sequence-title { position:absolute; left:94px; top:106px; margin:0; font-size:48px; line-height:1; letter-spacing:-.045em; }
+        .sequence-contract { position:absolute; right:94px; top:90px; color:#52615c; font:750 14px/1 ui-monospace,monospace; letter-spacing:.09em; }
+        #sequence-field { position:absolute; left:86px; right:86px; top:188px; height:742px; border-radius:30px; background:rgba(255,252,243,.7); box-shadow:inset 0 0 0 2px rgba(31,43,40,.1); overflow:hidden; }
+        #time-spine { position:absolute; left:62px; top:142px; width:84px; bottom:54px; border-left:4px solid #244f47; }
+        #time-spine::before { content:"TIME"; position:absolute; left:-24px; top:-55px; color:#244f47; font:900 12px/1 ui-monospace,monospace; letter-spacing:.14em; }
+        #time-spine::after { content:""; position:absolute; left:-10px; bottom:-2px; width:16px; height:16px; border-right:4px solid #244f47; border-bottom:4px solid #244f47; transform:rotate(45deg); }
+        .actor { position:absolute; z-index:4; top:34px; width:300px; height:102px; display:flex; align-items:center; justify-content:center; gap:15px; border:3px solid #405c54; border-radius:24px; background:#fff9ec; box-shadow:0 16px 30px rgba(42,54,49,.1); }
+        .actor-mark { width:46px; height:46px; display:grid; place-items:center; border-radius:14px; background:#244f47; color:#fff9ed; font:900 18px/1 ui-monospace,monospace; }
+        .actor-copy span { display:block; color:#59635f; font:850 10px/1 ui-monospace,monospace; letter-spacing:.14em; }
+        .actor-copy strong { display:block; margin-top:9px; font-size:23px; line-height:1; letter-spacing:.02em; }
+        #actor-client { left:214px; }
+        #actor-api { left:724px; }
+        #actor-database { left:1234px; }
+        .lifeline { position:absolute; z-index:1; top:136px; bottom:42px; width:0; border-left:4px dashed rgba(36,79,71,.33); transform-origin:top center; }
+        #lifeline-client { left:364px; }
+        #lifeline-api { left:874px; }
+        #lifeline-database { left:1384px; }
+        .message { position:absolute; z-index:2; left:0; top:0; width:100%; height:92px; opacity:0; }
+        .message .order { position:absolute; left:50px; top:30px; width:46px; height:32px; display:grid; place-items:center; border-radius:999px; background:#1f2b28; color:#fff9ed; font:900 13px/1 ui-monospace,monospace; }
+        .message .label { position:absolute; top:4px; padding:9px 15px; border-radius:999px; background:#fff9ec; border:2px solid currentColor; font:850 13px/1 ui-monospace,monospace; letter-spacing:.06em; white-space:nowrap; }
+        .message svg { position:absolute; inset:0; width:100%; height:92px; overflow:visible; }
+        .message path { fill:none; stroke-width:8; stroke-linecap:round; }
+        .message polygon { stroke:none; }
+        .request { color:#b8562d; }
+        .request path,.request polygon { stroke:#b8562d; fill:#b8562d; }
+        .response { color:#267061; }
+        .response path,.response polygon { stroke:#267061; fill:#267061; }
+        #message-1 { top:166px; }
+        #message-2 { top:294px; }
+        #message-3 { top:422px; }
+        #message-4 { top:550px; }
+        #message-1 .label { left:516px; }
+        #message-2 .label { left:1024px; }
+        #message-3 .label { left:1042px; }
+        #message-4 .label { left:544px; }
+        .packet { position:absolute; z-index:6; width:28px; height:28px; border:6px solid #fff9ed; border-radius:50%; box-shadow:0 0 0 4px currentColor,0 8px 20px rgba(31,43,40,.22); opacity:0; }
+        #packet-1 { left:350px; top:198px; color:#b8562d; background:#b8562d; }
+        #packet-2 { left:860px; top:326px; color:#b8562d; background:#b8562d; }
+        #packet-3 { left:1370px; top:454px; color:#267061; background:#267061; }
+        #packet-4 { left:860px; top:582px; color:#267061; background:#267061; }
+        #sequence-result { position:absolute; z-index:7; left:382px; bottom:42px; width:982px; padding:17px 24px; border-radius:999px; background:#1f2b28; color:#fff9ed; text-align:center; opacity:0; font:850 15px/1.2 ui-monospace,monospace; letter-spacing:.065em; }
+      </style>
+      <div id="root" data-composition-id="multi-actor-sequence" data-width="1920" data-height="1080" data-duration="6.6">
+        <div id="sequence-ground" class="sequence-ground clip" data-start="0" data-duration="6.6" data-track-index="0"></div>
+        <div class="sequence-frame"></div>
+        <div class="sequence-eyebrow">MULTI-ACTOR SEQUENCE</div>
+        <h1 class="sequence-title">Who calls whom — and when?</h1>
+        <div class="sequence-contract">FIXED ACTORS · ORDERED EVENTS · PAIRED RESPONSE</div>
+        <div id="sequence-field">
+          <div id="time-spine"></div>
+          <div id="actor-client" class="actor" data-actor-id="client" data-actor-order="1"><div class="actor-mark">C</div><div class="actor-copy"><span>ACTOR 01</span><strong>CLIENT</strong></div></div>
+          <div id="actor-api" class="actor" data-actor-id="api" data-actor-order="2"><div class="actor-mark">A</div><div class="actor-copy"><span>ACTOR 02</span><strong>API</strong></div></div>
+          <div id="actor-database" class="actor" data-actor-id="database" data-actor-order="3"><div class="actor-mark">D</div><div class="actor-copy"><span>ACTOR 03</span><strong>DATABASE</strong></div></div>
+          <div id="lifeline-client" class="lifeline" data-actor-id="client"></div><div id="lifeline-api" class="lifeline" data-actor-id="api"></div><div id="lifeline-database" class="lifeline" data-actor-id="database"></div>
+          <div id="message-1" class="message request" data-message-id="submit" data-sequence="1" data-from="client" data-to="api" data-kind="request"><span class="order">01</span><span class="label">SUBMIT ORDER</span><svg viewBox="0 0 1748 92"><path d="M364 58 H856"/><polygon points="856,58 828,42 828,74"/></svg></div>
+          <div id="message-2" class="message request" data-message-id="query" data-sequence="2" data-from="api" data-to="database" data-kind="request"><span class="order">02</span><span class="label">LOOK UP STOCK</span><svg viewBox="0 0 1748 92"><path d="M874 58 H1366"/><polygon points="1366,58 1338,42 1338,74"/></svg></div>
+          <div id="message-3" class="message response" data-message-id="stock-result" data-sequence="3" data-from="database" data-to="api" data-kind="response"><span class="order">03</span><span class="label">STOCK CONFIRMED</span><svg viewBox="0 0 1748 92"><path d="M1384 58 H892"/><polygon points="892,58 920,42 920,74"/></svg></div>
+          <div id="message-4" class="message response" data-message-id="confirmation" data-sequence="4" data-from="api" data-to="client" data-kind="response"><span class="order">04</span><span class="label">ORDER CONFIRMED</span><svg viewBox="0 0 1748 92"><path d="M874 58 H382"/><polygon points="382,58 410,42 410,74"/></svg></div>
+          <div id="packet-1" class="packet"></div><div id="packet-2" class="packet"></div><div id="packet-3" class="packet"></div><div id="packet-4" class="packet"></div>
+          <div id="sequence-result">CLIENT → API → DATABASE → API → CLIENT</div>
+        </div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="multi-actor-sequence"]');
+        const q = gsap.utils.selector(root);
+        const paths = q('.message path');
+        const messagePaths = ['#message-1','#message-2','#message-3','#message-4'].map((selector) => q(selector)[0].querySelector('path'));
+        paths.forEach((path) => { const length=path.getTotalLength(); path.style.strokeDasharray=`${length}`; path.style.strokeDashoffset=`${length}`; });
+        const tl = gsap.timeline({ paused:true });
+        tl.set(q('.packet'),{opacity:0,x:0},0)
+          .fromTo(q('#sequence-field'),{opacity:0,scale:.985},{opacity:1,scale:1,duration:.42,ease:'power3.out'},.08)
+          .fromTo(q('.actor'),{y:-18,scale:.96},{y:0,scale:1,duration:.46,stagger:.08,ease:'power3.out'},.2)
+          .fromTo(q('.lifeline'),{scaleY:0},{scaleY:1,duration:.52,stagger:.05,ease:'power2.out'},.38)
+          .addLabel('establish-actors',.92)
+          .set(q('#message-1'),{opacity:1},1.02).to(messagePaths[0],{strokeDashoffset:0,duration:.62,ease:'power2.out'},1.02)
+          .set(q('#packet-1'),{opacity:1},1.02).to(q('#packet-1'),{x:492,duration:.62,ease:'power2.inOut'},1.02).to(q('#packet-1'),{opacity:0,duration:.12},1.64)
+          .addLabel('send-request',1.82)
+          .set(q('#message-2'),{opacity:1},1.96).to(messagePaths[1],{strokeDashoffset:0,duration:.66,ease:'power2.out'},1.96)
+          .set(q('#packet-2'),{opacity:1},1.96).to(q('#packet-2'),{x:492,duration:.66,ease:'power2.inOut'},1.96).to(q('#packet-2'),{opacity:0,duration:.12},2.62)
+          .addLabel('forward-dependency',3.08)
+          .set(q('#message-3'),{opacity:1},3.18).to(messagePaths[2],{strokeDashoffset:0,duration:.66,ease:'power2.out'},3.18)
+          .set(q('#packet-3'),{opacity:1},3.18).to(q('#packet-3'),{x:-492,duration:.66,ease:'power2.inOut'},3.18).to(q('#packet-3'),{opacity:0,duration:.12},3.84)
+          .set(q('#message-4'),{opacity:1},3.96).to(messagePaths[3],{strokeDashoffset:0,duration:.66,ease:'power2.out'},3.96)
+          .set(q('#packet-4'),{opacity:1},3.96).to(q('#packet-4'),{x:-492,duration:.66,ease:'power2.inOut'},3.96).to(q('#packet-4'),{opacity:0,duration:.12},4.62)
+          .addLabel('return-response',4.75)
+          .to(q('.message .order'),{backgroundColor:'#244f47',duration:.32,stagger:.08,ease:'power1.out'},4.88)
+          .fromTo(q('#sequence-result'),{opacity:0,y:14},{opacity:1,y:0,duration:.44,ease:'power3.out'},5.34)
+          .addLabel('resolve-sequence',5.94);
+        window.__timelines['multi-actor-sequence'] = tl;
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "id": "event-driven-state-transition",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one declared event authorizes one entity to leave a specific source state and enter one specific target state while the entity identity remains stable",
+  "teachingUse": ["event-driven state change", "finite-state transition", "before-event and after-event explanation"],
+  "slots": [
+    { "id": "entity", "kind": "object", "required": true },
+    { "id": "sourceState", "kind": "label", "required": true },
+    { "id": "event", "kind": "label", "required": true },
+    { "id": "targetState", "kind": "label", "required": true },
+    { "id": "result", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-source-state", "at": 0.14, "observable": "the stable entity is visibly located in the declared source state and the target state is inactive" },
+    { "id": "present-trigger-event", "at": 0.31, "observable": "one named event arrives at the transition gate while the entity remains in the source state" },
+    { "id": "authorize-transition", "at": 0.47, "observable": "the event unlocks exactly one directed source-to-target transition" },
+    { "id": "enter-target-state", "at": 0.72, "observable": "the same entity leaves the source state and becomes active in the target state" },
+    { "id": "confirm-current-state", "at": 0.9, "observable": "the target state is confirmed as current and the triggering event remains traceable" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "source-state", "target-state", "entity", "trigger-event", "transition-gate", "active-route", "state-result"],
+  "handoff": { "entry": ["entity", "source-state", "event"], "exit": ["entity", "target-state", "event", "result"] },
+  "limits": [
+    "exactly one stable entity, one source state, one trigger event, and one target state per instance",
+    "the entity remains in the source state until the declared event authorizes the transition",
+    "the transition is directed from the declared source state to the declared target state",
+    "the entity identity remains visibly continuous across the transition",
+    "the confirmed target state retains a visible trace of the triggering event",
+    "no scheduled multi-step progression, binary condition branch, parallel join, retry loop, feedback loop, or untriggered state change claim"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p22-event-driven-state-transition-gallery",
+    "scene": "natural-stoma / technical-build / social-room",
+    "checks": ["strict HyperFrames gate", "three-domain data-only reuse", "15 fixed-stage samples", "exact endpoint and reverse seek inspection"]
+  }
+}

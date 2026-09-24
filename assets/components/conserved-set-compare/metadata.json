@@ -1,0 +1,24 @@
+{
+  "id": "conserved-set-compare",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "compare two states while preserving the same object count",
+  "teachingUse": ["same-mass comparison", "before-and-after packing", "qualitative volume or density comparison"],
+  "slots": [
+    { "id": "leftObjects", "kind": "objects", "required": true },
+    { "id": "rightObjects", "kind": "objects", "required": true },
+    { "id": "comparisonLabel", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-left", "at": 0.08, "observable": "the baseline set appears" },
+    { "id": "match-identity", "at": 0.28, "observable": "a second set with equal count appears at the same visual scale" },
+    { "id": "reveal-difference", "at": 0.5, "observable": "only the compared arrangement or encoded property changes" },
+    { "id": "state-conclusion", "at": 0.76, "observable": "the relevant qualitative deltas become readable" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "primary-ink", "faint-ink", "structural-rule"],
+  "handoff": { "entry": ["baseline-set"], "exit": ["comparison-left", "comparison-right", "selected-result"] },
+  "limits": ["reference implementation currently uses 12 objects per state", "both sides use identical count and object scale", "numerical labels require supplied data"],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": { "project": "videos/knowledge-mg-p3-gallery", "scene": "candidate-compare", "checks": ["strict HyperFrames gate", "fixed-count visual inspection", "user preferred 2026-09-14"] }
+}

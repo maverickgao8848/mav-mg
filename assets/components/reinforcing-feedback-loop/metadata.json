@@ -1,0 +1,62 @@
+{
+  "id": "reinforcing-feedback-loop",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "a three-step causal chain whose result returns once to strengthen the original driver",
+  "teachingUse": [
+    "reinforcing feedback explanation",
+    "virtuous-cycle explanation",
+    "compounding system behavior"
+  ],
+  "slots": [
+    { "id": "driver", "kind": "objects", "required": true },
+    { "id": "mechanism", "kind": "objects", "required": true },
+    { "id": "result", "kind": "objects", "required": true },
+    { "id": "feedbackLabel", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-cycle", "at": 0.14, "observable": "three causal states are readable before any connection is asserted" },
+    { "id": "forward-cause", "at": 0.36, "observable": "the driver visibly reaches the mechanism" },
+    { "id": "amplify-result", "at": 0.56, "observable": "the mechanism visibly reaches the result" },
+    { "id": "return-feedback", "at": 0.86, "observable": "the result returns to the driver and the driver is visibly strengthened" }
+  ],
+  "layout": {
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "minWidth": 720,
+    "safeInset": "project frame safe area"
+  },
+  "styleRoles": [
+    "ground",
+    "driver",
+    "mechanism",
+    "result",
+    "forward-cause",
+    "return-feedback"
+  ],
+  "handoff": {
+    "entry": ["driver"],
+    "exit": ["strengthened-driver", "next-cycle"]
+  },
+  "limits": [
+    "exactly three causal states",
+    "one directed closed loop only",
+    "reinforcing polarity only",
+    "no branches",
+    "no balancing or counteracting link",
+    "no quantitative growth rate unless supplied"
+  ],
+  "implementation": {
+    "entry": "component.html",
+    "runtime": "gsap"
+  },
+  "evidence": {
+    "project": "videos/p16-reinforcing-feedback-gallery",
+    "scene": "reinforcing-feedback-loop",
+    "checks": [
+      "strict HyperFrames gate",
+      "three-domain fixed-stage visual inspection",
+      "single canonical runtime across generated instances",
+      "out-of-order seek equivalence"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "id": "cobalt-grid",
+  "revision": "p28.2-motion.1",
+  "provenance": {
+    "kind": "user_supplied_style_pack",
+    "sourceArchive": "cobalt-grid-frame-pack (1).zip",
+    "sourceArchiveSha256": "70446639d6f151c127b44be66efbf348344c5621a153c3b7eed9362da37458e5",
+    "originalFrameSha256": "c3c5c669bee2ebeeb98d7b63adc15d3da9d2b56e232a14d8d96ecdfa7972ea73",
+    "license": "PolyForm Noncommercial 1.0.0 for the source library; user reference image redistribution rights not supplied",
+    "repository": "https://github.com/maverickgao8848/mav-mg",
+    "commit": null
+  },
+  "selection": {
+    "kind": "planned_style_intake",
+    "roadmapStage": "P28"
+  },
+  "adaptationNotes": [
+    "The effective FRAME is a Chinese knowledge-video adaptation; the original FRAME remains pinned as provenance instead of traveling as a second rule source.",
+    "Chinese display and explanatory roles use local Noto Serif SC and Noto Sans SC at weight 400; Latin display, body and catalog roles retain Newsreader, Hanken Grotesk and DM Mono.",
+    "The source zero-circle direction is limited to the editorial grid and panels so necessary curves in recognizable semantic objects remain available.",
+    "Pixel glitch and QR-like marks are optional series punctuation rather than mandatory decoration on every frame.",
+    "Motion is defined as deterministic measured-paper choreography without copying the source deck transition or the samples' subject matter.",
+    "Shared camera, text timing and continuity rules are owned by motion-direction; historical project reviews retain their original scope and do not approve this motion revision."
+  ],
+  "validationScope": {
+    "basis": "P9 same-content candidate and the maintained bank-run build are historical inputs; P28 adds a new-topic standard-mode bridge expansion-joint build",
+    "transfer": "passed_historical_same_content_candidate",
+    "crossTopic": "passed_new_topic_standard_mode",
+    "productionArtDirection": "approved_for_bound_p28_2_standard_mode",
+    "userReview": {
+      "previousVersion": "15e52092ab1a16acaee95470b98d09dc1ca8f5aa9643d522b3977946ccda90fb",
+      "previousOutcome": "revise",
+      "currentVersion": "dc9ebe6b4d681dc9c63b3cab772fac7e81ef43bbfa0ed66b5e3366a63e7ab6a9",
+      "currentOutcome": "approved",
+      "response": "其他没问题，通过",
+      "date": "2026-09-21"
+    }
+  },
+  "files": [
+    {
+      "path": "FRAME.md",
+      "sha256": "cabbebf7f54ee2fee65dddf34cf6034bc2d09749e85e870a15200f340232c783"
+    },
+    {
+      "path": "samples/sample-01.png",
+      "sha256": "26d7182a23317249d56b264ff12e685bd02d99b69d07e06a4ae391892f8a8d77"
+    },
+    {
+      "path": "samples/sample-02.png",
+      "sha256": "3939b7ec1d4c3ee6e4954b3fabdbc4e3ea08afcaa10b02e52e9cb73cb759c032"
+    },
+    {
+      "path": "samples/sample-03.png",
+      "sha256": "09edafd7552415879462248e3ad2ca379ac2714b4fe0c5fafa8d71c02c349366"
+    },
+    {
+      "path": "samples/sample-04.png",
+      "sha256": "cda04340bcf5d00a3b848f72f696ad42a1670a88d11e018402942ef89be674ff"
+    },
+    {
+      "path": "samples/sample-05.png",
+      "sha256": "b3053a56a4267e433a4326eb01c78e27d8142882e487bb49b922e86b746bb23e"
+    },
+    {
+      "path": "samples/sample-06.png",
+      "sha256": "6a0e317ebab4319ab1387ce581d9a50e31992c7e47fe1455ed495bd301f839d9"
+    },
+    {
+      "path": "samples/sample-07.png",
+      "sha256": "1115a82f49556216a31106cdb24ba1a7d2a571347c5ae1afb05b22c39a3c78a1"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "selectionRule": "Use a primitive only when its concrete object is part of the narrated explanation; style and motion remain owned by the active project.",
+  "sources": [
+    {
+      "id": "phosphor-2.1.1",
+      "package": "@phosphor-icons/core@2.1.1",
+      "upstream": "https://github.com/phosphor-icons/core",
+      "license": "MIT",
+      "licenseFile": "phosphor-2.1.1/LICENSE",
+      "intake": {
+        "kind": "npm-package",
+        "package": "@phosphor-icons/core@2.1.1",
+        "assetRoot": "assets/regular",
+        "preferredVariant": "regular",
+        "importScript": "scripts/import-svg-primitive.mjs"
+      },
+      "items": [
+        {
+          "id": "bank-building",
+          "path": "phosphor-2.1.1/bank.svg",
+          "sourceAsset": "assets/regular/bank.svg",
+          "sha256": "d52f812b44373ca15c1a8050ba27b35b8f4e014f1fcfe5fbaf9ee84d736b0c43",
+          "roles": [
+            "bank",
+            "finance",
+            "institution"
+          ]
+        },
+        {
+          "id": "brain",
+          "path": "phosphor-2.1.1/brain.svg",
+          "sha256": "9fdd189bc61e6b5e437c91bd6819c7a0bd1e598d0a780ae097b4db2e0de13a43",
+          "roles": [
+            "perception",
+            "judgment",
+            "thought"
+          ]
+        },
+        {
+          "id": "flow-stream",
+          "path": "phosphor-2.1.1/waves.svg",
+          "sourceAsset": "assets/regular/waves.svg",
+          "sha256": "de913b2bff765875493325023e29d261ecd5b0c1de81b797ebcdf7b8c09c66e0",
+          "roles": [
+            "current",
+            "fluid-flow",
+            "stream"
+          ]
+        },
+        {
+          "id": "map-pin",
+          "path": "phosphor-2.1.1/map-pin.svg",
+          "sourceAsset": "assets/regular/map-pin.svg",
+          "sha256": "523f024fa467fc285d95c1db4ed6c32b640513c79780d14310bebf342b6f94fb",
+          "roles": [
+            "location",
+            "map",
+            "position"
+          ]
+        },
+        {
+          "id": "people-group",
+          "path": "phosphor-2.1.1/users-three.svg",
+          "sourceAsset": "assets/regular/users-three.svg",
+          "sha256": "0e326e4ef7d1ae16f9988791f68fde7bae513bdc8c06db437cfd55bf13670bcf",
+          "roles": [
+            "crowd",
+            "group",
+            "people"
+          ]
+        },
+        {
+          "id": "thermometer-simple",
+          "path": "phosphor-2.1.1/thermometer-simple.svg",
+          "sha256": "74e3e52fe86518f880c95fc419219225eb888c12bec3a6f08e0dfe4b25eb0d0d",
+          "roles": [
+            "temperature",
+            "measurement",
+            "equal-state"
+          ]
+        },
+        {
+          "id": "thought-frame",
+          "path": "phosphor-2.1.1/chat-teardrop-text.svg",
+          "sha256": "7dae1b3a3181f40267f5bbce89a85900f402e1ec2af7025fc8d2f6c75618bdcb",
+          "roles": [
+            "thought",
+            "interpretation",
+            "callout"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "healthicons-2.0.0",
+      "package": "healthicons@2.0.0",
+      "upstream": "https://github.com/resolvetosavelives/healthicons",
+      "license": "MIT as distributed in the npm package; retain the bundled notice",
+      "licenseFile": "healthicons-2.0.0/LICENSE",
+      "intake": {
+        "kind": "npm-package",
+        "package": "healthicons@2.0.0",
+        "assetRoot": "public/icons/svg/outline",
+        "importScript": "scripts/import-svg-primitive.mjs"
+      },
+      "items": [
+        {
+          "id": "head-profile",
+          "path": "healthicons-2.0.0/head.svg",
+          "sha256": "f2a966087302d79b177f0f13341166bb9177fc403a9ca7b759be24a113b62d3d",
+          "roles": [
+            "person",
+            "brain-location",
+            "perception"
+          ]
+        },
+        {
+          "id": "nerve-network",
+          "path": "healthicons-2.0.0/nerve.svg",
+          "sha256": "6fccc310405501d04a2bc5b6b50b10c3e1425cbfdecff608e7459dda0b58551e",
+          "roles": [
+            "nerve",
+            "receptor",
+            "signal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mdi-svg-7.4.47",
+      "package": "@mdi/svg@7.4.47",
+      "upstream": "https://github.com/Templarian/MaterialDesign-SVG",
+      "license": "Apache-2.0 icon distribution terms in the bundled Pictogrammers Free License; retain the bundled notice",
+      "licenseFile": "mdi-svg-7.4.47/LICENSE",
+      "intake": {
+        "kind": "npm-package",
+        "package": "@mdi/svg@7.4.47",
+        "assetRoot": "svg",
+        "importScript": "scripts/import-svg-primitive.mjs"
+      },
+      "items": [
+        {
+          "id": "piston-cylinder",
+          "path": "mdi-svg-7.4.47/piston.svg",
+          "sourceAsset": "svg/piston.svg",
+          "upstreamAuthor": "Michael Richins",
+          "upstreamIconVersion": "2.1.99",
+          "sha256": "605fcde7b6869dcde2cfb4ce73f5b105244c552a97d70a60f127a41fe55204c6",
+          "roles": [
+            "cylinder",
+            "hydraulics",
+            "piston"
+          ]
+        },
+        {
+          "id": "satellite",
+          "path": "mdi-svg-7.4.47/satellite-variant.svg",
+          "sourceAsset": "svg/satellite-variant.svg",
+          "upstreamAuthor": "Austin Andrews",
+          "upstreamIconVersion": "1.5.54",
+          "sha256": "8b5439ab3e48f956bd87ee92f9bdea4b43edee36a4935a5e874f6ec5d38f7b19",
+          "roles": [
+            "orbit",
+            "satellite",
+            "spacecraft"
+          ]
+        }
+      ]
+    }
+  ]
+}

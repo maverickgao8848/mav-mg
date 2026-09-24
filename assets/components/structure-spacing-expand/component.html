@@ -1,0 +1,21 @@
+<!doctype html><html lang="zh-CN"><body><template><style>
+@import url("assets/fonts/noto-serif-sc/wght.css");
+@font-face{font-family:"Newsreader";src:url("assets/fonts/newsreader-latin-wght-normal.woff2") format("woff2");font-weight:100 900}
+@font-face{font-family:"Hanken Grotesk";src:url("assets/fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2");font-weight:100 900}
+@font-face{font-family:"DM Mono";src:url("assets/fonts/dm-mono-latin-400-normal.woff2") format("woff2");font-weight:400}
+@font-face{font-family:"Noto Sans SC";src:url("assets/fonts/NotoSansSC-Variable.ttf") format("truetype");font-weight:100 900}
+@font-face{font-family:"Noto Serif SC";src:local("Noto Serif SC");font-weight:100 900}
+#root{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;container-type:size;color:var(--kmg-ink,#1F2BE0);font-family:"Noto Sans SC","Hanken Grotesk",sans-serif}.ground{position:absolute;inset:0;background-color:var(--kmg-paper,#F0EBDE);background-image:linear-gradient(rgba(31,43,224,.10) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(31,43,224,.10) 1.5px,transparent 1.5px);background-size:2cqw 2cqw}
+.rule{position:absolute;left:4cqw;right:4cqw;height:.12cqw;background:var(--kmg-ink,#1F2BE0);transform-origin:left}.top{top:3cqw}.bottom{bottom:3cqw}.idx{position:absolute;left:4cqw;top:5cqw;font:400 .75cqw "DM Mono",monospace;letter-spacing:.06em}.title{position:absolute;left:4cqw;top:8cqw;width:42cqw;font:400 4.3cqw/1.02 "Newsreader","Noto Serif SC",serif}.title em{color:var(--kmg-soft,#5560E5);font-style:italic}
+.stage{position:absolute;right:5cqw;top:9cqw;width:46cqw;height:36cqw;border:.12cqw solid var(--kmg-ink,#1F2BE0);display:grid;place-items:center}.set{position:absolute;left:50%;top:50%;width:24cqw;height:18cqw;transform:translate(-50%,-50%)}.unit{position:absolute;left:50%;top:50%;width:2.4cqw;height:2.4cqw;margin:-1.2cqw;background:var(--kmg-ink,#1F2BE0)}.state{position:absolute;right:1.2cqw;bottom:1cqw;font:400 .76cqw "DM Mono",monospace;letter-spacing:.05em}.note{position:absolute;left:4cqw;bottom:8cqw;width:36cqw;font-size:1.45cqw;line-height:1.45}.page{position:absolute;right:4cqw;bottom:4.2cqw;font:400 .74cqw "DM Mono",monospace}
+</style><div id="root" data-composition-id="candidate-structure" data-width="1920" data-height="1080" data-duration="5.2">
+<div id="structure-ground" class="ground clip" data-start="0" data-duration="5.2" data-track-index="0"></div><div class="rule top"></div><div class="rule bottom"></div><div class="idx">CANDIDATE 01 / STRUCTURE</div><h1 id="structure-title" class="title">同一组对象，<em>结构变疏松</em></h1>
+<div class="stage"><div class="set"><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i><i class="unit"></i></div><div class="state">COMPACT → OPEN</div></div><p class="note">适合解释相变、包装密度和“没有增加物质，但占用空间改变”。</p><div class="page">01 / 03</div>
+</div><script>
+window.__timelines=window.__timelines||{};const root=document.querySelector('[data-composition-id="candidate-structure"]');const q=gsap.utils.selector(root);const tl=gsap.timeline({paused:true});const xs=[-220,-74,74,220];const ys=[-115,0,115];
+tl.fromTo(q('.rule'),{scaleX:0},{scaleX:1,duration:.5,stagger:.08,ease:'power3.out'},0).fromTo(q('.idx,.title,.note'),{opacity:0,x:-55},{opacity:1,x:0,duration:.55,stagger:.12,ease:'power2.out'},.15)
+.fromTo(q('.stage'),{opacity:0,scale:.88},{opacity:1,scale:1,duration:.6,ease:'back.out(1.3)'},.35)
+.fromTo(q('.unit'),{opacity:0,scale:.55,x:0,y:0},{opacity:1,scale:1,x:(i)=>xs[i%4],y:(i)=>ys[Math.floor((i%12)/4)],duration:1.35,stagger:{each:.045,from:'center'},ease:'power3.out'},.75)
+.fromTo(q('.state,.page'),{opacity:0,y:12},{opacity:1,y:0,duration:.4,stagger:.08,ease:'power2.out'},2.1).to(q('.unit'),{scale:.92,duration:.55,stagger:{each:.03,from:'center'},repeat:2,yoyo:true,ease:'sine.inOut'},3);
+window.__timelines['candidate-structure']=tl;
+</script></template></body></html>

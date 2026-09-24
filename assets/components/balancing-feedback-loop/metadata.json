@@ -1,0 +1,66 @@
+{
+  "id": "balancing-feedback-loop",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "a deviation triggers corrective action whose result reduces the original deviation and releases the response",
+  "teachingUse": [
+    "balancing feedback explanation",
+    "goal-seeking system explanation",
+    "automatic regulation explanation"
+  ],
+  "slots": [
+    { "id": "deviation", "kind": "objects", "required": true },
+    { "id": "response", "kind": "objects", "required": true },
+    { "id": "correction", "kind": "objects", "required": true },
+    { "id": "release", "kind": "objects", "required": true },
+    { "id": "target", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-system", "at": 0.13, "observable": "four causal states and one target are readable before motion asserts a relationship" },
+    { "id": "detect-deviation", "at": 0.32, "observable": "the deviation visibly activates the corrective response" },
+    { "id": "apply-correction", "at": 0.52, "observable": "the response visibly produces a correction toward the target" },
+    { "id": "release-response", "at": 0.72, "observable": "the reduced deviation visibly releases the corrective response" },
+    { "id": "restore-balance", "at": 0.92, "observable": "the return path closes once while the deviation and response visibly settle" }
+  ],
+  "layout": {
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "minWidth": 720,
+    "safeInset": "project frame safe area"
+  },
+  "styleRoles": [
+    "ground",
+    "deviation",
+    "response",
+    "correction",
+    "release",
+    "target",
+    "balancing-return"
+  ],
+  "handoff": {
+    "entry": ["deviation", "target"],
+    "exit": ["reduced-deviation", "released-response"]
+  },
+  "limits": [
+    "exactly four causal states",
+    "one target only",
+    "one directed closed loop only",
+    "balancing polarity only",
+    "the correction must reduce the original deviation",
+    "no branches or reinforcing return",
+    "no target value or response rate unless supplied"
+  ],
+  "implementation": {
+    "entry": "component.html",
+    "runtime": "gsap"
+  },
+  "evidence": {
+    "project": "videos/p17-balancing-feedback-gallery",
+    "scene": "balancing-feedback-loop",
+    "checks": [
+      "strict HyperFrames gate",
+      "three-domain fixed-stage visual inspection",
+      "single canonical runtime across generated instances",
+      "out-of-order seek equivalence"
+    ]
+  }
+}

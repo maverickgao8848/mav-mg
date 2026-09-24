@@ -1,0 +1,39 @@
+{
+  "id": "multi-actor-sequence",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "fixed actors exchange an ordered request and response sequence while each message remains attributable to one sender and one receiver",
+  "teachingUse": ["request-response explanation", "service interaction sequence", "multi-role event ordering"],
+  "slots": [
+    { "id": "actors", "kind": "ordered-roles", "required": true },
+    { "id": "lifelines", "kind": "fixed-role-tracks", "required": true },
+    { "id": "messages", "kind": "ordered-directed-events", "required": true },
+    { "id": "request", "kind": "directed-event", "required": true },
+    { "id": "response", "kind": "directed-event", "required": true },
+    { "id": "result", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-actors", "at": 0.14, "observable": "three actors occupy fixed columns with persistent lifelines" },
+    { "id": "send-request", "at": 0.28, "observable": "the client request travels to the API as the first event" },
+    { "id": "forward-dependency", "at": 0.47, "observable": "the API request reaches the database only after the first request arrives" },
+    { "id": "return-response", "at": 0.72, "observable": "the database result returns through the API in two ordered response events" },
+    { "id": "resolve-sequence", "at": 0.9, "observable": "all four messages remain readable from top to bottom as one completed exchange" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "actor", "lifeline", "request", "response", "active-event", "result"],
+  "handoff": { "entry": ["actors", "lifelines"], "exit": ["actors", "messages", "result"] },
+  "limits": [
+    "two to four fixed actors arranged in one declared order",
+    "each message has exactly one sender, one receiver, one kind, and one sequence index",
+    "message sequence indices are unique and contiguous",
+    "a response follows the request that enables it",
+    "actors and lifelines do not swap positions during the exchange",
+    "no parallel fork, join barrier, condition branch, state transition, free-form chat, or causal feedback claim"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p22-multi-actor-sequence-harness",
+    "scene": "multi-actor-sequence",
+    "checks": ["strict HyperFrames gate", "fixed-stage visual inspection", "message-order and endpoint verification", "out-of-order seek equivalence"]
+  }
+}

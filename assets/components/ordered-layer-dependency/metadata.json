@@ -1,0 +1,41 @@
+{
+  "id": "ordered-layer-dependency",
+  "version": "0.1.0",
+  "status": "validated",
+  "relation": "one top-level outcome depends on an ordered chain of adjacent support layers, where each layer requires the layer immediately beneath it and the foundation enables the chain bottom-up",
+  "teachingUse": ["layered system explanation", "dependency stack", "foundation-to-outcome explanation"],
+  "slots": [
+    { "id": "target", "kind": "label", "required": true },
+    { "id": "layer4", "kind": "objects", "required": true },
+    { "id": "layer3", "kind": "objects", "required": true },
+    { "id": "layer2", "kind": "objects", "required": true },
+    { "id": "layer1", "kind": "objects", "required": true },
+    { "id": "foundation", "kind": "label", "required": true },
+    { "id": "resolvedResult", "kind": "label", "required": true }
+  ],
+  "stageEvents": [
+    { "id": "establish-target", "at": 0.1, "observable": "the top outcome is readable while the supporting layers remain visibly present but inactive" },
+    { "id": "trace-dependencies", "at": 0.28, "observable": "a single trace descends from the target through every adjacent dependency in order" },
+    { "id": "lock-foundation", "at": 0.48, "observable": "the bottom foundation becomes the first confirmed support and no upper layer is yet marked ready" },
+    { "id": "activate-support-chain", "at": 0.65, "observable": "support advances upward one adjacent layer at a time from the foundation" },
+    { "id": "resolve-target", "at": 0.84, "observable": "all four layers are active and the top outcome becomes ready only after the chain reaches it" },
+    { "id": "hold-proof", "at": 0.94, "observable": "the completed stack holds with the full foundation-to-outcome dependency path traceable" }
+  ],
+  "layout": { "aspectRatios": ["16:9", "9:16", "1:1"], "minWidth": 720, "safeInset": "project frame safe area" },
+  "styleRoles": ["ground", "inactive-layer", "foundation", "active-support", "dependency-trace", "target-outcome"],
+  "handoff": { "entry": ["target"], "exit": ["target", "resolved-stack"] },
+  "limits": [
+    "exactly four ordered layers plus one named foundation",
+    "each non-foundation layer depends only on the immediately adjacent layer beneath it",
+    "dependency is traced top-down before support is activated bottom-up",
+    "the target resolves only after every support layer is active",
+    "no branching, cross-layer shortcut, containment claim, cycle, weighted influence, or parallel execution",
+    "vertical order expresses supplied dependency only and does not imply chronology, ownership, physical containment, or relative importance"
+  ],
+  "implementation": { "entry": "component.html", "runtime": "gsap" },
+  "evidence": {
+    "project": "videos/p23-ordered-layer-dependency-gallery",
+    "scene": ["natural-forest", "technical-checkout", "social-water"],
+    "checks": ["three-domain data-only rebuild", "strict HyperFrames gate", "15-frame visual inspection", "canonical out-of-order seek equivalence"]
+  }
+}

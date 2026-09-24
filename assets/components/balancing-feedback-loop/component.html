@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          color: #173832;
+          background: #f4f0e5;
+          font-family: system-ui, sans-serif;
+        }
+        .ground { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(40, 126, 126, 0.14), transparent 31%), linear-gradient(145deg, #faf7ef, #e4eee8); }
+        .frame { position: absolute; inset: 60px; border: 2px solid rgba(23, 56, 50, 0.2); border-radius: 30px; }
+        .title { position: absolute; left: 92px; top: 72px; margin: 0; font-size: 42px; letter-spacing: -0.035em; }
+        .contract { position: absolute; right: 92px; top: 90px; font: 750 14px/1 ui-monospace, monospace; letter-spacing: 0.09em; color: #146a70; }
+        .loop-map { position: absolute; inset: 0; width: 1920px; height: 1080px; pointer-events: none; }
+        .loop-path { fill: none; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+        #path-deviation { stroke: #b9582d; }
+        #path-response { stroke: #176f92; }
+        #path-correction { stroke: #37704a; }
+        #path-release { stroke: #a47a20; stroke-width: 7; stroke-dasharray: 16 12; }
+        .arrowhead { opacity: 0; }
+        #arrow-deviation { fill: #b9582d; }
+        #arrow-response { fill: #176f92; }
+        #arrow-correction { fill: #37704a; }
+        #arrow-release { fill: #a47a20; }
+        .node {
+          position: absolute;
+          width: 400px;
+          height: 190px;
+          padding: 26px 28px;
+          border: 4px solid var(--node-color);
+          border-radius: 30px;
+          background: rgba(255, 253, 247, 0.96);
+          display: grid;
+          grid-template-columns: 64px 1fr;
+          align-items: center;
+          gap: 20px;
+          opacity: 0;
+          box-shadow: 0 16px 34px rgba(23, 56, 50, 0.08);
+          will-change: transform, opacity, background-color;
+        }
+        #deviation { left: 120px; top: 245px; --node-color: #b9582d; }
+        #response { right: 120px; top: 245px; --node-color: #176f92; }
+        #correction { right: 120px; top: 650px; --node-color: #37704a; }
+        #release { left: 120px; top: 650px; --node-color: #a47a20; }
+        .badge { width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; background: var(--node-color); color: #fffdf6; font: 900 25px/1 ui-monospace, monospace; }
+        .node strong { display: block; color: #173832; font-size: 29px; line-height: 1.05; letter-spacing: -0.02em; }
+        .node span { display: block; margin-top: 11px; color: #5b6c66; font: 750 13px/1.25 ui-monospace, monospace; letter-spacing: 0.06em; }
+        #target {
+          position: absolute;
+          left: 745px;
+          top: 348px;
+          width: 430px;
+          height: 340px;
+          border: 4px solid #287e7e;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          background: rgba(251, 248, 236, 0.9);
+          opacity: 0;
+          box-shadow: inset 0 0 0 20px rgba(40, 126, 126, 0.08);
+          will-change: transform, opacity, background-color;
+        }
+        #target strong { display: block; font: 900 27px/1.15 ui-monospace, monospace; letter-spacing: 0.08em; }
+        #target span { display: block; margin-top: 16px; color: #146a70; font: 900 48px/1 ui-monospace, monospace; }
+        #status { position: absolute; left: 735px; top: 710px; width: 450px; padding: 16px 22px; border-radius: 999px; background: #173832; color: #fffdf6; text-align: center; font: 850 16px/1 ui-monospace, monospace; letter-spacing: 0.07em; opacity: 0; }
+        #return-label { position: absolute; left: 90px; top: 500px; width: 310px; padding: 13px 18px; border-radius: 999px; background: #8a661a; color: #fffdf6; text-align: center; font: 850 14px/1 ui-monospace, monospace; letter-spacing: 0.06em; opacity: 0; }
+        .phase-strip { position: absolute; left: 92px; right: 92px; bottom: 70px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+        .phase-strip span { padding: 11px 8px; border-top: 3px solid #287e7e; color: #5b6c66; font: 700 11px/1 ui-monospace, monospace; }
+      </style>
+      <div id="root" data-composition-id="balancing-feedback-loop" data-width="1920" data-height="1080" data-duration="6">
+        <div id="balance-ground" class="ground clip" data-start="0" data-duration="6" data-track-index="0"></div>
+        <div class="frame"></div>
+        <h1 class="title">How does a thermostat restore balance?</h1>
+        <div class="contract">FOUR STATES · ONE TARGET · BALANCING</div>
+        <svg class="loop-map" viewBox="0 0 1920 1080" aria-label="a balancing feedback loop around a target range">
+          <path id="path-deviation" class="loop-path" d="M 520 340 C 760 205 1160 205 1385 340" />
+          <polygon id="arrow-deviation" class="arrowhead" points="1390,340 1351,313 1358,354" />
+          <path id="path-response" class="loop-path" d="M 1720 435 C 1790 500 1790 575 1720 635" />
+          <polygon id="arrow-response" class="arrowhead" points="1720,640 1713,598 1750,621" />
+          <path id="path-correction" class="loop-path" d="M 1400 745 C 1160 880 760 880 535 745" />
+          <polygon id="arrow-correction" class="arrowhead" points="530,745 569,772 562,731" />
+          <path id="path-release" class="loop-path" d="M 200 650 C 130 585 130 510 200 450" />
+          <polygon id="arrow-release" class="arrowhead" points="200,445 207,487 170,464" />
+        </svg>
+        <article id="deviation" class="node"><div class="badge">1</div><div><strong>TEMPERATURE RISES</strong><span>DEVIATION APPEARS</span></div></article>
+        <article id="response" class="node"><div class="badge">2</div><div><strong>COOLING INCREASES</strong><span>CORRECTIVE RESPONSE</span></div></article>
+        <article id="correction" class="node"><div class="badge">3</div><div><strong>TEMPERATURE FALLS</strong><span>DEVIATION SHRINKS</span></div></article>
+        <article id="release" class="node"><div class="badge">4</div><div><strong>COOLING DECREASES</strong><span>RESPONSE RELEASES</span></div></article>
+        <div id="target"><div><strong>TARGET<br />RANGE</strong><span>−</span></div></div>
+        <div id="return-label">SMALLER NEXT CORRECTION</div>
+        <div id="status">DEVIATION NARROWS → BALANCE RESTORED</div>
+        <div class="phase-strip"><span>01 ESTABLISH</span><span>02 DETECT DEVIATION</span><span>03 APPLY CORRECTION</span><span>04 RELEASE RESPONSE</span><span>05 RESTORE BALANCE</span></div>
+      </div>
+      <script>
+        window.__timelines = window.__timelines || {};
+        const root = document.querySelector('[data-composition-id="balancing-feedback-loop"]');
+        const q = gsap.utils.selector(root);
+        const tl = gsap.timeline({ paused: true });
+        q(".loop-path").forEach((path) => {
+          const length = path.getTotalLength();
+          path.style.strokeDasharray = String(length);
+          path.style.strokeDashoffset = String(length);
+        });
+        tl.set(q(".node"), { opacity: 1 }, 0.12)
+          .fromTo(q(".node"), { scale: 0.94, y: 18 }, { scale: 1, y: 0, duration: 0.38, stagger: 0.05, ease: "power3.out" }, 0.12)
+          .fromTo(q("#target"), { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.38, ease: "power2.out" }, 0.28)
+          .addLabel("establish-system", 0.78)
+          .to(q("#path-deviation"), { strokeDashoffset: 0, duration: 0.72, ease: "power2.out" }, 0.98)
+          .set(q("#arrow-deviation"), { opacity: 1 }, 1.68)
+          .to(q("#response"), { scale: 1.06, duration: 0.13, ease: "power2.out" }, 1.68)
+          .to(q("#response"), { scale: 1, duration: 0.11, ease: "power2.inOut" }, 1.81)
+          .addLabel("detect-deviation", 1.92)
+          .to(q("#path-response"), { strokeDashoffset: 0, duration: 0.68, ease: "power2.out" }, 2.12)
+          .set(q("#arrow-response"), { opacity: 1 }, 2.78)
+          .to(q("#correction"), { scale: 1.06, duration: 0.13, ease: "power2.out" }, 2.78)
+          .to(q("#correction"), { scale: 1, duration: 0.11, ease: "power2.inOut" }, 2.91)
+          .addLabel("apply-correction", 3.12)
+          .to(q("#path-correction"), { strokeDashoffset: 0, duration: 0.68, ease: "power2.out" }, 3.3)
+          .set(q("#arrow-correction"), { opacity: 1 }, 3.96)
+          .to(q("#release"), { scale: 1.06, duration: 0.13, ease: "power2.out" }, 3.96)
+          .to(q("#release"), { scale: 1, duration: 0.11, ease: "power2.inOut" }, 4.09)
+          .addLabel("release-response", 4.32)
+          .to(q("#path-release"), { strokeDashoffset: 0, duration: 0.6, ease: "power2.out" }, 4.5)
+          .set(q("#arrow-release"), { opacity: 1 }, 5.08)
+          .set(q("#return-label"), { opacity: 1 }, 4.94)
+          .fromTo(q("#return-label"), { x: -12 }, { x: 0, duration: 0.25, ease: "power2.out" }, 4.94)
+          .to(q("#deviation"), { scale: 0.96, backgroundColor: "#f3eee3", duration: 0.24, ease: "power2.out" }, 5.05)
+          .to(q("#response"), { scale: 0.96, backgroundColor: "#eef2ec", duration: 0.24, ease: "power2.out" }, 5.05)
+          .to(q("#target"), { scale: 1.05, backgroundColor: "#e9f3eb", duration: 0.25, ease: "power3.out" }, 5.08)
+          .set(q("#status"), { opacity: 1 }, 5.18)
+          .fromTo(q("#status"), { y: 12 }, { y: 0, duration: 0.28, ease: "power2.out" }, 5.18)
+          .addLabel("restore-balance", 5.52);
+        window.__timelines["balancing-feedback-loop"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
