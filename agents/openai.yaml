@@ -1,4 +1,4 @@
 interface:
-  display_name: "Knowledge MG 教学动效（技术预览版）"
+  display_name: "MAV-MG 教学动效（技术预览版）"
   short_description: "300 秒仅工程/Studio 预览；实际渲染仅至 81.3 秒；高完成度美术未达标"
-  default_prompt: "Use $knowledge-mg to turn my Chinese teaching material into an editable HyperFrames preview within its verified release scope."
+  default_prompt: "Use $mav-mg to turn my Chinese teaching material into an editable HyperFrames preview within its verified release scope."

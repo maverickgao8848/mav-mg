@@ -1,12 +1,12 @@
-# Knowledge MG
+# MAV-MG
 
-[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/knowledge-mg-0.1.0-preview.17.zip) · [Watch the sample video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
+[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/mav-mg-0.1.0-preview.18.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
 
 **Turn Chinese narration into editable educational motion graphics.** Plan the teaching beats, choose a visual direction, demonstrate each mechanism on screen, and build a HyperFrames project for preview and rendering.
 
-[![Watch the bank-run sample video](assets/showcase/bank-run-v3-cover.jpg)](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/bank-run-v3-music.mp4)
+https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
-**Sample video:** *Bank Run* v3 with music, 70.7 seconds at 1920×1080 and 30 fps. Click the cover to watch or download.
+**Sample video:** *Bank Run* v3 with music, 70.7 seconds at 1920×1080 and 30 fps. Play it directly on this page; use the link above to download the original.
 
 ## Choose a style visually
 
@@ -31,12 +31,12 @@ A future paid package is planned to include the complete style collection and a 
 
 ## Get started
 
-1. Download and unzip the package. Put `knowledge-mg` in `~/.codex/skills/` or your project's `.agents/skills/`.
+1. Download and unzip the package. Put `mav-mg` in `~/.codex/skills/` or your project's `.agents/skills/`.
 2. Install Node.js and HyperFrames. We recommend **`gpt-6-sol` or a more capable GPT-6 model**. Advanced mode also requires the runtime model check in the [input contract](references/input-contract.md). Voice generation additionally needs the voice tool selected for your project.
 3. In Codex, provide Chinese narration or timed cues and state your target duration and style:
 
 ```text
-Use knowledge-mg to make this Chinese narration into educational MG.
+Use mav-mg to make this Chinese narration into educational MG.
 Choose cobalt-grid and standard mode.
 Confirm the teaching beats and storyboard, then build an editable HyperFrames project.
 ```

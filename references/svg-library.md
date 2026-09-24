@@ -1,6 +1,6 @@
 # Curated SVG primitives
 
-This file defines how recognizable reusable SVG objects enter a Knowledge MG project. The machine-readable inventory and file hashes live only in `assets/svg-primitives/metadata.json`.
+This file defines how recognizable reusable SVG objects enter a MAV-MG project. The machine-readable inventory and file hashes live only in `assets/svg-primitives/metadata.json`.
 
 ## Role boundary
 

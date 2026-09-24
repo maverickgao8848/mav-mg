@@ -1,6 +1,6 @@
 # Art-direction quality gate
 
-This file is the single runtime authority for visual-quality review in `knowledge-mg`. Technical validity and fidelity to a design specification are necessary inputs, but neither one proves that the art direction is strong.
+This file is the single runtime authority for visual-quality review in `mav-mg`. Technical validity and fidelity to a design specification are necessary inputs, but neither one proves that the art direction is strong.
 
 ## Independent outcomes
 

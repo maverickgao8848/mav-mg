@@ -1,6 +1,6 @@
 # 技术预览版支持边界
 
-本文件是 `knowledge-mg` 当前源码版本支持能力与限制的唯一权威来源；版本号由 [SKILL.md](../SKILL.md) 的 `metadata.version` 定义。
+本文件是 `mav-mg` 当前源码版本支持能力与限制的唯一权威来源；版本号由 [SKILL.md](../SKILL.md) 的 `metadata.version` 定义。
 
 ## 支持
 

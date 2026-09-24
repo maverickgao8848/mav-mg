@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "knowledge-mg-component.schema.json",
-  "title": "Knowledge MG relationship component",
+  "$id": "mav-mg-component.schema.json",
+  "title": "MAV-MG relationship component",
   "type": "object",
   "additionalProperties": false,
   "required": ["id", "version", "status", "relation", "teachingUse", "slots", "stageEvents", "layout", "styleRoles", "handoff", "limits", "implementation", "evidence"],

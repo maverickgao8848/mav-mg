@@ -1,12 +1,12 @@
-# Knowledge MG
+# MAV-MG
 
-**中文** · [English](README.en.md) · [下载公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/knowledge-mg-0.1.0-preview.17.zip) · [观看样例视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
+**中文** · [English](README.en.md) · [下载公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/mav-mg-0.1.0-preview.18.zip) · [下载原版视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
 
 **把中文讲解文稿变成可编辑的知识型 MG 动画。** 从文稿梳理教学重点，选择视觉风格，制作逐句可见的机制演示，最终交给 HyperFrames 预览与渲染。
 
-[![观看《银行挤兑》样例视频](assets/showcase/bank-run-v3-cover.jpg)](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.17/bank-run-v3-music.mp4)
+https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
-**样例视频：**《银行挤兑》v3 音乐版，70.7 秒，1920×1080、30 fps。点击封面观看或下载。
+**样例视频：**《银行挤兑》v3 音乐版，70.7 秒，1920×1080、30 fps。可在此页直接播放；顶部链接可下载原版。
 
 ## 直接看图选风格
 
@@ -31,12 +31,12 @@
 
 ## 开始使用
 
-1. 下载顶部 ZIP 并解压，把 `knowledge-mg` 文件夹放到 `~/.codex/skills/`，或放到项目的 `.agents/skills/`。
+1. 下载顶部 ZIP 并解压，把 `mav-mg` 文件夹放到 `~/.codex/skills/`，或放到项目的 `.agents/skills/`。
 2. 安装 Node.js 和 HyperFrames。推荐使用 **`gpt-6-sol` 或更强的 GPT-6 模型**；`advanced` 模式还须满足[输入契约](references/input-contract.md)中的模型确认要求。若要生成旁白，还需准备项目选用的语音工具。
 3. 在 Codex 中提供中文文稿或带时间码的讲解材料，说明目标时长和风格。例如：
 
 ```text
-用 knowledge-mg 把这段中文讲解做成知识型 MG。
+用 mav-mg 把这段中文讲解做成知识型 MG。
 风格用 cobalt-grid，制作模式用 standard。
 先确认教学重点和分镜，再构建可编辑的 HyperFrames 工程。
 ```

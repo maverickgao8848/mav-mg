@@ -1,11 +1,11 @@
 ---
-name: knowledge-mg
+name: mav-mg
 description: Turn Chinese plain or timestamped narration and per-frame image references into editable educational Motion Graphics projects for HyperFrames. Use for Chinese knowledge explainers, mechanism animations, teaching MG, or revisions to an existing HyperFrames explainer within the technical-preview release scope.
 metadata:
-  version: "0.1.0-preview.17"
+  version: "0.1.0-preview.18"
 ---
 
-# Knowledge MG
+# MAV-MG
 
 Create editable, deterministic educational Motion Graphics whose visual changes help the audience understand a mechanism, relationship, comparison, or process.
 
