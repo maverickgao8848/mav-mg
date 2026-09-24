@@ -1,6 +1,6 @@
 # Knowledge MG
 
-[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/latest/download/knowledge-mg-0.1.0-preview.16.zip) · [Skill entry](SKILL.md)
+[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.16/knowledge-mg-0.1.0-preview.16.zip) · [Skill entry](SKILL.md)
 
 **Turn Chinese narration into editable educational motion graphics.** Plan the teaching beats, choose a visual direction, demonstrate each mechanism on screen, and build a HyperFrames project for preview and rendering.
 

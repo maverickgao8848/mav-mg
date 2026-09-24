@@ -1,6 +1,6 @@
 # Knowledge MG
 
-**中文** · [English](README.en.md) · [下载公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/latest/download/knowledge-mg-0.1.0-preview.16.zip) · [Skill 入口](SKILL.md)
+**中文** · [English](README.en.md) · [下载公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.16/knowledge-mg-0.1.0-preview.16.zip) · [Skill 入口](SKILL.md)
 
 **把中文讲解文稿变成可编辑的知识型 MG 动画。** 从文稿梳理教学重点，选择视觉风格，制作逐句可见的机制演示，最终交给 HyperFrames 预览与渲染。
 
