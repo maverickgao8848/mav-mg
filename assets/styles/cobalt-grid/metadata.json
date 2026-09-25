@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "cobalt-grid",
-  "revision": "p28.2-motion.1",
+  "revision": "p36-reference-catalog.1",
   "provenance": {
     "kind": "user_supplied_style_pack",
     "sourceArchive": "cobalt-grid-frame-pack (1).zip",
@@ -40,7 +40,7 @@
   "files": [
     {
       "path": "FRAME.md",
-      "sha256": "cabbebf7f54ee2fee65dddf34cf6034bc2d09749e85e870a15200f340232c783"
+      "sha256": "082817a94704332b2eecc76dfa1a637966a28e732aeeabac380c37d797a6266c"
     },
     {
       "path": "samples/sample-01.png",
@@ -69,6 +69,36 @@
     {
       "path": "samples/sample-07.png",
       "sha256": "1115a82f49556216a31106cdb24ba1a7d2a571347c5ae1afb05b22c39a3c78a1"
+    }
+  ],
+  "advancedFiles": [
+    {
+      "path": "advanced-samples/sample-01.png",
+      "sha256": "cc8c493801168e053bcc550ae000d3a74878af22d94ca9a42499aff8a73ecee0"
+    },
+    {
+      "path": "advanced-samples/sample-02.png",
+      "sha256": "c767a360252448de51ba2f7526f09a5848e1283d17b541f3237e882942fb8786"
+    },
+    {
+      "path": "advanced-samples/sample-03.png",
+      "sha256": "486da83208d75b1a4146a68a3ae831af1e03b743f9c7c06899e4126fdf1cb5d1"
+    },
+    {
+      "path": "advanced-samples/sample-04.png",
+      "sha256": "ef3dd0e9297e2ae5f62d776f8ac3ec8ba156d6ee932b29b2c4c12ddff61c5c61"
+    },
+    {
+      "path": "advanced-samples/sample-05.png",
+      "sha256": "b3d27732202a0035cf134692776370264a109c8821a1853eaa078d8b2ea96d47"
+    },
+    {
+      "path": "advanced-samples/sample-06.png",
+      "sha256": "ff32b644ab0793f2aa930f22624439160072898f9d99a5a61309291972d484c3"
+    },
+    {
+      "path": "advanced-samples/sample-07.png",
+      "sha256": "fb3b334499edc2241fc0bf683af02711b63c93afe4a9ac65afebe1b0b1876efd"
     }
   ]
 }

@@ -11,7 +11,7 @@
 - 可编辑、确定性、seek-safe 的 HyperFrames 工程，包含字幕与项目专用语义 SVG。
 - 先选风格、再选 `standard | advanced` 的双制作模式；高级模式仅在宿主运行时确认 GPT-6 后开始，具体选择契约见 [input-contract.md](input-contract.md)，制作策略见 [visual-grammar.md](visual-grammar.md)。
 - 可用关系组件由 [`assets/components/collection.json`](../assets/components/collection.json) 的 `allowed` 集合唯一定义；各组件的语义、容量、阶段与证据只见对应 `metadata.json`。
-- 本公开包仅包含 Editorial Forest 与 Cobalt Grid 两套可应用风格。共用幂等应用工具和各包验证边界见 [style-contract.md](style-contract.md)。
+- 本公开包仅包含 Editorial Forest 与 Cobalt Grid 两套可应用风格。Cobalt Grid 按模式加载各自的七张参考图；Editorial Forest 的两种模式使用同一组参考图。共用幂等应用工具和各包验证边界见 [style-contract.md](style-contract.md)。
 - 五个开放许可 SVG 原件及单项导入工具；来源、许可和语义使用方式见 [svg-library.md](svg-library.md)。
 
 ## 验证边界

@@ -1,6 +1,6 @@
 # MAV-MG
 
-**中文** · [English](README.en.md) · [下载公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/mav-mg-0.1.0-preview.18.zip) · [下载原版视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
+**中文** · [English](README.en.md) · [下载公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.19/mav-mg-0.1.0-preview.19.zip) · [下载原版视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
 
 **把中文讲解文稿变成可编辑的知识型 MG 动画。** 从文稿梳理教学重点，选择视觉风格，制作逐句可见的机制演示，最终交给 HyperFrames 预览与渲染。
 
@@ -10,24 +10,16 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## 直接看图选风格
 
-以下是实际 HyperFrames 预览帧与风格参考图。**公开版可直接使用 Cobalt Grid 和 Editorial Forest；其余四种仅展示，不包含可应用的风格规范或素材包。** 点击公开风格图片可查看完整 `FRAME.md`。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
+以下是实际 HyperFrames 预览帧与风格参考图。**公开版只包含 Cobalt Grid 和 Editorial Forest 两种风格。** 点击图片可查看完整 `FRAME.md`。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
 
 <table>
 <tr>
 <td width="50%"><a href="assets/styles/cobalt-grid/FRAME.md"><img src="assets/showcase/styles/cobalt-grid.jpg" alt="Cobalt Grid 预览" width="480"></a><br><b>Cobalt Grid · 公开可用</b><br>研究、数据、系统解释<br><code>cobalt-grid</code></td>
 <td width="50%"><a href="assets/styles/editorial-forest/FRAME.md"><img src="assets/showcase/styles/editorial-forest.jpg" alt="Editorial Forest 预览" width="480"></a><br><b>Editorial Forest · 公开可用</b><br>自然、材料、生活科学<br><code>editorial-forest</code></td>
 </tr>
-<tr>
-<td width="50%"><img src="assets/showcase/styles/opencode.jpg" alt="Open Code 预览" width="480"><br><b>Open Code · 展示</b><br>终端、软件、数字机制</td>
-<td width="50%"><img src="assets/showcase/styles/gable-reed.png" alt="Gable & Reed 风格参考图" width="480"><br><b>Gable & Reed · 展示</b><br>工程、结构、技术图解</td>
-</tr>
-<tr>
-<td width="50%"><img src="assets/showcase/styles/dell-1996.png" alt="Dell 1996 风格参考图" width="480"><br><b>Dell 1996 · 展示</b><br>复古科技、索引、互联网文化</td>
-<td width="50%"><img src="assets/showcase/styles/broadside.png" alt="Broadside 风格参考图" width="480"><br><b>Broadside · 展示</b><br>强观点、海报、大字节奏</td>
-</tr>
 </table>
 
-后续付费包计划提供完整风格集合与一步一步使用指南。当前未开放购买；上面的展示风格也没有隐藏的公开下载入口。
+其他风格保留在付费版，不随公开仓库或下载包提供。当前未开放购买。
 
 ## 开始使用
 
@@ -44,10 +36,10 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 从 Skill 文件夹运行风格应用工具：
 
 ```powershell
-node scripts/apply-style.mjs --style cobalt-grid --project <项目目录>
+node scripts/apply-style.mjs --style cobalt-grid --project <项目目录> --mode advanced
 ```
 
-`editorial-forest` 也可作为 `--style` 值。工具会核对资源哈希，将规范写入项目 `frame.md`，并复制参考图。已有项目风格发生冲突时，先在项目中确认最终版本。
+`editorial-forest` 也可作为 `--style` 值；`--mode` 可选 `standard` 或 `advanced`。Cobalt Grid 的两种模式分别使用各自的七张参考图。工具会核对资源哈希，将规范写入项目 `frame.md`，并复制所选参考图。已有项目风格发生冲突时，先在项目中确认最终版本。
 
 ## 当前支持边界
 

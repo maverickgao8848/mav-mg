@@ -1,6 +1,6 @@
 # MAV-MG
 
-[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/mav-mg-0.1.0-preview.18.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
+[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.19/mav-mg-0.1.0-preview.19.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
 
 **Turn Chinese narration into editable educational motion graphics.** Plan the teaching beats, choose a visual direction, demonstrate each mechanism on screen, and build a HyperFrames project for preview and rendering.
 
@@ -10,24 +10,16 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## Choose a style visually
 
-These are HyperFrames preview frames and style reference images. **Cobalt Grid and Editorial Forest are included in the public package. The other four are previews only; their applicable style specifications and resource packs are not included.** Click either public image to read its `FRAME.md`. The display images show visual direction, not promised output or factual content for a new topic.
+These are HyperFrames preview frames and style reference images. **The public package includes only Cobalt Grid and Editorial Forest.** Click either image to read its `FRAME.md`. The images show visual direction, not promised output or factual content for a new topic.
 
 <table>
 <tr>
 <td width="50%"><a href="assets/styles/cobalt-grid/FRAME.md"><img src="assets/showcase/styles/cobalt-grid.jpg" alt="Cobalt Grid preview" width="480"></a><br><b>Cobalt Grid · Included</b><br>Research, data and systems<br><code>cobalt-grid</code></td>
 <td width="50%"><a href="assets/styles/editorial-forest/FRAME.md"><img src="assets/showcase/styles/editorial-forest.jpg" alt="Editorial Forest preview" width="480"></a><br><b>Editorial Forest · Included</b><br>Nature, materials and everyday science<br><code>editorial-forest</code></td>
 </tr>
-<tr>
-<td width="50%"><img src="assets/showcase/styles/opencode.jpg" alt="Open Code preview" width="480"><br><b>Open Code · Preview</b><br>Software and digital mechanisms</td>
-<td width="50%"><img src="assets/showcase/styles/gable-reed.png" alt="Gable & Reed style reference" width="480"><br><b>Gable & Reed · Preview</b><br>Engineering and structural explanation</td>
-</tr>
-<tr>
-<td width="50%"><img src="assets/showcase/styles/dell-1996.png" alt="Dell 1996 style reference" width="480"><br><b>Dell 1996 · Preview</b><br>Retro technology and internet culture</td>
-<td width="50%"><img src="assets/showcase/styles/broadside.png" alt="Broadside style reference" width="480"><br><b>Broadside · Preview</b><br>Poster scale type and emphatic ideas</td>
-</tr>
 </table>
 
-A future paid package is planned to include the complete style collection and a step-by-step usage guide. Sales are not open yet.
+Other styles are reserved for a future paid package and are not included in this repository or download. Sales are not open yet.
 
 ## Get started
 
@@ -44,10 +36,10 @@ Confirm the teaching beats and storyboard, then build an editable HyperFrames pr
 From the Skill directory, apply an included style:
 
 ```powershell
-node scripts/apply-style.mjs --style cobalt-grid --project <project-directory>
+node scripts/apply-style.mjs --style cobalt-grid --project <project-directory> --mode advanced
 ```
 
-`editorial-forest` is also accepted. The tool checks resource hashes, writes the project `frame.md`, and copies paired references. Reconcile a conflicting existing project style before continuing.
+`editorial-forest` is also accepted. Set `--mode` to `standard` or `advanced`; Cobalt Grid uses a separate seven-image reference set for each mode. The tool checks resource hashes, writes the project `frame.md`, and copies selected references. Reconcile a conflicting existing project style before continuing.
 
 ## Technical preview boundary
 

@@ -68,6 +68,6 @@ Separate the user’s instruction from inferred guidance. A supplied reference d
 
 For images, inspect subject, hierarchy, negative space, alignment, silhouette, and information density. An image proves a static state, not an unseen animation.
 
-## Cobalt Grid evidence
+## Bundled style evidence
 
-The seven bundled samples are in `assets/styles/cobalt-grid/samples/`. Their selection and authority are defined in [style-contract.md](style-contract.md).
+The selected style references and their authority are defined in [style-contract.md](style-contract.md) and the active `FRAME.md`. Use the mode selected in `BRIEF.md` when loading references; record each adopted image and feature in `STORYBOARD.md`.

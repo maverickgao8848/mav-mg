@@ -2,7 +2,7 @@
 name: mav-mg
 description: Turn Chinese plain or timestamped narration and per-frame image references into editable educational Motion Graphics projects for HyperFrames. Use for Chinese knowledge explainers, mechanism animations, teaching MG, or revisions to an existing HyperFrames explainer within the technical-preview release scope.
 metadata:
-  version: "0.1.0-preview.18"
+  version: "0.1.0-preview.19"
 ---
 
 # MAV-MG
@@ -30,7 +30,7 @@ Write project prompts and storyboard directions as concise, positive, observable
 1. Preserve original text and media under `assets/source/`. Treat `SCRIPT.md` as the selected narration, not as permission to overwrite the source.
 2. Normalize cues with `scripts/normalize-input.mjs`. Keep exactly one active timing source: generated voice, fixed source timing, or reference timing superseded by new audio.
 3. Plan one teaching spine, then apply the beat-level focus and semantic coverage mapping in [visual-grammar.md](references/visual-grammar.md). Plan spatial relationships and the camera route in the same entries under [motion-direction.md](references/motion-direction.md). A continuing scene may contain several short explanatory beats; it is not one fixed illustration per narration segment.
-4. Store the effective style in the project `frame.md`. Reference images guide only the scopes explicitly recorded in the relevant `STORYBOARD.md` frame. Before approving the storyboard visual plan, run the storyboard-keyframe checkpoint in [quality.md](references/quality.md) on rendered opening, main-mechanism, and conclusion keyframes. Prose, motif names, and planned object lists are not keyframe evidence; return upstream before building the full timeline when the rendered frames trigger a blocking observation.
+4. Store the effective style in the project `frame.md`. Reference images guide only the scopes explicitly recorded in the relevant `STORYBOARD.md` frame. Before building the full timeline, complete the storyboard-keyframe checkpoint and, when applicable, its rough route pass in [quality.md](references/quality.md). Prose, motif names, and planned object lists are not keyframe evidence; return upstream when the rendered frames or route trigger a blocking observation.
 5. Generate or retain audio, then map scene actions to actual cue windows, including the text beats and boundary handoffs specified in [motion-direction.md](references/motion-direction.md#storyboard-and-implementation). Never label averaged character timing as word-level alignment.
 6. Build seek-safe HyperFrames sub-compositions with deterministic timelines, explicit semantic SVG groups, and clear handoff states.
 7. Select components from `collection.json.allowed`; try `collection.json.preferred` first when more than one component fits. Also require metadata status `validated`, unless a candidate is explicitly accepted for the current test. A component ID must resolve to the implementation named in its metadata.
@@ -39,6 +39,6 @@ Write project prompts and storyboard directions as concise, positive, observable
 
 ## Validate and hand off
 
-Run HyperFrames checks, inspect representative frames from the opening, mechanism, transition, and conclusion, and start Studio preview. Before the final-look preview, run the built-preview and final-decision checkpoints in [quality.md](references/quality.md) using a contact sheet and normal-speed playback evidence. Once the builder has inspected that evidence, record `revise` for every blocking failure or `ready_for_review` when none remain; do not invent a waiting status or ask the user to discover the failure first. Fix observed problems without adding unrelated rules or effects. Render only when the active HyperFrames workflow and the user’s authorization allow it.
+Run HyperFrames checks, inspect representative frames from the opening, mechanism, transition, and conclusion, and start Studio preview. Before the final-look preview, run the built-preview and final-decision checkpoints in [quality.md](references/quality.md) using a contact sheet and normal-speed playback evidence. Once the builder has inspected that evidence, record `revise` for every blocking failure or `ready_for_review` when none remain in `ART-REVIEW.md`. Complete its required evidence fields, then run `node scripts/verify-art-review.mjs --project <project-directory>` from the Skill directory before handoff. Do not invent a waiting status or ask the user to discover the failure first. Fix observed problems without adding unrelated rules or effects. Render only when the active HyperFrames workflow and the user’s authorization allow it.
 
 A result is complete only when the project is editable, arbitrary-time seeking is correct, references are traceable to scenes, captions use honest timing, and the visible preview communicates the intended knowledge.
