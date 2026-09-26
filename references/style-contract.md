@@ -11,7 +11,7 @@ This public package contains two installable styles:
 | `cobalt-grid` | [FRAME](../assets/styles/cobalt-grid/FRAME.md) · [metadata](../assets/styles/cobalt-grid/metadata.json) | A bound new-topic standard-mode short passed user art review. Each new project still needs its own visual review. |
 | `editorial-forest` | [FRAME](../assets/styles/editorial-forest/FRAME.md) · [metadata](../assets/styles/editorial-forest/metadata.json) | A bound advanced short passed user art review; a longer cross-topic build retained an overlap deficit. |
 
-Apply either style from the Skill directory:
+Apply a style from the Skill directory:
 
 ```sh
 node scripts/apply-style.mjs --style cobalt-grid --project <project-directory> --mode <standard|advanced>
@@ -26,4 +26,4 @@ Use the selected references only as visual evidence for composition, hierarchy, 
 
 Prepare the font families and weights named by the selected FRAME locally. Verify them in a rendered browser frame. The style tool prepares reference files, not fonts, audio, scene code, or a full HyperFrames composition.
 
-If a requested style is absent from this package, report that it is unavailable here. The README showcase describes additional visual directions but supplies no corresponding FRAME files.
+If a requested style is absent from this package, report that it is unavailable here. The README may show paid-style covers, but those covers do not provide an installable style or public download.

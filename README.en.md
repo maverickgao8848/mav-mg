@@ -1,6 +1,6 @@
 # MAV-MG
 
-[中文](README.md) · **English** · [Download the public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.19/mav-mg-0.1.0-preview.19.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
+[中文](README.md) · **English** · [Download the free public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.21/mav-mg-0.1.0-preview.21.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
 
 **Turn Chinese narration into editable educational motion graphics.** Plan the teaching beats, choose a visual direction, demonstrate each mechanism on screen, and build a HyperFrames project for preview and rendering.
 
@@ -10,16 +10,22 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## Choose a style visually
 
-These are HyperFrames preview frames and style reference images. **The public package includes only Cobalt Grid and Editorial Forest.** Click either image to read its `FRAME.md`. The images show visual direction, not promised output or factual content for a new topic.
+These are actual HyperFrames preview frames and style references. **The free public package contains only two installable styles: Cobalt Grid and Editorial Forest.** Click either image to read its full `FRAME.md`. Open Code, Gable & Reed, Dell 1996 and Broadside are paid styles; this page shows only covers selected from their advanced references. Their style specifications and reference assets are not included in the public repository or download package. The images show visual direction, not promised output or factual content for a new topic.
 
 <table>
 <tr>
 <td width="50%"><a href="assets/styles/cobalt-grid/FRAME.md"><img src="assets/showcase/styles/cobalt-grid.jpg" alt="Cobalt Grid preview" width="480"></a><br><b>Cobalt Grid · Included</b><br>Research, data and systems<br><code>cobalt-grid</code></td>
 <td width="50%"><a href="assets/styles/editorial-forest/FRAME.md"><img src="assets/showcase/styles/editorial-forest.jpg" alt="Editorial Forest preview" width="480"></a><br><b>Editorial Forest · Included</b><br>Nature, materials and everyday science<br><code>editorial-forest</code></td>
 </tr>
+<tr>
+<td width="50%"><img src="assets/showcase/styles/opencode.png" alt="Open Code paid-style cover" width="480"><br><b>Open Code · Paid preview</b><br>Terminals, software and digital mechanisms</td>
+<td width="50%"><img src="assets/showcase/styles/gable-reed.png" alt="Gable & Reed paid-style cover" width="480"><br><b>Gable & Reed · Paid preview</b><br>Engineering, structures and technical diagrams</td>
+</tr>
+<tr>
+<td width="50%"><img src="assets/showcase/styles/dell-1996.png" alt="Dell 1996 paid-style cover" width="480"><br><b>Dell 1996 · Paid preview</b><br>Retro technology, indexes and internet culture</td>
+<td width="50%"><img src="assets/showcase/styles/broadside.png" alt="Broadside paid-style cover" width="480"><br><b>Broadside · Paid preview</b><br>Strong arguments, posters and typographic rhythm</td>
+</tr>
 </table>
-
-Other styles are reserved for a future paid package and are not included in this repository or download. Sales are not open yet.
 
 ## Get started
 
@@ -39,7 +45,7 @@ From the Skill directory, apply an included style:
 node scripts/apply-style.mjs --style cobalt-grid --project <project-directory> --mode advanced
 ```
 
-`editorial-forest` is also accepted. Set `--mode` to `standard` or `advanced`; Cobalt Grid uses a separate seven-image reference set for each mode. The tool checks resource hashes, writes the project `frame.md`, and copies selected references. Reconcile a conflicting existing project style before continuing.
+In the free public package, set `--style` to `cobalt-grid` or `editorial-forest`; set `--mode` to `standard` or `advanced`. Cobalt Grid has a separate seven-image reference set for each mode, while Editorial Forest uses one common reference set. The tool checks resource hashes, writes the project `frame.md`, and copies selected references. Reconcile a conflicting existing project style before continuing.
 
 ## Technical preview boundary
 
@@ -47,4 +53,4 @@ This package targets **Chinese educational explainers at 1920×1080 and 30 fps**
 
 ## License and commercial use
 
-Repository code and public resources are provided under the [PolyForm Noncommercial License 1.0.0](LICENSE). Commercial use requires separate authorization. Check each asset's metadata for its own provenance and rights. Future paid-package terms will be stated when it is released.
+Repository code and public resources are provided under the [PolyForm Noncommercial License 1.0.0](LICENSE). Commercial use requires separate authorization. Check each asset's metadata for its own provenance and rights.

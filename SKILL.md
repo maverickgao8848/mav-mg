@@ -2,7 +2,7 @@
 name: mav-mg
 description: Turn Chinese plain or timestamped narration and per-frame image references into editable educational Motion Graphics projects for HyperFrames. Use for Chinese knowledge explainers, mechanism animations, teaching MG, or revisions to an existing HyperFrames explainer within the technical-preview release scope.
 metadata:
-  version: "0.1.0-preview.19"
+  version: "0.1.0-preview.21"
 ---
 
 # MAV-MG

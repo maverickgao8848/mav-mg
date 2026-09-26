@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_STYLES = {"cobalt-grid", "editorial-forest"}
-PUBLIC_SHOWCASE = {"cobalt-grid.jpg", "editorial-forest.jpg"}
+PUBLIC_SHOWCASE = {"broadside.png", "cobalt-grid.jpg", "dell-1996.png", "editorial-forest.jpg", "gable-reed.png", "opencode.png"}
 
 
 def sha256(data: bytes) -> str:
@@ -27,8 +27,8 @@ def main() -> None:
     files = sorted(path for path in tracked if path)
     style_paths = [Path(name) for name in files if name.startswith("assets/styles/")]
     showcase_paths = [Path(name) for name in files if name.startswith("assets/showcase/styles/")]
-    assert {path.parts[2] for path in style_paths} == PUBLIC_STYLES, "Public styles must be exactly the approved two"
-    assert {path.name for path in showcase_paths} == PUBLIC_SHOWCASE, "Public showcase must be exactly the approved two"
+    assert {path.parts[2] for path in style_paths} == PUBLIC_STYLES, "Public styles must match the approved set"
+    assert {path.name for path in showcase_paths} == PUBLIC_SHOWCASE, "Public showcase must match the approved set"
     for style in PUBLIC_STYLES:
         assert f"assets/styles/{style}/FRAME.md" in files
         assert f"assets/styles/{style}/metadata.json" in files
