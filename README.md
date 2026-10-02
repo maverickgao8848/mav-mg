@@ -1,6 +1,6 @@
 # MAV-MG
 
-本版：保留两套上游风格，新增 [Vermilion Theatre 红黄文字剧场](assets/styles/vermilion-theatre/FRAME.md) 风格，接入 [Thiings 物件](references/thiings-library.md)，并在 [motion-direction](references/motion-direction.md) 内置空间运镜核心。已选择 A 厚宋活字（Noto Serif SC 900）作为默认；可看 [A 厚宋活字](assets/styles/vermilion-theatre/samples/letterpress.png)、[B 圆黑积木](assets/styles/vermilion-theatre/samples/rubber.png)、[C 复古牌匾](assets/styles/vermilion-theatre/samples/signpaint.png)。
+本版：保留两套上游风格，新增 [Vermilion Theatre · 朱砂活字剧场](assets/styles/vermilion-theatre/FRAME.md) 风格，接入 [Thiings 物件](references/thiings-library.md)，并在 [motion-direction](references/motion-direction.md) 内置空间运镜核心。已选择 A 厚宋活字（Noto Serif SC 900）作为默认；可看 [A 厚宋活字](assets/styles/vermilion-theatre/samples/letterpress.png)、[B 圆黑积木](assets/styles/vermilion-theatre/samples/rubber.png)、[C 复古牌匾](assets/styles/vermilion-theatre/samples/signpaint.png)。
 
 **中文** · [English](README.en.md) · [下载免费公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.24/mav-mg-0.1.0-preview.24.zip) · [下载原版视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
 
@@ -12,9 +12,12 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## 直接看图选风格
 
-以下是实际 HyperFrames 预览帧与风格参考图。**公开版包含 Cobalt Grid、Editorial Forest 和 Vermilion Theatre 三套风格。** 点击这两张图片可查看完整 `FRAME.md`。Open Code、Gable & Reed、Dell 1996 与 Broadside 为付费风格，这里只展示从高级模式参考图中选取的封面；它们的风格规范和参考素材不包含在公开仓库或下载包中。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
+以下是实际 HyperFrames 预览帧与风格参考图。**公开版包含 Cobalt Grid、Editorial Forest 和 Vermilion Theatre 三套风格。** 点击公开风格图片可查看完整 `FRAME.md`。Open Code、Gable & Reed、Dell 1996 与 Broadside 为付费风格，这里只展示从高级模式参考图中选取的封面；它们的风格规范和参考素材不包含在公开仓库或下载包中。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
 
 <table>
+<tr>
+<td colspan="2" align="center"><a href="assets/styles/vermilion-theatre/FRAME.md"><img src="assets/showcase/styles/vermilion-theatre.jpg" alt="Vermilion Theatre 朱砂活字剧场预览" width="720"></a><br><b>Vermilion Theatre · 朱砂活字剧场 · 公开可用</b><br>观点、机制、商业与知识物件<br><code>vermilion-theatre</code></td>
+</tr>
 <tr>
 <td width="50%"><a href="assets/styles/cobalt-grid/FRAME.md"><img src="assets/showcase/styles/cobalt-grid.jpg" alt="Cobalt Grid 预览" width="480"></a><br><b>Cobalt Grid · 公开可用</b><br>研究、数据、系统解释<br><code>cobalt-grid</code></td>
 <td width="50%"><a href="assets/styles/editorial-forest/FRAME.md"><img src="assets/showcase/styles/editorial-forest.jpg" alt="Editorial Forest 预览" width="480"></a><br><b>Editorial Forest · 公开可用</b><br>自然、材料、生活科学<br><code>editorial-forest</code></td>

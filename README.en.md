@@ -1,6 +1,6 @@
 # MAV-MG
 
-This release: preserves the two upstream styles, adds [Vermilion Theatre typography proposals](assets/styles/vermilion-theatre/FRAME.md), routes [Thiings objects](references/thiings-library.md), and incorporates the spatial-camera core in [motion-direction](references/motion-direction.md). A letterpress (Noto Serif SC 900) is the selected default; compare [A letterpress](assets/styles/vermilion-theatre/samples/letterpress.png), [B rubber](assets/styles/vermilion-theatre/samples/rubber.png), and [C signpaint](assets/styles/vermilion-theatre/samples/signpaint.png).
+This release: preserves the two upstream styles, adds [Vermilion Theatre · Zhu Sha Letterpress](assets/styles/vermilion-theatre/FRAME.md), routes [Thiings objects](references/thiings-library.md), and incorporates the spatial-camera core in [motion-direction](references/motion-direction.md). A letterpress (Noto Serif SC 900) is the selected default; compare [A letterpress](assets/styles/vermilion-theatre/samples/letterpress.png), [B rubber](assets/styles/vermilion-theatre/samples/rubber.png), and [C signpaint](assets/styles/vermilion-theatre/samples/signpaint.png).
 
 [中文](README.md) · **English** · [Download the free public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.24/mav-mg-0.1.0-preview.24.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
 
@@ -12,9 +12,12 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## Choose a style visually
 
-These are actual HyperFrames preview frames and style references. **The public package contains Cobalt Grid, Editorial Forest and Vermilion Theatre.** Click either image to read its full `FRAME.md`. Open Code, Gable & Reed, Dell 1996 and Broadside are paid styles; this page shows only covers selected from their advanced references. Their style specifications and reference assets are not included in the public repository or download package. The images show visual direction, not promised output or factual content for a new topic.
+These are actual HyperFrames preview frames and style references. **The public package contains Cobalt Grid, Editorial Forest and Vermilion Theatre.** Click an included style image to read its full `FRAME.md`. Open Code, Gable & Reed, Dell 1996 and Broadside are paid styles; this page shows only covers selected from their advanced references. Their style specifications and reference assets are not included in the public repository or download package. The images show visual direction, not promised output or factual content for a new topic.
 
 <table>
+<tr>
+<td colspan="2" align="center"><a href="assets/styles/vermilion-theatre/FRAME.md"><img src="assets/showcase/styles/vermilion-theatre.jpg" alt="Vermilion Theatre Zhu Sha Letterpress preview" width="720"></a><br><b>Vermilion Theatre · Zhu Sha Letterpress · Included</b><br>Arguments, mechanisms, business and knowledge objects<br><code>vermilion-theatre</code></td>
+</tr>
 <tr>
 <td width="50%"><a href="assets/styles/cobalt-grid/FRAME.md"><img src="assets/showcase/styles/cobalt-grid.jpg" alt="Cobalt Grid preview" width="480"></a><br><b>Cobalt Grid · Included</b><br>Research, data and systems<br><code>cobalt-grid</code></td>
 <td width="50%"><a href="assets/styles/editorial-forest/FRAME.md"><img src="assets/showcase/styles/editorial-forest.jpg" alt="Editorial Forest preview" width="480"></a><br><b>Editorial Forest · Included</b><br>Nature, materials and everyday science<br><code>editorial-forest</code></td>
