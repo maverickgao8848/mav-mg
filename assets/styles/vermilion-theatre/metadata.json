@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "vermilion-theatre",
+  "revision": "local-letterpress.1",
+  "provenance": {
+    "kind": "workspace-style-adaptation",
+    "styleBasis": "red cream blue-gray object theatre from yinliu-mg-lab/dual-style/monologue",
+    "upstreamSkillRepository": "https://github.com/maverickgao8848/mav-mg",
+    "upstreamSkillCommit": "01eff787edc3096390f9c4940c36994fb636baa9",
+    "referenceLicense": "reference-only; source imagery not bundled",
+    "localSpecificationLicense": "inherits repository license; fonts retain OFL-1.1"
+  },
+  "selection": {
+    "kind": "user-selected-static-typography",
+    "userChoice": "letterpress",
+    "userResponse": "A",
+    "approvedDefault": "letterpress",
+    "confirmedOn": "2026-10-02",
+    "selectedSamplePath": "samples/letterpress.png",
+    "selectedSampleSha256": "f9385de73d7e8fc6d24094828517720ec9088f7342f0a0598b589f4914f2ff3c"
+  },
+  "validationScope": {
+    "basis": "three browser-rendered 1920x1080 static proposals and alternative-copy layout check",
+    "fontLoading": "verified",
+    "videoMotion": "not_verified_for_new_style",
+    "crossTopicVideo": "not_verified",
+    "userArtReview": "selected_static_typography_only"
+  },
+  "typographyVariants": {
+    "letterpress": {
+      "label": "A 厚宋活字",
+      "file": "variants/letterpress.md"
+    },
+    "rubber": {
+      "label": "B 圆黑积木",
+      "file": "variants/rubber.md"
+    },
+    "signpaint": {
+      "label": "C 复古牌匾",
+      "file": "variants/signpaint.md"
+    }
+  },
+  "fontSources": [
+    {
+      "path": "fonts/noto-serif-sc.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/notoserifsc/NotoSerifSC%5Bwght%5D.ttf",
+      "license": "OFL-1.1",
+      "licenseFile": "fonts/notoserifsc-OFL.txt",
+      "sha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9",
+      "retrievedOn": "2026-10-02"
+    },
+    {
+      "path": "fonts/noto-sans-sc.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf",
+      "license": "OFL-1.1",
+      "licenseFile": "fonts/notosanssc-OFL.txt",
+      "sha256": "a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da",
+      "retrievedOn": "2026-10-02"
+    },
+    {
+      "path": "fonts/zcool-qingke.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/zcoolqingkehuangyou/ZCOOLQingKeHuangYou-Regular.ttf",
+      "license": "OFL-1.1",
+      "licenseFile": "fonts/zcoolqingkehuangyou-OFL.txt",
+      "sha256": "54f0c0df4308cd74cd0f2fd3494ae054dbc4a1fd6fa7d71f4807eb4cdd8b4136",
+      "retrievedOn": "2026-10-02"
+    },
+    {
+      "path": "fonts/ma-shan-zheng.ttf",
+      "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/mashanzheng/MaShanZheng-Regular.ttf",
+      "license": "OFL-1.1",
+      "licenseFile": "fonts/mashanzheng-OFL.txt",
+      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "retrievedOn": "2026-10-02"
+    }
+  ],
+  "files": [
+    {
+      "path": "fonts/ma-shan-zheng.ttf",
+      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb"
+    },
+    {
+      "path": "fonts/mashanzheng-OFL.txt",
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "path": "fonts/noto-sans-sc.ttf",
+      "sha256": "a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da"
+    },
+    {
+      "path": "fonts/noto-serif-sc.ttf",
+      "sha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9"
+    },
+    {
+      "path": "fonts/notosanssc-OFL.txt",
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "path": "fonts/notoserifsc-OFL.txt",
+      "sha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6"
+    },
+    {
+      "path": "fonts/zcool-qingke.ttf",
+      "sha256": "54f0c0df4308cd74cd0f2fd3494ae054dbc4a1fd6fa7d71f4807eb4cdd8b4136"
+    },
+    {
+      "path": "fonts/zcoolqingkehuangyou-OFL.txt",
+      "sha256": "f1bce31b817dee01c1e4ef8bc45d8ecb95f01f4abbf0a985007cb3cd0fd8123d"
+    },
+    {
+      "path": "FRAME.md",
+      "sha256": "497e60b6a74ce519a73970ef032fe77b3260549bf94d97410af3ef958f893e54"
+    },
+    {
+      "path": "samples/letterpress.png",
+      "sha256": "f9385de73d7e8fc6d24094828517720ec9088f7342f0a0598b589f4914f2ff3c"
+    },
+    {
+      "path": "samples/rubber.png",
+      "sha256": "5fbde9bb40748a2706abea3e6e7250c9ca067ad634a0c4ffd77a9960d2be9935"
+    },
+    {
+      "path": "samples/signpaint.png",
+      "sha256": "0a35b476083d9457e004a58fc6a1b09ec33c00dad828f547fa0192379e2bd004"
+    },
+    {
+      "path": "variants/letterpress.md",
+      "sha256": "3694f3420acd2235a4679e5a688058f20f82b838f793a5e7a924b38930869f84"
+    },
+    {
+      "path": "variants/rubber.md",
+      "sha256": "29a210c1a95200f4c6903ad83ff1ae4991781598b3f8fb160f96d3b85f15c840"
+    },
+    {
+      "path": "variants/signpaint.md",
+      "sha256": "8bd8f0507eff2633a36a02755714f9ac5892443148a364f804750c8af250affa"
+    }
+  ]
+}

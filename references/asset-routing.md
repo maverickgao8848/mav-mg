@@ -7,7 +7,7 @@ This document is the authority for classifying and routing reusable visual asset
 | Category | Responsibility | Authority after selection |
 |---|---|---|
 | `relationship` | Make a teaching relationship observable: comparison, propagation, filtering, hierarchy, feedback or sequence | [component-contract.md](component-contract.md), component metadata and `assets/components/collection.json` |
-| `object` | Supply a recognizable reusable entity such as a thermometer, brain, organ, tool or vehicle | [svg-library.md](svg-library.md) and `assets/svg-primitives/metadata.json` |
+| `object` | Supply a recognizable reusable entity such as a thermometer, brain, organ, tool or vehicle | [svg-library.md](svg-library.md) and its [primitive manifest](../assets/svg-primitives/metadata.json) for SVG geometry; [thiings-library.md](thiings-library.md) for transparent PNG objects |
 | `scene` | Arrange several primitives or relationship stages into one developing shot | The selected file under `recipes/` |
 | `chart` | Encode supplied quantitative data as comparison, trend, composition, distribution, relationship, flow or progress | The selected chart library entry and its data schema |
 | `text` | Reveal or transform a title, term, sentence or paragraph | The installed primitive or project implementation |
@@ -21,7 +21,7 @@ An asset receives one primary category based on what would be lost if it were re
 
 1. State the audience-visible change required by the cue or scene.
 2. If that change explains a knowledge relationship, select a `relationship` component first. Do not substitute a reveal, transition or treatment for missing teaching logic.
-3. Select the smallest supporting asset category needed by the scene. Search the curated SVG manifest for concrete objects and the current HyperFrames registry by intent before porting or authoring a named effect.
+3. Select the smallest supporting asset category needed by the scene. For a concrete object, choose by the required action and effective `frame.md`: use the curated SVG manifest for controllable geometry, or Thiings/local licensed PNGs for a finished small entity that only needs whole-object motion. Search the current HyperFrames registry by intent before porting or authoring a named effect.
 4. Verify content capacity, aspect ratio, real cue duration, style compatibility, handoff state, deterministic seeking, implementation availability and asset provenance.
 5. Record the selected ID, primary category, source and reason in the scene storyboard. A source-library listing is a reference, not evidence that the item works in HyperFrames.
 
@@ -30,6 +30,7 @@ Keep one implementation owner for overlapping effects. When a native HyperFrames
 ## Source boundaries
 
 - **Curated SVG primitives** provide locally archived, hash-bound object geometry under [svg-library.md](svg-library.md). They do not define a scene or teaching relationship.
+- **Thiings** provides finished transparent PNG objects under [thiings-library.md](thiings-library.md). It may replace a small noun illustration in either mode; mechanisms, paths, internal structure and deformation remain semantic graphics. Original icons are staged into the user's project, not redistributed with this Skill.
 - **HyperFrames registry** is the first implementation source for native blocks, components, transitions, captions, camera moves and effects. Installation does not promote an item into the relationship-component collection.
 - **video-shotcraft** supplies shot behavior and motion references. Its Remotion implementations require a deterministic, seek-safe HyperFrames port before project use.
 - **video-spec-builder** supplies content-type vocabulary, use/don't-use distinctions and expected input fields. Its catalog IDs do not claim a local implementation.

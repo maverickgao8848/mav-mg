@@ -11,9 +11,9 @@ import { verifyArtReview } from "../scripts/verify-art-review.mjs";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const sha = (file) => crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
 
-const publicStyles = ["cobalt-grid", "editorial-forest"];
+const publicStyles = ["cobalt-grid", "editorial-forest", "vermilion-theatre"];
 
-test("the public package contains two free style packs and six showcase images", () => {
+test("the local package retains the upstream styles and showcase, and adds Vermilion Theatre", () => {
   assert.deepEqual(fs.readdirSync(path.join(root, "assets/styles")).sort(), publicStyles);
   assert.deepEqual(fs.readdirSync(path.join(root, "assets/showcase/styles")).sort(), [
     "broadside.png", "cobalt-grid.jpg", "dell-1996.png", "editorial-forest.jpg", "gable-reed.png", "opencode.png",

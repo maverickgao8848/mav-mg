@@ -1,0 +1,3 @@
+# Style manifests bind exact bytes, including original line endings.
+assets/styles/** -text whitespace=cr-at-eol
+assets/svg-primitives/** -text whitespace=cr-at-eol

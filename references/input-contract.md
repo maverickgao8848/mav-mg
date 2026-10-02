@@ -12,6 +12,8 @@ At the start of a new production or a materially changed request, summarize the 
 
 Ask only about missing decisions that change the result. For an existing project, read and reuse confirmed values. A user instruction to keep the previous specification and proceed is confirmation. Internal building, checking, and repair do not restart the interview.
 
+For `generated_voice`, the configured choice in [voice-contract.md](voice-contract.md) is already confirmed unless the user explicitly requests a different voice. Authentication is a runtime preflight, not a creative interview decision: request user setup only when the preflight reports that their Azure access is unavailable.
+
 ## Style and production mode
 
 For a new project, resolve these two choices in order: select the visual style first, then select `production_mode: standard | advanced`. Reuse an explicit choice already present in the request or project `BRIEF.md`; ask only for a missing choice. A style may recommend one mode, but both modes remain selectable unless the user gives a project-specific restriction.

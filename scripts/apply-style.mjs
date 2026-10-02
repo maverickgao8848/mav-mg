@@ -27,7 +27,7 @@ function assertPlainPath(root, relative) {
   return current;
 }
 
-export function applyStyle({ styleId, projectDirectory, productionMode = "standard" }) {
+export function applyStyle({ styleId, projectDirectory, productionMode = "standard", typographyVariant }) {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(styleId ?? "")) throw new Error("A valid style ID is required");
   if (typeof projectDirectory !== "string" || !projectDirectory) throw new Error("Project directory is required");
   if (productionMode !== "standard" && productionMode !== "advanced") throw new Error("Production mode must be standard or advanced");
@@ -54,6 +54,18 @@ export function applyStyle({ styleId, projectDirectory, productionMode = "standa
     if (digest(bytes) !== entry.sha256) throw new Error(`Style hash mismatch: ${entry.path}`);
     return { path: entry.path, bytes };
   });
+  const variants = metadata.typographyVariants;
+  let variant;
+  if (variants) {
+    typographyVariant ??= metadata.selection?.approvedDefault;
+    variant = Object.hasOwn(variants, typographyVariant ?? "") ? variants[typographyVariant] : null;
+    if (!variant) throw new Error(`Choose --variant ${Object.keys(variants).join("|")}; no valid selected variant or approved default`);
+    const source = verified.find((item) => item.path === safeRelative(variant.file));
+    const frame = verified.find((item) => item.path === "FRAME.md");
+    const marker = "{{TYPOGRAPHY_VARIANT}}";
+    if (!source || frame.bytes.toString("utf8").split(marker).length !== 2) throw new Error("Invalid typography variant resources");
+    frame.bytes = Buffer.from(frame.bytes.toString("utf8").replace(marker, () => source.bytes.toString("utf8").trim()));
+  } else if (typographyVariant !== undefined) throw new Error("This style has no typography variants");
   const selectedNames = productionMode === "advanced" && advancedFiles.length
     ? new Set(["FRAME.md", ...advancedNames])
     : new Set(names);
@@ -64,6 +76,10 @@ export function applyStyle({ styleId, projectDirectory, productionMode = "standa
     };
   });
   prepared.push({ relative: `assets/references/styles/${styleId}/metadata.json`, bytes: metadataBytes });
+  if (variant) prepared.push({
+    relative: `assets/references/styles/${styleId}/selection.json`,
+    bytes: Buffer.from(`${JSON.stringify({ styleId, revision: metadata.revision, typographyVariant, sourceFrameSha256: metadata.files.find((item) => item.path === "FRAME.md").sha256, effectiveFrameSha256: digest(verified.find((item) => item.path === "FRAME.md").bytes) }, null, 2)}\n`),
+  });
 
   // Validate the complete input before creating a project or writing any output.
   fs.mkdirSync(projectDirectory, { recursive: true });
@@ -98,17 +114,22 @@ export function applyStyle({ styleId, projectDirectory, productionMode = "standa
     for (const target of created.reverse()) fs.unlinkSync(target);
     throw error;
   }
-  return { styleId, status: pending.length ? "applied" : "unchanged", writtenFiles: pending.map((item) => item.relative) };
+  return { styleId, ...(variant ? { typographyVariant } : {}), status: pending.length ? "applied" : "unchanged", writtenFiles: pending.map((item) => item.relative) };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const args = process.argv.slice(2);
-    if ((args.length !== 4 && args.length !== 6) || args[0] !== "--style" || args[2] !== "--project" ||
-        (args.length === 6 && args[4] !== "--mode")) {
-      throw new Error("Usage: node apply-style.mjs --style <id> --project <directory> [--mode standard|advanced]");
+    const options = {};
+    const allowed = new Set(["--style", "--project", "--mode", "--variant"]);
+    for (let index = 0; index < args.length; index += 2) {
+      const key = args[index];
+      if (!allowed.has(key) || Object.hasOwn(options, key) || !args[index + 1] || args[index + 1].startsWith("--")) {
+        throw new Error("Usage: node apply-style.mjs --style <id> --project <directory> [--mode standard|advanced] [--variant <id>]");
+      }
+      options[key] = args[index + 1];
     }
-    console.log(JSON.stringify(applyStyle({ styleId: args[1], projectDirectory: args[3], productionMode: args[5] ?? "standard" }), null, 2));
+    console.log(JSON.stringify(applyStyle({ styleId: options["--style"], projectDirectory: options["--project"], productionMode: options["--mode"] ?? "standard", typographyVariant: options["--variant"] }), null, 2));
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;

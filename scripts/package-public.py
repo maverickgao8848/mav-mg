@@ -1,4 +1,4 @@
-"""Build a reproducible public MAV-MG archive from the Git index."""
+"""Build a reproducible MAV-MG archive from local Git-visible source files."""
 
 import argparse
 import hashlib
@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_STYLES = {"cobalt-grid", "editorial-forest"}
+PUBLIC_STYLES = {"cobalt-grid", "editorial-forest", "vermilion-theatre"}
 PUBLIC_SHOWCASE = {"broadside.png", "cobalt-grid.jpg", "dell-1996.png", "editorial-forest.jpg", "gable-reed.png", "opencode.png"}
 
 
@@ -23,7 +23,7 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
 
-    tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode().split("\0")
+    tracked = subprocess.check_output(["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=ROOT).decode().split("\0")
     files = sorted(path for path in tracked if path)
     style_paths = [Path(name) for name in files if name.startswith("assets/styles/")]
     showcase_paths = [Path(name) for name in files if name.startswith("assets/showcase/styles/")]

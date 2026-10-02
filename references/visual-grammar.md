@@ -24,6 +24,8 @@ Build around one strong visual mechanism using validated relationship components
 
 Define a topic-specific visual thesis, then invest in the few custom decisions that most improve it: object construction, hero silhouette, typographic choreography, material language or action staging. Let those decisions recur and develop across beats so the result feels authored rather than effect-stacked. A complex main SVG is optional; use it only when its independent parts and motion clarify the concept. Advanced mode is not an element-count, layer-count or SVG-count quota.
 
+Concrete objects may use reusable transparent PNGs in either mode when their required motion is whole-object motion; choose the route under [thiings-library.md](thiings-library.md). Keep SVG for controllable paths, internal parts and structural changes. Record PNGs with `object_format: png` and `object_role: hero | companion`; retain `svg_role` only for actual SVGs.
+
 ## SVG roles
 
 Classify each semantic SVG in `STORYBOARD.md` as either a **hero SVG** or a **companion SVG**. The distinction is about narrative responsibility, not file size.

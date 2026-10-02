@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "provider": "azure-speech",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "language": "zh-CN",
+  "output_format": "riff-24khz-16bit-mono-pcm",
+  "prosody_rate": "0%",
+  "leading_pause_s": 0.6,
+  "inter_cue_pause_s": 0.6,
+  "trailing_pause_s": 1.4
+}

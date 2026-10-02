@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "thiings",
+  "category": "object",
+  "collectionUrl": "https://www.thiings.co/things",
+  "licenseUrl": "https://www.thiings.co/terms",
+  "termsCheckedOn": "2026-10-02",
+  "format": "transparent-png",
+  "acquisition": "official individual download or user-owned local export",
+  "publicApi": "not_assumed",
+  "attribution": "Objects: thiings.co",
+  "bundledOriginals": false,
+  "guide": "references/thiings-library.md",
+  "stager": "scripts/stage-thiings-object.mjs"
+}

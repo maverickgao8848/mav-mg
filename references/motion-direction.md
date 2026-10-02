@@ -4,7 +4,7 @@ This file owns shared camera, motion, reading and boundary behavior. User direct
 
 ## Shared world and teaching action
 
-Default to a continuous, explorable visual world: reach each new explanatory view through visible spatial movement. Carry objects and their relationships across beats and scene boundaries. Plan the world and route together with the teaching spine, before implementing individual scenes. Several teaching beats may occupy one continuous composition.
+For related beats, favor a continuous, explorable visual world: reach a new explanatory view through movement that expresses its relationship to the old one. Carry objects and their relationships across these boundaries. A beat with no attention or spatial change may hold the camera; strong motion inside the source footage may call for a fixed or low-amplitude camera. Unrelated chapters may cut clearly. Plan the world and route together with the teaching spine, before implementing individual scenes. Several teaching beats may occupy one continuous composition.
 
 Arrange concepts by their relationship: neighbors, nesting, branching, layers, convergence or return. The viewport is a window onto that arrangement. A glimpse of the next destination, a continuing path or a familiar landmark can establish space beyond the frame. A finite authored world is sufficient; an opening overview is optional.
 
@@ -44,6 +44,18 @@ Keep tangent and speed coherent through travel waypoints. Shape acceleration for
 
 Map actions to the active timing authority in [input-contract.md](input-contract.md). Preserve fixed audio windows. When a reveal finishes early, use necessary comparison, a causal development or approach to the next focus; shorten only timing that is actually editable. Repeated ambient motion stays finite and subordinate.
 
+## Spatial depth and focus
+
+The spatial-camera core is incorporated here; this file is the local authority, with no external Skill needed. Guide attention through **establish position → move → transfer focus → allow reading**. Select the fewest camera actions needed by the relationship, rather than adding travel to prove the camera is active.
+
+Use occlusion, differential parallax, projected scale and selective sharpness where useful to establish depth. Near, middle and far objects move at coherently different rates; full-frame scaling followed by full-frame blur alone does not show depth. A stationary view can retain foreground/background sharpness differences. Motion smear decays on arrival and is distinct from depth of field.
+
+Define semantic focus sets, with an explicit old → new target. During a reading window, the active object and all required text are sharp; secondary objects or depth planes may soften. An overview restores every necessary label to clarity. Blur does not replace composition: a single-object landing clears irrelevant edge fragments through framing and spacing, while a relationship view may retain useful neighbors. Keep screen-space captions clear and free of foreground obstruction.
+
+Match the route to the material. A single transparent PNG supports planar movement and limited 2.5D; a curved camera path around its plane does not reveal its missing back. A genuine orbit or a person turning needs coherent multi-view material, source video or a model. Name observed effects separately from guesses about the original production method.
+
+Starting values, not measurements or mandatory constants: try 1.1–1.3× framing changes for a detail; about 0.4–0.9s travel for a short handoff; about 0.2–0.4s focus transfer; secondary DOM layers may start at 2–5px blur at 1080p. Actual object bounds, source resolution, caption clearance and cue density decide distance, landing and reading duration. Reduce travel or tilt first when speech is dense.
+
 ## Text and reading
 
 Choose a readable window appropriate to the task: stop for exact comparisons or formulas; follow a moving focus so its screen position stays stable; or reveal a short claim during a slow approach/retreat. Required information has sufficient size, contrast and time in that window. During travel, peripheral content may crop, overlap or become too small to read while the focal anchor remains trackable.
@@ -56,8 +68,10 @@ At changing scales, keep the identity and the detail needed by the current claim
 
 ## Storyboard and implementation
 
-Extend the existing `STORYBOARD.md` beat/boundary entry once with: cue window and intended discovery; world relationship and focal object; departure, passage and arrival views with the camera/object channels that actually change; continuity anchor and changed detail; readable window and text case; implementation selector/timeline and source. Compare the successive entries using the route-contrast pass above before committing to the world layout. Do not create a parallel camera plan or require the same pose sequence for every beat.
+Extend the existing `STORYBOARD.md` beat/boundary entry once with: cue window and intended discovery; world relationship and current → next attention target; departure, passage and arrival framing with the camera/object channels that actually change; focus transfer and the sharp reading set; continuity anchor and changed detail; readable window and text case; implementation selector/timeline and source. Compare the successive entries using the route-contrast pass above before committing to the world layout. Do not create a parallel camera plan or require the same pose sequence for every beat.
 
 Reuse appropriate HyperFrames primitives first. A project-authored path is valid when the storyboard points to its real implementation; a recipe name is not evidence of an effect. Carry the approved rough route's camera poses and transform owner into the finished timeline; retime them against measured cues as needed rather than replacing the route with generic panel translations. Use a shared visual wrapper for planar camera transforms, shared perspective for depth when useful, and true 3D only when the needed geometry/viewpoint warrants it. Give camera movement, local object motion and text reveals separate transform owners. Implement animated text spacing through glyph/group transforms so browser text reflow does not introduce stepping. Keep framework-owned clip lifecycle intact; all these states derive from the same seekable composition time, including grouping and detail handoffs.
 
-Review actual travel, readable states, returns and seek behavior under [quality.md](quality.md). Match the visual claim to the evidence: flat reframing, depth travel and object self-rotation are different operations.
+For depth scenes, reuse the existing rig. Camera, local object motion, text and focus each have one property writer; separate wrappers prevent competing transforms. Apply focus effects to leaf visuals rather than a `preserve-3d` world/rig parent whose filter or opacity would flatten the scene. Photographic media use supported framework media treatments. Edit the generator when the HTML is generated, then regenerate its downstream composition and motion data.
+
+Review actual travel, readable states, returns and seek behavior under [quality.md](quality.md). Before extending a spatial route, inspect a representative handoff and focus transfer at normal speed plus departure, transit, landing and reading frames. Seek randomly and in reverse to check camera, blur and occlusion; then replace content/assets and recompute landings and reading windows before claiming reusable coverage. A moving-rig flag or an attractive static frame is not evidence of meaningful travel. Match the visual claim to the evidence: flat reframing, depth travel and object self-rotation are different operations.

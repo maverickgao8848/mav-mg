@@ -10,6 +10,8 @@ Use one evolving object across adjacent clauses when it can carry the whole caus
 
 ## Selection and staging
 
+Before sourcing new geometry, choose by the required motion: a finished concrete noun needing only whole-object motion may instead use [Thiings](thiings-library.md); internal drawing, decomposition and deformation stay on this SVG route.
+
 1. Search the local manifest by semantic role.
 2. If no local item fits, search HyperFrames registry by the audience-visible object or transformation.
 3. For an external source, prefer the official repository or package, record its version, license, source URL and SHA-256, and import only the selected SVG files plus required notices.

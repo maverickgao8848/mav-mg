@@ -1,6 +1,8 @@
 # MAV-MG
 
-[中文](README.md) · **English** · [Download the free public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.21/mav-mg-0.1.0-preview.21.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
+This release: preserves the two upstream styles, adds [Vermilion Theatre typography proposals](assets/styles/vermilion-theatre/FRAME.md), routes [Thiings objects](references/thiings-library.md), and incorporates the spatial-camera core in [motion-direction](references/motion-direction.md). A letterpress (Noto Serif SC 900) is the selected default; compare [A letterpress](assets/styles/vermilion-theatre/samples/letterpress.png), [B rubber](assets/styles/vermilion-theatre/samples/rubber.png), and [C signpaint](assets/styles/vermilion-theatre/samples/signpaint.png).
+
+[中文](README.md) · **English** · [Download the free public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.24/mav-mg-0.1.0-preview.24.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
 
 **Turn Chinese narration into editable educational motion graphics.** Plan the teaching beats, choose a visual direction, demonstrate each mechanism on screen, and build a HyperFrames project for preview and rendering.
 
@@ -10,7 +12,7 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## Choose a style visually
 
-These are actual HyperFrames preview frames and style references. **The free public package contains only two installable styles: Cobalt Grid and Editorial Forest.** Click either image to read its full `FRAME.md`. Open Code, Gable & Reed, Dell 1996 and Broadside are paid styles; this page shows only covers selected from their advanced references. Their style specifications and reference assets are not included in the public repository or download package. The images show visual direction, not promised output or factual content for a new topic.
+These are actual HyperFrames preview frames and style references. **The public package contains Cobalt Grid, Editorial Forest and Vermilion Theatre.** Click either image to read its full `FRAME.md`. Open Code, Gable & Reed, Dell 1996 and Broadside are paid styles; this page shows only covers selected from their advanced references. Their style specifications and reference assets are not included in the public repository or download package. The images show visual direction, not promised output or factual content for a new topic.
 
 <table>
 <tr>
@@ -45,7 +47,7 @@ From the Skill directory, apply an included style:
 node scripts/apply-style.mjs --style cobalt-grid --project <project-directory> --mode advanced
 ```
 
-In the free public package, set `--style` to `cobalt-grid` or `editorial-forest`; set `--mode` to `standard` or `advanced`. Cobalt Grid has a separate seven-image reference set for each mode, while Editorial Forest uses one common reference set. The tool checks resource hashes, writes the project `frame.md`, and copies selected references. Reconcile a conflicting existing project style before continuing.
+In this local edition, set `--style` to `cobalt-grid`, `editorial-forest`, or `vermilion-theatre`; the new style defaults to A letterpress; optional `--variant rubber` or `--variant signpaint` selects a comparison variant. Set `--mode` to `standard` or `advanced`. Cobalt Grid has a separate seven-image reference set for each mode, while Editorial Forest uses one common reference set. The tool checks resource hashes, writes the project `frame.md`, and copies selected references. Reconcile a conflicting existing project style before continuing.
 
 ## Technical preview boundary
 

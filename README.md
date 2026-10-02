@@ -1,6 +1,8 @@
 # MAV-MG
 
-**中文** · [English](README.en.md) · [下载免费公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.21/mav-mg-0.1.0-preview.21.zip) · [下载原版视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
+本版：保留两套上游风格，新增 [Vermilion Theatre 红黄文字剧场](assets/styles/vermilion-theatre/FRAME.md) 风格，接入 [Thiings 物件](references/thiings-library.md)，并在 [motion-direction](references/motion-direction.md) 内置空间运镜核心。已选择 A 厚宋活字（Noto Serif SC 900）作为默认；可看 [A 厚宋活字](assets/styles/vermilion-theatre/samples/letterpress.png)、[B 圆黑积木](assets/styles/vermilion-theatre/samples/rubber.png)、[C 复古牌匾](assets/styles/vermilion-theatre/samples/signpaint.png)。
+
+**中文** · [English](README.en.md) · [下载免费公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.24/mav-mg-0.1.0-preview.24.zip) · [下载原版视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
 
 **把中文讲解文稿变成可编辑的知识型 MG 动画。** 从文稿梳理教学重点，选择视觉风格，制作逐句可见的机制演示，最终交给 HyperFrames 预览与渲染。
 
@@ -10,7 +12,7 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## 直接看图选风格
 
-以下是实际 HyperFrames 预览帧与风格参考图。**免费公开版只包含 Cobalt Grid 和 Editorial Forest 两套可应用风格。** 点击这两张图片可查看完整 `FRAME.md`。Open Code、Gable & Reed、Dell 1996 与 Broadside 为付费风格，这里只展示从高级模式参考图中选取的封面；它们的风格规范和参考素材不包含在公开仓库或下载包中。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
+以下是实际 HyperFrames 预览帧与风格参考图。**公开版包含 Cobalt Grid、Editorial Forest 和 Vermilion Theatre 三套风格。** 点击这两张图片可查看完整 `FRAME.md`。Open Code、Gable & Reed、Dell 1996 与 Broadside 为付费风格，这里只展示从高级模式参考图中选取的封面；它们的风格规范和参考素材不包含在公开仓库或下载包中。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
 
 <table>
 <tr>
@@ -45,7 +47,7 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 node scripts/apply-style.mjs --style cobalt-grid --project <项目目录> --mode advanced
 ```
 
-免费公开版的 `--style` 可选 `cobalt-grid` 或 `editorial-forest`；`--mode` 可选 `standard` 或 `advanced`。Cobalt Grid 的两种模式分别使用各自的七张参考图，Editorial Forest 的两种模式使用同一组参考图。工具会核对资源哈希，将规范写入项目 `frame.md`，并复制所选参考图。已有项目风格发生冲突时，先在项目中确认最终版本。
+公开版的 `--style` 可选 `cobalt-grid`、`editorial-forest` 或 `vermilion-theatre`；红黄风格默认用 A 厚宋活字，比较其他变体时可另传 `--variant rubber` 或 `--variant signpaint`。`--mode` 可选 `standard` 或 `advanced`。Cobalt Grid 的两种模式分别使用各自的七张参考图，Editorial Forest 的两种模式使用同一组参考图。工具会核对资源哈希，将规范写入项目 `frame.md`，并复制所选参考图。已有项目风格发生冲突时，先在项目中确认最终版本。
 
 ## 当前支持边界
 
