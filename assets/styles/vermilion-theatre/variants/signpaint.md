@@ -1,1 +1,0 @@
-选择：**C 复古牌匾 / signpaint**。中文主标题用 **Ma Shan Zheng 400（马善政楷书）**，本地 `assets/references/styles/vermilion-theatre/fonts/ma-shan-zheng.ttf`。书写收笔与不均匀轮廓形成旧招牌气质。标题从约 184px、行高 1.09、字距 4px 开始；侧面约 6–9px，避免细笔画被厚影糊住。整体保持正读，可轻微倾斜字组；字幕与机制标注保持共用平字。适合人文、故事或作者表达较强的主题。

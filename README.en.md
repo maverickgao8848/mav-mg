@@ -1,8 +1,8 @@
 # MAV-MG
 
-This release: preserves the two upstream styles, adds [Vermilion Theatre · Zhu Sha Letterpress](assets/styles/vermilion-theatre/FRAME.md), routes [Thiings objects](references/thiings-library.md), and incorporates the spatial-camera core in [motion-direction](references/motion-direction.md). A letterpress (Noto Serif SC 900) is the selected default; compare [A letterpress](assets/styles/vermilion-theatre/samples/letterpress.png), [B rubber](assets/styles/vermilion-theatre/samples/rubber.png), and [C signpaint](assets/styles/vermilion-theatre/samples/signpaint.png).
+This release preserves the public Cobalt Grid and Editorial Forest styles, routes [Thiings objects](references/thiings-library.md), and incorporates the spatial-camera core in [motion-direction](references/motion-direction.md). Vermilion Theatre · Zhu Sha Letterpress is now a paid style; its specification, fonts, variants and reference assets are not included in the public repository or free download.
 
-[中文](README.md) · **English** · [Download the free public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.24/mav-mg-0.1.0-preview.24.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
+[中文](README.md) · **English** · [Download the free public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.25/mav-mg-0.1.0-preview.25.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
 
 **Turn Chinese narration into editable educational motion graphics.** Plan the teaching beats, choose a visual direction, demonstrate each mechanism on screen, and build a HyperFrames project for preview and rendering.
 
@@ -12,11 +12,11 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## Choose a style visually
 
-These are actual HyperFrames preview frames and style references. **The public package contains Cobalt Grid, Editorial Forest and Vermilion Theatre.** Click an included style image to read its full `FRAME.md`. Open Code, Gable & Reed, Dell 1996 and Broadside are paid styles; this page shows only covers selected from their advanced references. Their style specifications and reference assets are not included in the public repository or download package. The images show visual direction, not promised output or factual content for a new topic.
+These are actual HyperFrames preview frames and style references. **The public package contains Cobalt Grid and Editorial Forest.** Click an included style image to read its full `FRAME.md`. Vermilion Theatre, Open Code, Gable & Reed, Dell 1996 and Broadside are paid styles; this page shows covers only. Their style specifications, fonts, variants and reference assets are not included in the public repository or free download. The images show visual direction, not promised output or factual content for a new topic.
 
 <table>
 <tr>
-<td colspan="2" align="center"><a href="assets/styles/vermilion-theatre/FRAME.md"><img src="assets/showcase/styles/vermilion-theatre.jpg" alt="Vermilion Theatre Zhu Sha Letterpress preview" width="720"></a><br><b>Vermilion Theatre · Zhu Sha Letterpress · Included</b><br>Arguments, mechanisms, business and knowledge objects<br><code>vermilion-theatre</code></td>
+<td colspan="2" align="center"><img src="assets/showcase/styles/vermilion-theatre.jpg" alt="Vermilion Theatre Zhu Sha Letterpress paid-style cover" width="720"><br><b>Vermilion Theatre · Zhu Sha Letterpress · Paid preview</b><br>Arguments, mechanisms, business and knowledge objects</td>
 </tr>
 <tr>
 <td width="50%"><a href="assets/styles/cobalt-grid/FRAME.md"><img src="assets/showcase/styles/cobalt-grid.jpg" alt="Cobalt Grid preview" width="480"></a><br><b>Cobalt Grid · Included</b><br>Research, data and systems<br><code>cobalt-grid</code></td>
@@ -50,7 +50,7 @@ From the Skill directory, apply an included style:
 node scripts/apply-style.mjs --style cobalt-grid --project <project-directory> --mode advanced
 ```
 
-In this local edition, set `--style` to `cobalt-grid`, `editorial-forest`, or `vermilion-theatre`; the new style defaults to A letterpress; optional `--variant rubber` or `--variant signpaint` selects a comparison variant. Set `--mode` to `standard` or `advanced`. Cobalt Grid has a separate seven-image reference set for each mode, while Editorial Forest uses one common reference set. The tool checks resource hashes, writes the project `frame.md`, and copies selected references. Reconcile a conflicting existing project style before continuing.
+In the public edition, set `--style` to `cobalt-grid` or `editorial-forest`. Set `--mode` to `standard` or `advanced`. Cobalt Grid has a separate seven-image reference set for each mode, while Editorial Forest uses one common reference set. The tool checks resource hashes, writes the project `frame.md`, and copies selected references. Reconcile a conflicting existing project style before continuing.
 
 ## Technical preview boundary
 

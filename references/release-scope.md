@@ -11,13 +11,13 @@
 - 可编辑、确定性、seek-safe 的 HyperFrames 工程，包含字幕与项目专用语义 SVG。
 - 先选风格、再选 `standard | advanced` 的双制作模式；高级模式仅在宿主运行时确认 GPT-6 后开始，具体选择契约见 [input-contract.md](input-contract.md)，制作策略见 [visual-grammar.md](visual-grammar.md)。
 - 可用关系组件由 [`assets/components/collection.json`](../assets/components/collection.json) 的 `allowed` 集合唯一定义；各组件的语义、容量、阶段与证据只见对应 `metadata.json`。
-- 本地版保留 Editorial Forest 与 Cobalt Grid 两套上游公开风格，并新增 `vermilion-theatre` 红黄文字剧场（用户已选择 A 厚宋活字为默认；B/C 可显式比较）。Cobalt Grid 按模式加载各自的七张参考图；Editorial Forest 两种模式使用同一组参考图。README 中其他付费风格仍只有封面展示。共用幂等应用工具和验证边界见 [style-contract.md](style-contract.md)。
+- 公开版包含 Editorial Forest 与 Cobalt Grid 两套风格。Cobalt Grid 按模式加载各自的七张参考图；Editorial Forest 两种模式使用同一组参考图。Vermilion Theatre 与其他付费风格仅展示封面，其规范和参考素材不随公开仓库或免费下载包分发。共用幂等应用工具和验证边界见 [style-contract.md](style-contract.md)。
 - Thiings 具体物件的检索与项目导入，按需替代小物件 SVG；选型与使用范围见 [thiings-library.md](thiings-library.md)。原始物件不随 Skill 再分发。
 - 五个开放许可 SVG 原件及单项导入工具；来源、许可和语义使用方式见 [svg-library.md](svg-library.md)。
 
 ## 验证边界
 
-- 本地字体提案目前只验证三种 1920×1080 静帧、真实字体加载和另一句中文的布局；用户已选定 A 字体系；未验证新风格的整片或跨选题视频复用。新增运镜内容整合 spatial-camera 核心；规则可独立读取不代表新增运动样片已通过。
+- 新增运镜内容整合 spatial-camera 核心；规则可独立读取不代表新增运动样片已通过。
 
 - 连续空间运镜由 motion-direction 统一定义。preview.13 的 32 秒样片验证了共享场地、复合平移缩放、浅透视、资料聚合、层级交接、正常播放与任意时刻 seek；真实三维环绕、dolly zoom 等仍需按项目验证，词汇存在不代表现成组件或艺术批准。
 

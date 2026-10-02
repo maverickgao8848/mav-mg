@@ -10,8 +10,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_STYLES = {"cobalt-grid", "editorial-forest", "vermilion-theatre"}
-PUBLIC_SHOWCASE = {"broadside.png", "cobalt-grid.jpg", "dell-1996.png", "editorial-forest.jpg", "gable-reed.png", "opencode.png"}
+PUBLIC_STYLES = {"cobalt-grid", "editorial-forest"}
+PUBLIC_SHOWCASE = {"broadside.png", "cobalt-grid.jpg", "dell-1996.png", "editorial-forest.jpg", "gable-reed.png", "opencode.png", "vermilion-theatre.jpg"}
 
 
 def sha256(data: bytes) -> str:

@@ -1,8 +1,8 @@
 # MAV-MG
 
-本版：保留两套上游风格，新增 [Vermilion Theatre · 朱砂活字剧场](assets/styles/vermilion-theatre/FRAME.md) 风格，接入 [Thiings 物件](references/thiings-library.md)，并在 [motion-direction](references/motion-direction.md) 内置空间运镜核心。已选择 A 厚宋活字（Noto Serif SC 900）作为默认；可看 [A 厚宋活字](assets/styles/vermilion-theatre/samples/letterpress.png)、[B 圆黑积木](assets/styles/vermilion-theatre/samples/rubber.png)、[C 复古牌匾](assets/styles/vermilion-theatre/samples/signpaint.png)。
+本版保留 Cobalt Grid 与 Editorial Forest 两套公开风格，接入 [Thiings 物件](references/thiings-library.md)，并在 [motion-direction](references/motion-direction.md) 内置空间运镜核心。Vermilion Theatre · 朱砂活字剧场现为付费风格，公开仓库与免费下载包不含其规范、字体、变体或参考素材。
 
-**中文** · [English](README.en.md) · [下载免费公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.24/mav-mg-0.1.0-preview.24.zip) · [下载原版视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
+**中文** · [English](README.en.md) · [下载免费公开版 Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.25/mav-mg-0.1.0-preview.25.zip) · [下载原版视频](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill 入口](SKILL.md)
 
 **把中文讲解文稿变成可编辑的知识型 MG 动画。** 从文稿梳理教学重点，选择视觉风格，制作逐句可见的机制演示，最终交给 HyperFrames 预览与渲染。
 
@@ -12,11 +12,11 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 
 ## 直接看图选风格
 
-以下是实际 HyperFrames 预览帧与风格参考图。**公开版包含 Cobalt Grid、Editorial Forest 和 Vermilion Theatre 三套风格。** 点击公开风格图片可查看完整 `FRAME.md`。Open Code、Gable & Reed、Dell 1996 与 Broadside 为付费风格，这里只展示从高级模式参考图中选取的封面；它们的风格规范和参考素材不包含在公开仓库或下载包中。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
+以下是实际 HyperFrames 预览帧与风格参考图。**公开版包含 Cobalt Grid 与 Editorial Forest 两套风格。** 点击公开风格图片可查看完整 `FRAME.md`。Vermilion Theatre、Open Code、Gable & Reed、Dell 1996 与 Broadside 为付费风格，这里只展示封面；它们的风格规范、字体、变体和参考素材不包含在公开仓库或免费下载包中。展示图用于辨认视觉方向，不代表新主题的生成结果或事实内容。
 
 <table>
 <tr>
-<td colspan="2" align="center"><a href="assets/styles/vermilion-theatre/FRAME.md"><img src="assets/showcase/styles/vermilion-theatre.jpg" alt="Vermilion Theatre 朱砂活字剧场预览" width="720"></a><br><b>Vermilion Theatre · 朱砂活字剧场 · 公开可用</b><br>观点、机制、商业与知识物件<br><code>vermilion-theatre</code></td>
+<td colspan="2" align="center"><img src="assets/showcase/styles/vermilion-theatre.jpg" alt="Vermilion Theatre 朱砂活字剧场付费版封面" width="720"><br><b>Vermilion Theatre · 朱砂活字剧场 · 付费版展示</b><br>观点、机制、商业与知识物件</td>
 </tr>
 <tr>
 <td width="50%"><a href="assets/styles/cobalt-grid/FRAME.md"><img src="assets/showcase/styles/cobalt-grid.jpg" alt="Cobalt Grid 预览" width="480"></a><br><b>Cobalt Grid · 公开可用</b><br>研究、数据、系统解释<br><code>cobalt-grid</code></td>
@@ -50,7 +50,7 @@ https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
 node scripts/apply-style.mjs --style cobalt-grid --project <项目目录> --mode advanced
 ```
 
-公开版的 `--style` 可选 `cobalt-grid`、`editorial-forest` 或 `vermilion-theatre`；红黄风格默认用 A 厚宋活字，比较其他变体时可另传 `--variant rubber` 或 `--variant signpaint`。`--mode` 可选 `standard` 或 `advanced`。Cobalt Grid 的两种模式分别使用各自的七张参考图，Editorial Forest 的两种模式使用同一组参考图。工具会核对资源哈希，将规范写入项目 `frame.md`，并复制所选参考图。已有项目风格发生冲突时，先在项目中确认最终版本。
+公开版的 `--style` 可选 `cobalt-grid` 或 `editorial-forest`。`--mode` 可选 `standard` 或 `advanced`。Cobalt Grid 的两种模式分别使用各自的七张参考图，Editorial Forest 的两种模式使用同一组参考图。工具会核对资源哈希，将规范写入项目 `frame.md`，并复制所选参考图。已有项目风格发生冲突时，先在项目中确认最终版本。
 
 ## 当前支持边界
 

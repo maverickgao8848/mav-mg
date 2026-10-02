@@ -11,12 +11,12 @@ import { verifyArtReview } from "../scripts/verify-art-review.mjs";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const sha = (file) => crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
 
-const publicStyles = ["cobalt-grid", "editorial-forest", "vermilion-theatre"];
+const publicStyles = ["cobalt-grid", "editorial-forest"];
 
-test("the local package retains the upstream styles and showcase, and adds Vermilion Theatre", () => {
+test("the public package contains only public styles and paid-style covers", () => {
   assert.deepEqual(fs.readdirSync(path.join(root, "assets/styles")).sort(), publicStyles);
   assert.deepEqual(fs.readdirSync(path.join(root, "assets/showcase/styles")).sort(), [
-    "broadside.png", "cobalt-grid.jpg", "dell-1996.png", "editorial-forest.jpg", "gable-reed.png", "opencode.png",
+    "broadside.png", "cobalt-grid.jpg", "dell-1996.png", "editorial-forest.jpg", "gable-reed.png", "opencode.png", "vermilion-theatre.jpg",
   ]);
 });
 
@@ -34,7 +34,7 @@ test("Cobalt Grid selects mode-specific references and refuses a mixed project",
   assert.equal(fs.existsSync(path.join(refs(advanced), "samples")), false);
   assert.throws(() => applyStyle({ styleId: "cobalt-grid", projectDirectory: standard, productionMode: "advanced" }), /Other mode references/);
   assert.throws(() => applyStyle({ styleId: "cobalt-grid", projectDirectory: advanced, productionMode: "standard" }), /Other mode references/);
-  for (const styleId of ["opencode", "gable-reed", "dell-1996", "broadside"]) {
+  for (const styleId of ["vermilion-theatre", "opencode", "gable-reed", "dell-1996", "broadside"]) {
     assert.throws(() => applyStyle({ styleId, projectDirectory: path.join(temp, `paid-${styleId}`) }), /ENOENT/);
   }
   applyStyle({ styleId: "editorial-forest", projectDirectory: path.join(temp, "editorial"), productionMode: "advanced" });
