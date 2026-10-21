@@ -1,41 +1,36 @@
-# 技术预览版支持边界
+# 技术预览版支持与证据
 
-本文件是 `mav-mg` 当前源码版本支持能力与限制的唯一权威来源；版本号由 [SKILL.md](../SKILL.md) 的 `metadata.version` 定义。
+公开版范围：七套风格可用于非商业体验，像素绿宝石与像素白金仅展示、不随包提供。旧 Editorial Forest 已退出当前风格列表。
 
-## 支持
+版本由 [SKILL.md](../SKILL.md) 的 `metadata.version` 定义。本页记录当前支持范围；样片明细保存在风格与组件 metadata。
 
-- 中文教学 MG，画布为 1920×1080，帧率为 30 fps。
-- 普通文稿生成旁白、fixed cues、reference cues 三种输入时间模式。
-- `generated_voice` 使用 [voice-contract.md](voice-contract.md) 定义的 Azure Speech 默认配音与用户自有认证；Skill 不携带账号或密钥。
-- 逐 frame 图片参考。
-- 可编辑、确定性、seek-safe 的 HyperFrames 工程，包含字幕与项目专用语义 SVG。
-- 先选风格、再选 `standard | advanced` 的双制作模式；高级模式仅在宿主运行时确认 GPT-6 后开始，具体选择契约见 [input-contract.md](input-contract.md)，制作策略见 [visual-grammar.md](visual-grammar.md)。
-- 可用关系组件由 [`assets/components/collection.json`](../assets/components/collection.json) 的 `allowed` 集合唯一定义；各组件的语义、容量、阶段与证据只见对应 `metadata.json`。
-- 公开版包含 Editorial Forest 与 Cobalt Grid 两套风格。Cobalt Grid 按模式加载各自的七张参考图；Editorial Forest 两种模式使用同一组参考图。Vermilion Theatre 与其他付费风格仅展示封面，其规范和参考素材不随公开仓库或免费下载包分发。共用幂等应用工具和验证边界见 [style-contract.md](style-contract.md)。
-- Thiings 具体物件的检索与项目导入，按需替代小物件 SVG；选型与使用范围见 [thiings-library.md](thiings-library.md)。原始物件不随 Skill 再分发。
-- 五个开放许可 SVG 原件及单项导入工具；来源、许可和语义使用方式见 [svg-library.md](svg-library.md)。
+## 当前支持
 
-## 验证边界
+- 中文知识解释 MG，1920×1080、30fps；可编辑、确定性、seek-safe 的 HyperFrames 工程。
+- 文稿生成旁白、固定音视频时间码、参考时间码三种输入，时基见 [input-contract.md](input-contract.md)，Azure 配音见 [voice-contract.md](voice-contract.md)。
+- 项目及上游完整 frame 与依赖继承、逐场景图片参考、项目专用语义图形和字幕。
+- 风格、素材与组件分别以 [style-contract.md](style-contract.md)、[object-library.md](object-library.md)、[component-contract.md](component-contract.md) 为准。
+- 采用成熟结构与必要定制相结合的制作方法，具体分镜、运镜与评审分别见 visual-grammar、motion-direction、quality。
+- 安装入口及 11 个 HyperFrames 配套 Skill 见 [DELIVERY.md](../DELIVERY.md)。
 
-- 新增运镜内容整合 spatial-camera 核心；规则可独立读取不代表新增运动样片已通过。
+## 已验证范围
 
-- 连续空间运镜由 motion-direction 统一定义。preview.13 的 32 秒样片验证了共享场地、复合平移缩放、浅透视、资料聚合、层级交接、正常播放与任意时刻 seek；真实三维环绕、dolly zoom 等仍需按项目验证，词汇存在不代表现成组件或艺术批准。
+| 项目 | 实际证据 |
+|---|---|
+| 工程与 Studio | 连续播放、任意时间 seek 已验证至 300 秒 |
+| 视频导出 | H.264/AAC、1920×1080、30fps，已验证至 81.3 秒 |
+| 绿宝石 / 白金展示样片 | 属于单独付费版本；其资源闭包及运行时不包含在本公开包，不作为免费版验收依据 |
+| 朱砂活字剧场 | 三种字体静帧与替换中文布局，用户选择 A 厚宋活字 |
+| 工程图册 | P32.3 的 22 秒拱桥样片获用户批准，确切版本见 metadata |
+| Pixel2All 候选发现与选择 | 分路与物件族候选板、词边界、近期使用提示及发现→审看→导入绑定的回归，见 scripts/discover-pixel2all-objects.test.mjs；艺术适配按实际候选板审看 |
+| 连续空间 | 32 秒样片验证共享场地、平移缩放、浅透视、聚合、层级交接、播放与 seek |
+| 建筑剖面轴测 | 用户选定静态三维方向；字体、物件、WebGL 几何及文字边界已检查 |
+| 其他历史风格 | 已审看短片及遗留缺陷见各风格 metadata，保留其版本和来源记录 |
 
-- **300 秒工程/Studio 预览已验证**：覆盖连续播放与任意时间 seek；这是工程和 Studio 预览证据，不是五分钟渲染证据。
-- **实际渲染仅验证至 81.3 秒**：已验证规格为 H.264/AAC、1920×1080、30 fps。
-- Editorial Forest 已完成同内容移植及一个 68.514 秒新主题的工程/Studio 预览验证。用户接受新主题时保留了元素偶发重叠的缺陷；获选方向和该个案均不代表后续作品自动通过艺术验收。
-- Editorial Forest 双模式已用同一段 17.181 秒输入完成工程/Studio 验证；高级版获用户艺术批准。该批准只绑定该短片版本，不扩展为普通版批准、模式投入结论、长片完成度或其他主题的自动艺术批准。
-- Cobalt Grid 已完成同内容历史候选、银行机制维护版与 P28 新主题普通模式短片验证；P28.2 绑定版本已获用户艺术批准。该批准确认当前中文适配在这一个短片中的方向，不自动扩展为其他主题、时长或高级模式的艺术批准；最终范围以风格 metadata 和 P28 记录为准。
+技术探针、静态提案、单条样片和内容替换验证各自记录实际范围。新选题的艺术结果按本期预览判断；跨选题复用以替换验证为依据。真实三维绕拍及 dolly zoom 按项目素材和实现单独验证。
 
-## 本版不支持
+当前交付规格为上述中文横屏工程与已验证导出范围。其他画幅、语言、五分钟导出、逐场景 HTML 导入和音乐生成属于另行验证的扩展。用户要求的 HTML 静态风格提案可独立制作，其结果记录为静态探索。
 
-- 逐 frame HTML 参考。
-- 高完成度艺术指导或可直接用于生产的视觉风格。
-- 五分钟成片渲染。
-- 第二种画布尺寸或画幅比例。
-- 中文以外的语言。
-- MusicGen 音乐生成。
+## 已知质量记录
 
-## 已知质量缺口
-
-早期用户评审认可整体节奏与关系表达，同时评价美术风格糟糕；后续 Editorial Forest 重做版以 `accepted_with_deficit` 获接受，仍有元素偶发重叠。P27 的 17.181 秒高级模式样片已获用户艺术批准，但尚未证明普通模式、长片或其他主题具有同等完成度；因此版本整体的**高完成度美术风格未达标**边界仍保留。稳定画面分区与转场归属的执行规则见 [visual-grammar.md](visual-grammar.md)，评审与批准语义见 [quality.md](quality.md)。
+早期样片有美术完成度不足、局部重叠的用户反馈。历史长片的 `accepted_with_deficit` 结果及缺陷随原工程记录保留。各项目按 [quality.md](quality.md) 检查构图、可读性、过程与交接，批准结果绑定审看版本。

@@ -27,10 +27,15 @@ function assertPlainPath(root, relative) {
   return current;
 }
 
-export function applyStyle({ styleId, projectDirectory, productionMode = "standard", typographyVariant }) {
+export function applyStyle(options) {
+  const optionNames = new Set(["styleId", "projectDirectory", "typographyVariant"]);
+  for (const key of Object.keys(options)) {
+    if (!optionNames.has(key)) throw new Error(`Unknown style option: ${key}`);
+  }
+  const { styleId, projectDirectory } = options;
+  let { typographyVariant } = options;
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(styleId ?? "")) throw new Error("A valid style ID is required");
   if (typeof projectDirectory !== "string" || !projectDirectory) throw new Error("Project directory is required");
-  if (productionMode !== "standard" && productionMode !== "advanced") throw new Error("Production mode must be standard or advanced");
   const styleRoot = assertPlainPath(stylesRoot, styleId);
   const metadataPath = assertPlainPath(styleRoot, "metadata.json");
   const metadataBytes = fs.readFileSync(metadataPath);
@@ -42,14 +47,7 @@ export function applyStyle({ styleId, projectDirectory, productionMode = "standa
   if (new Set(names).size !== names.length || !names.includes("FRAME.md") || names.includes("metadata.json")) {
     throw new Error("Style manifest must contain one FRAME.md and unique resource paths");
   }
-  const advancedFiles = metadata.advancedFiles ?? [];
-  if (!Array.isArray(advancedFiles)) throw new Error("Invalid advanced style resources");
-  const advancedNames = advancedFiles.map((entry) => safeRelative(entry.path));
-  if (new Set([...names, ...advancedNames]).size !== names.length + advancedNames.length ||
-      advancedNames.some((name) => !name.startsWith("advanced-samples/"))) {
-    throw new Error("Advanced style resources must have unique advanced-samples paths");
-  }
-  const verified = [...metadata.files, ...advancedFiles].map((entry) => {
+  const verified = metadata.files.map((entry) => {
     const bytes = fs.readFileSync(assertPlainPath(styleRoot, entry.path));
     if (digest(bytes) !== entry.sha256) throw new Error(`Style hash mismatch: ${entry.path}`);
     return { path: entry.path, bytes };
@@ -66,16 +64,34 @@ export function applyStyle({ styleId, projectDirectory, productionMode = "standa
     if (!source || frame.bytes.toString("utf8").split(marker).length !== 2) throw new Error("Invalid typography variant resources");
     frame.bytes = Buffer.from(frame.bytes.toString("utf8").replace(marker, () => source.bytes.toString("utf8").trim()));
   } else if (typographyVariant !== undefined) throw new Error("This style has no typography variants");
-  const selectedNames = productionMode === "advanced" && advancedFiles.length
-    ? new Set(["FRAME.md", ...advancedNames])
-    : new Set(names);
-  const prepared = verified.filter((item) => selectedNames.has(item.path)).map((item) => {
+  const selectedNames = new Set(names);
+  const prepared = verified.map((item) => {
     return {
       relative: item.path === "FRAME.md" ? "frame.md" : `assets/references/styles/${styleId}/${item.path}`,
       bytes: item.bytes,
     };
   });
   prepared.push({ relative: `assets/references/styles/${styleId}/metadata.json`, bytes: metadataBytes });
+  // Runtime-bearing styles declare their portable dependency closure. Children
+  // can inherit this frame without the style pack or another editorial Skill.
+  if (metadata.frameResources !== undefined) {
+    if (!Array.isArray(metadata.frameResources) || !metadata.frameResources.length ||
+        new Set(metadata.frameResources).size !== metadata.frameResources.length) {
+      throw new Error("Invalid portable frame resources");
+    }
+    const resources = metadata.frameResources.map((name) => {
+      safeRelative(name);
+      if (name === "FRAME.md" || !selectedNames.has(name)) {
+        throw new Error(`Portable frame resource is not selected: ${name}`);
+      }
+      const item = prepared.find((file) => file.relative === `assets/references/styles/${styleId}/${name}`);
+      if (!item) throw new Error(`Portable frame resource is not selected: ${name}`);
+      return { path: item.relative, sha256: digest(item.bytes) };
+    });
+    const manifest = prepared.find((item) => item.relative.endsWith("/metadata.json"));
+    resources.push({ path: manifest.relative, sha256: digest(manifest.bytes) });
+    prepared.push({ relative: "frame-resources.json", bytes: Buffer.from(JSON.stringify({ styleId, resources }, null, 2) + "\n") });
+  }
   if (variant) prepared.push({
     relative: `assets/references/styles/${styleId}/selection.json`,
     bytes: Buffer.from(`${JSON.stringify({ styleId, revision: metadata.revision, typographyVariant, sourceFrameSha256: metadata.files.find((item) => item.path === "FRAME.md").sha256, effectiveFrameSha256: digest(verified.find((item) => item.path === "FRAME.md").bytes) }, null, 2)}\n`),
@@ -84,15 +100,6 @@ export function applyStyle({ styleId, projectDirectory, productionMode = "standa
   // Validate the complete input before creating a project or writing any output.
   fs.mkdirSync(projectDirectory, { recursive: true });
   const projectRoot = fs.realpathSync(projectDirectory);
-  if (advancedFiles.length) {
-    const opposite = productionMode === "advanced" ? names.filter((name) => name !== "FRAME.md") : advancedNames;
-    for (const name of opposite) {
-      const relative = `assets/references/styles/${styleId}/${name}`;
-      if (fs.existsSync(assertPlainPath(projectRoot, relative))) {
-        throw new Error(`Other mode references already exist; reconcile before applying: ${relative}`);
-      }
-    }
-  }
   const pending = [];
   for (const item of prepared) {
     const target = assertPlainPath(projectRoot, item.relative);
@@ -121,15 +128,15 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   try {
     const args = process.argv.slice(2);
     const options = {};
-    const allowed = new Set(["--style", "--project", "--mode", "--variant"]);
+    const allowed = new Set(["--style", "--project", "--variant"]);
     for (let index = 0; index < args.length; index += 2) {
       const key = args[index];
       if (!allowed.has(key) || Object.hasOwn(options, key) || !args[index + 1] || args[index + 1].startsWith("--")) {
-        throw new Error("Usage: node apply-style.mjs --style <id> --project <directory> [--mode standard|advanced] [--variant <id>]");
+        throw new Error("Usage: node apply-style.mjs --style <id> --project <directory> [--variant <id>]");
       }
       options[key] = args[index + 1];
     }
-    console.log(JSON.stringify(applyStyle({ styleId: options["--style"], projectDirectory: options["--project"], productionMode: options["--mode"] ?? "standard", typographyVariant: options["--variant"] }), null, 2));
+    console.log(JSON.stringify(applyStyle({ styleId: options["--style"], projectDirectory: options["--project"], typographyVariant: options["--variant"] }), null, 2));
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;

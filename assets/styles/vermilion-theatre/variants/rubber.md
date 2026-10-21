@@ -1,0 +1,1 @@
+选择：**B 圆黑积木 / rubber**。中文主标题用 **ZCOOL QingKe HuangYou 400（站酷庆科黄油体）**，本地 `assets/references/styles/vermilion-theatre/fonts/zcool-qingke.ttf`。采用真实圆润显示字形，不由粗黑体的 CSS 圆角模拟。标题从约 184px、行高 1.09、字距 5px 开始；蓝灰侧面约 16–20px，奶油正面保持平整，接触影柔和。保持字的内部开口；不把主字膨胀成难辨认的气球。适合轻松、物件感强的科普。

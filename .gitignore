@@ -2,3 +2,6 @@
 **/*.py[cod]
 **/node_modules/
 .env
+runtime/node_modules/
+verification/
+dist/

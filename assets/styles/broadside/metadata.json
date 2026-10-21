@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "id": "broadside",
+  "displayName": "巨字海报",
+  "revision": "p34.2-two-mode.1.single.1",
+  "provenance": {
+    "kind": "source_library_adaptation",
+    "sourceFrame": "assets/library/frames/broadside/FRAME.md",
+    "sourceFrameSha256": "5568705c5f44bdcf060105bed87378f80a2d82f5029afc24562b515f3ae22fed",
+    "sourceShowcase": "assets/showcase/frames/broadside.svg",
+    "sourceShowcaseSha256": "5b332ffb86f48700a80aa7733a3a80ac1124200575056818c84edf193d268244",
+    "license": "PolyForm Noncommercial 1.0.0; local research and validation scope",
+    "licenseUrl": "https://polyformproject.org/licenses/noncommercial/1.0.0/",
+    "repository": "https://github.com/maverickgao8848/mav-mg",
+    "commit": "8013812076e726a7c23c04bdfb79768525906bf4"
+  },
+  "selection": {
+    "kind": "planned_style_intake",
+    "roadmapStage": "P34"
+  },
+  "adaptationNotes": [
+    "The bundled FRAME is the only effective project style authority; source FRAME and showcase are provenance.",
+    "Chinese display uses Noto Sans SC; Barlow and IBM Plex Mono retain distinct Latin display and chrome roles.",
+    "Source slogans and six treatments are examples rather than generated teaching content or scene count.",
+    "Shared camera and reading-window behavior remain owned by motion-direction."
+  ],
+  "validationScope": {
+    "basis": "P34 new-topic 22-second standard-mode simple-circuit explainer",
+    "crossTopic": "passed_new_topic_standard_mode_preview",
+    "productionArtDirection": "approved_for_bound_p34_standard_mode",
+    "userReview": "User approved the SHA-256-bound 22-second standard-mode circuit video on 2026-09-24; advanced mode and other topics retain separate art-review scope.",
+    "standardProject": "videos/circuit-p34",
+    "standardIndexSha256": "627895cfcd5dfa96961de22776bd74dbefbb86b8f281912adc95c13dffa52912",
+    "advancedMode": "passed_eight_second_key_mechanism_probe",
+    "advancedProject": "videos/circuit-p34-advanced-probe",
+    "advancedIndexSha256": "95dd9f647d886e2e0427f7f89043f7145a1ea506b7848d53a116f99a5bfd312d"
+  },
+  "files": [
+    {
+      "path": "FRAME.md",
+      "sha256": "129e12fbdc711e6eeeb2183b0fe5948eda8d0a8e14546a23f9c6b04f968604ad"
+    },
+    {
+      "path": "samples/poster-study.svg",
+      "sha256": "5b332ffb86f48700a80aa7733a3a80ac1124200575056818c84edf193d268244"
+    },
+    {
+      "path": "mechanism-samples/sample-01.png",
+      "sha256": "f5ac9434a807385ef9f95b876246147749a4955dcc6fb2664e9df35a53adb0cf"
+    },
+    {
+      "path": "mechanism-samples/sample-02.png",
+      "sha256": "edbffa6040f6e4871efdd7efa23044c015fed10f4dcc180aa312f992bd7717c1"
+    },
+    {
+      "path": "mechanism-samples/sample-03.png",
+      "sha256": "533fdce87e915749047bbbac0a908fdcb8afe40439a779cdec932f07474c75ae"
+    },
+    {
+      "path": "mechanism-samples/sample-04.png",
+      "sha256": "3c28ce6161450cdcc6315c19f61967a5ed390219dc35722cf01e014f063d1d88"
+    },
+    {
+      "path": "mechanism-samples/sample-05.png",
+      "sha256": "be4c53094402e91c0eb6af95559ccaf84ac5cfeb13f423057b69d4fa5ed8dafa"
+    },
+    {
+      "path": "mechanism-samples/sample-06.png",
+      "sha256": "2782ef730ce99f874d008f10262fe82ff63235b7539be91ba74bb835a0b15c29"
+    },
+    {
+      "path": "mechanism-samples/sample-07.png",
+      "sha256": "7c6c181d0b7ea47cbb016af523fc0a63d4ba6e6e925bed5e4de8597168bb1980"
+    }
+  ]
+}

@@ -2,6 +2,8 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { verifyThiingsReview } from "./verify-thiings-review.mjs";
+import { verifyInheritedFrame } from "./inherit-frame.mjs";
 
 const sections = ["lint", "runtime", "layout", "motion", "contrast"];
 const digest = (file) => crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
@@ -10,6 +12,9 @@ const field = (review, name) => review.match(new RegExp(`^${name}:\\s*\"?([^\"\\
 export function verifyArtReview(projectDirectory) {
   const project = path.resolve(projectDirectory);
   const problems = [];
+  problems.push(...verifyInheritedFrame(project).problems);
+  const thiings = verifyThiingsReview(project, { stage: "delivery" });
+  problems.push(...thiings.problems.map((problem) => `${thiings.sourceId === "pixel2all" ? "Pixel2All" : "THIINGS"}: ${problem}`));
   const reviewFile = path.join(project, "ART-REVIEW.md");
   const buildFile = path.join(project, "index.html");
   const checkFile = path.join(project, "evidence-check.json");

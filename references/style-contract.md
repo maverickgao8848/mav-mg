@@ -1,29 +1,37 @@
-# Style contract
+# Public style contract
 
-The project-root `frame.md` is the only effective visual style source consumed by scene builders. A bundled FRAME and its sample images are upstream inputs. Resolve user changes into `frame.md` and pass only that effective file downstream.
+Project-root `frame.md` is the effective visual source. Keep scene content in BRIEF/STORYBOARD. Children inherit the complete frame and resources through [upstream-frame.md](upstream-frame.md).
 
-## Bundled styles
+## Available styles
 
-The public edition contains two styles:
+Seven packs are included for noncommercial use. Inclusion does not extend their recorded art approval.
 
-| Style ID | Source | Validation boundary |
+| 中文名称 | Style ID | Resources and scope |
 |---|---|---|
-| `cobalt-grid` | [FRAME](../assets/styles/cobalt-grid/FRAME.md) · [metadata](../assets/styles/cobalt-grid/metadata.json) | A bound new-topic standard-mode short passed user art review. Each new project still needs its own visual review. |
-| `editorial-forest` | [FRAME](../assets/styles/editorial-forest/FRAME.md) · [metadata](../assets/styles/editorial-forest/metadata.json) | A bound advanced short passed user art review; a longer cross-topic build retained an overlap deficit. |
+| 朱砂活字剧场 | `vermilion-theatre` | [FRAME](../assets/styles/vermilion-theatre/FRAME.md), local fonts, approved A letterpress typography; static review does not certify every video |
+| 工程图册 | `gable-reed` | [FRAME](../assets/styles/gable-reed/FRAME.md), dark engineering atlas, measured paths; recorded 22-second arch sample |
+| 建筑剖面轴测 · 三维意境 | `architectural-section` | [FRAME](../assets/styles/architectural-section/FRAME.md), fonts and selected static 3D reference; motion not verified |
+| 钴蓝网格 | `cobalt-grid` | [FRAME](../assets/styles/cobalt-grid/FRAME.md), historical pack, available by explicit choice |
+| 终端手册 | `opencode` | [FRAME](../assets/styles/opencode/FRAME.md), historical pack, available by explicit choice |
+| 复古电脑目录 | `dell-1996` | [FRAME](../assets/styles/dell-1996/FRAME.md), historical pack, available by explicit choice |
+| 巨字海报 | `broadside` | [FRAME](../assets/styles/broadside/FRAME.md), historical pack, available by explicit choice |
 
-Apply a style from the Skill directory:
+Offer Vermilion Theatre / Engineering Atlas when unresolved. Use Chinese display names and resolve to IDs. Respect an explicit public-style choice or supplied custom frame. Prepare and stage fonts required by the FRAME: some historical packs describe families without bundling them. Preserve licenses and inspect browser font resolution.
+
+Pixel Emerald / 像素绿宝石 (`glass-lime`) and Pixel Platinum / 像素白金 (`baijin-black-texture`) are paid packs. Their specifications, runtime resources and complete templates are absent. Do not treat README previews as installable resources. If requested, explain the boundary and offer a public style or the author's authorization channel. Independently authorized parent projects may retain their own frame/resources; do not replace them with missing public-pack paths.
+
+## Apply and inherit
 
 ```sh
-node scripts/apply-style.mjs --style cobalt-grid --project <project-directory> --mode <standard|advanced>
-node scripts/apply-style.mjs --style editorial-forest --project <project-directory> --mode <standard|advanced>
+node scripts/apply-style.mjs --style vermilion-theatre --project <project>
+node scripts/apply-style.mjs --style gable-reed --project <project>
+node scripts/apply-style.mjs --style architectural-section --project <project>
 ```
 
-Pass the confirmed `BRIEF.md` production mode to the loader. The tool verifies all declared resource hashes, writes `frame.md`, and copies the selected references and provenance to `assets/references/styles/<style-id>/`. For Cobalt Grid, `standard` selects `samples/` and `advanced` selects `advanced-samples/`; Editorial Forest currently uses its common `samples/` set in both modes. Reapplying identical files leaves them unchanged. A Cobalt Grid mode switch stops if the other mode's references remain; reconcile those files and any conflicting `frame.md` before continuing.
+Vermilion optionally accepts `--variant letterpress|rubber|signpaint`; metadata selects the approved default. There is no `standard`/`advanced` switch in the current loader.
 
-When an existing project has an approved `frame.md`, keep it unless the user requests a change. Record the selected source identity, revision, path, and known license in project provenance. Record unknown fields as unknown.
+The loader verifies hashes, writes `frame.md`, and stages resources under `assets/references/styles/<style-id>/`. Identical application is unchanged; differing files require reconciliation. Where declared, `metadata.frameResources` produces `frame-resources.json` for portable inheritance.
 
-Use the selected references only as visual evidence for composition, hierarchy, typography, information density, and finish. Their text and subject matter are not project facts or motion instructions. Record each adopted image path and its specific visual feature in `STORYBOARD.md`; keep the per-image descriptions in the bundled `FRAME.md`. Shared motion behavior remains in [motion-direction.md](motion-direction.md).
+Original `samples/` and `mechanism-samples/` images for Cobalt Grid, Engineering Atlas and Terminal Manual are omitted because public redistribution permission is not recorded. Metadata records the omissions. Use written specifications and the permitted showcase, without requesting missing sample files.
 
-Treat a font as prepared only after the rendered browser resolves the intended local family and each used weight. Declare shipped files with `@font-face`, inspect computed family/weight in a captured frame, and keep that proof with the project. When an observed renderer fallback affects a variable font, derive deterministic static instances for the used weights from the same source font and reference those local files; do not change the effective typography in `frame.md` merely to hide a loading failure. The style tool copies manifest-listed resources (including fonts when a pack contains them), not audio, scene code, or a full HyperFrames composition. The two upstream packs still require their fonts to be prepared separately.
-
-If a requested style is absent from this package, report that it is unavailable here. The README may show paid-style covers, but those covers do not provide an installable style or public download.
+Facts, quantities, narration and motion come from the active script and storyboard. Review approval remains bound to the actual preview.

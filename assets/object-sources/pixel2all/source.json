@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "pixel2all",
+  "name": "像素造物 · 白色陶瓷物件",
+  "collectionUrl": "https://pixel2all.cn/objects/",
+  "catalogUrl": "https://pixel2all.cn/media/ceramic/catalog.json",
+  "acquisition": "selected-online-preview-to-transparent-png",
+  "bundledImages": false,
+  "rightsFile": "../../../references/pixel2all-rights.md"
+}

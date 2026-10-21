@@ -4,19 +4,19 @@ This file owns generated-narration setup and authentication behavior. Effective 
 
 ## Default route
 
-For `generated_voice`, synthesize each normalized cue with the configured Azure Speech voice by running [`scripts/azure-tts.mjs`](../scripts/azure-tts.mjs). The measured WAV duration becomes authoritative and the script writes one `audio_meta.json` record keyed by the original cue IDs. This route records segment precision; it does not claim word alignment.
+For `generated_voice`, synthesize each normalized cue with the configured Azure Speech voice by running [`scripts/azure-tts.mjs`](../scripts/azure-tts.mjs). The measured WAV duration becomes authoritative and the script writes one `audio_meta.json` record keyed by the original cue IDs. This route records segment precision.
 
-Keep Azure as the only automatic provider. If authentication or synthesis fails, report the failing preflight and pause voice generation. Do not silently substitute Kokoro, Edge TTS, another Azure voice, or estimated timings.
+Use the configured Azure provider and voice. If preflight or synthesis fails, report it and resume synthesis after the required setup is ready.
 
 ## User-owned authentication
 
-The distributed Skill contains no credential and does not create an Azure resource. Before the first synthesis, run:
+Use the user’s existing Azure Speech setup. Before the first synthesis, run:
 
 ```bash
 node <SKILL_DIR>/scripts/azure-tts.mjs --doctor
 ```
 
-When preflight is not ready, ask the user to complete one of the following setups and resume after they confirm. Do not ask them to paste a secret into chat, a project file, or `BRIEF.md`.
+When preflight is not ready, ask the user to complete one of the following setups and resume after they confirm. Credentials are configured locally in the user’s Azure CLI session or environment.
 
 ### Personal sign-in with Azure CLI
 
@@ -41,7 +41,7 @@ export AZURE_SPEECH_ENDPOINT="https://<resource-name>.cognitiveservices.azure.co
 export AZURE_SPEECH_RESOURCE_ID="/subscriptions/<subscription-id>/resourceGroups/<group>/providers/Microsoft.CognitiveServices/accounts/<resource-name>"
 ```
 
-The script obtains a short-lived token from the existing `az login` session for `https://cognitiveservices.azure.com/.default`. It never saves that token.
+The script obtains a short-lived token from the existing `az login` session for `https://cognitiveservices.azure.com/.default`. The token remains transient in memory.
 
 ### Speech resource key
 
@@ -61,7 +61,7 @@ export AZURE_SPEECH_ENDPOINT="https://<resource-name>.cognitiveservices.azure.co
 export AZURE_SPEECH_API_KEY="<speech-resource-key>"
 ```
 
-`AZURE_SPEECH_KEY` is accepted as a compatibility alias. Environment variables are runtime configuration, not project inputs: never copy them into source assets, generated metadata, logs, or a release package.
+`AZURE_SPEECH_KEY` is accepted as a compatibility alias. Read credentials from the local runtime environment; project artifacts store only voice identity and measured timing.
 
 Azure setup references:
 
@@ -80,6 +80,6 @@ node <SKILL_DIR>/scripts/azure-tts.mjs \
   --meta audio_meta.json
 ```
 
-The input must use `generated_voice`. Existing or user-supplied audio stays on the `fixed` route and is not sent to Azure.
+Use `generated_voice` for synthesis and `fixed` for existing/user-supplied audio.
 
-The generated project record contains provider and voice identity, measured clip durations, cue placement, and segment timing precision. It contains no editable narration text and no authentication material. Downstream storyboard and composition timing read only that project `audio_meta.json`.
+The generated project record contains provider and voice identity, measured clip durations, cue placement, and segment timing precision. Selected narration stays in SCRIPT.md and authentication stays in the local runtime. Downstream storyboard and composition timing read only that project `audio_meta.json`.

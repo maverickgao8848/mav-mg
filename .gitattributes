@@ -1,3 +1,6 @@
 # Style manifests bind exact bytes, including original line endings.
+* text=auto eol=lf
 assets/styles/** -text whitespace=cr-at-eol
 assets/svg-primitives/** -text whitespace=cr-at-eol
+# Preserve upstream font-license bytes, including their original whitespace.
+assets/styles/**/fonts/* -text -whitespace

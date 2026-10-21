@@ -1,44 +1,33 @@
 ---
-name: mav-mg
-description: Turn Chinese plain or timestamped narration and per-frame image references into editable educational Motion Graphics projects for HyperFrames. Use for Chinese knowledge explainers, mechanism animations, teaching MG, or revisions to an existing HyperFrames explainer within the technical-preview release scope.
+name: xiangsu-mg
+description: 把中文文稿、带时间码口播与分镜参考制作为可编辑的 HyperFrames 知识解释动画，表现机制、关系、比较与流程。
 metadata:
-  version: "0.1.0-preview.25"
+  version: "0.1.0-preview.37"
 ---
 
-# MAV-MG
+# 像素 MG · Xiangsu MG
 
-Create editable, deterministic educational Motion Graphics whose visual changes help the audience understand a mechanism, relationship, comparison, or process.
+以 HyperFrames 制作可编辑、确定性、可任意时间定位的知识解释动画。公开版默认从朱砂活字剧场与工程图册中选择风格，具体物件从 Pixel2All 按需取得；也可沿用用户或上游工程的完整风格。
 
-Requires Node.js and a working HyperFrames installation. Generated narration uses the Azure preflight and user-owned authentication in [voice-contract.md](references/voice-contract.md).
+运行环境与安装见 [DELIVERY.md](DELIVERY.md)，支持和验证范围见 [release-scope.md](references/release-scope.md)。
 
-## Start or resume
+## 输入与方向
 
-1. Read [release-scope.md](references/release-scope.md) before describing support or accepting a delivery target. Keep promises within its verified technical-preview boundary.
-2. Read the project’s `AGENTS.md` and existing `BRIEF.md`, `SCRIPT.md`, `STORYBOARD.md`, `frame.md`, and `audio_meta.json` when present.
-3. Read [input-contract.md](references/input-contract.md) before importing or confirming inputs. Resolve style and production mode there, enforce its model prerequisite, and ask once for only the decisions still missing. Write confirmed choices to `BRIEF.md` so downstream work does not interview the user again.
-4. Read [visual-grammar.md](references/visual-grammar.md) when applying the confirmed production mode, references are supplied, a semantic graphic must be drawn, or scenes need composition planning. Route concrete objects through [asset-routing.md](references/asset-routing.md): read [svg-library.md](references/svg-library.md) for SVG geometry or [thiings-library.md](references/thiings-library.md) for reusable transparent PNG objects.
-5. Read [style-contract.md](references/style-contract.md) when selecting, importing, or changing a `frame.md`.
-6. Before confirming a new or changed visual direction, read the visual-direction checkpoint in [quality.md](references/quality.md). Keep technical, design-adherence, and art-direction outcomes independent.
-7. Read [motion-direction.md](references/motion-direction.md) before planning or revising motion in any narrated or screen-text explainer, across all styles and both modes. Its built-in spatial-camera core covers target-led routes, parallax, focus transfer, reading stops and material limits; a separate spatial-camera Skill is not required. When selecting reusable relationship components, also read [component-contract.md](references/component-contract.md) and the allowed/preferred set in `assets/components/collection.json`.
-8. Read [asset-routing.md](references/asset-routing.md) when selecting text effects, transitions, charts, camera/focus primitives, treatments, external shot recipes or other reusable visual assets.
-9. Use the `general-video` workflow and `hyperframes-core` composition contract for implementation. Reuse public HyperFrames capabilities before creating local code.
+1. 读取项目 `AGENTS.md` 及已有 `BRIEF.md`、`SCRIPT.md`、`STORYBOARD.md`、`frame.md`、`audio_meta.json`。按 [input-contract.md](references/input-contract.md) 补齐影响结果的缺失决策，已确认内容写入 BRIEF 后沿用。
+2. 按 [style-contract.md](references/style-contract.md) 确定风格；Editorial 子工程通过 [upstream-frame.md](references/upstream-frame.md) 继承完整 frame 和资源。无指定风格时提供朱砂活字剧场/工程图册二选一。像素绿宝石与像素白金为付费风格，本公开包不提供其资源。
+3. 按 [visual-grammar.md](references/visual-grammar.md) 组织教学重点、语义拍点和构图，按 [motion-direction.md](references/motion-direction.md) 设计文字、对象与相机的变化。新方向的静态构图探索可先于配音进行。
 
-## Build
+## 制作
 
-Write project prompts and storyboard directions as concise, positive, observable actions: name the subject, its change, and the intended reading or teaching result. Retain a negative constraint only for a demonstrated failure; keep each reusable rule in its linked authority rather than copying it into project prompts.
+1. 原始文稿与媒体保存于 `assets/source/`，选用旁白保存于 `SCRIPT.md`。用 `scripts/normalize-input.mjs` 规范输入；按 [voice-contract.md](references/voice-contract.md) 取得唯一有效时基。
+2. 在 `STORYBOARD.md` 的既有 `## Frame N` 块记录 cue → 可见变化或有作用的停留 → 对象与来源，同时记录相机交接与阅读窗口。首次编写可参考 [分镜示例](references/semantic-storyboard-example.md)。
+3. 具体物件按 [object-library.md](references/object-library.md) 从本拍意图发现候选、看图比较后导入，并绑定选择与使用证据。关系组件按 [component-contract.md](references/component-contract.md) 选择；其他素材按 [asset-routing.md](references/asset-routing.md) 路由，可控内部结构使用 [svg-library.md](references/svg-library.md)。
+4. 按 [quality.md](references/quality.md#storyboard-keyframes) 审看关键帧，并用实际时基预演会导致大幅返工的未决过程或空间交接。已有相同适用范围的有效证据可复用。
+5. 使用 `general-video` 工作流与 `hyperframes-core` 工程合同。在 BRIEF 记录 `workflow: general-video`、`specialization: xiangsu-mg`。公共框架负责工程结构，本 Skill 负责知识表达、风格、素材、声音与视觉评审。
+6. 使用 `node <xiangsu-mg目录>/scripts/hyperframes.mjs <command>` 调用锁定 CLI。优先采用框架已有能力，按已审看草稿构建确定性时间轴。组装出现跨场景 selector、运行时泄漏或自然结束空白时，查 [lessons.md](references/lessons.md)。
 
-1. Preserve original text and media under `assets/source/`. Treat `SCRIPT.md` as the selected narration, not as permission to overwrite the source.
-2. Read [voice-contract.md](references/voice-contract.md) before generating narration. Normalize cues with `scripts/normalize-input.mjs`. Keep exactly one active timing source: generated voice, fixed source timing, or reference timing superseded by new audio.
-3. Plan one teaching spine, then apply the beat-level focus and semantic coverage mapping in [visual-grammar.md](references/visual-grammar.md). Plan spatial relationships and the camera route in the same entries under [motion-direction.md](references/motion-direction.md). A continuing scene may contain several short explanatory beats; it is not one fixed illustration per narration segment.
-4. Store the effective style in the project `frame.md`. Reference images guide only the scopes explicitly recorded in the relevant `STORYBOARD.md` frame. Before building the full timeline, complete the storyboard-keyframe checkpoint and, when applicable, its rough route pass in [quality.md](references/quality.md). Prose, motif names, and planned object lists are not keyframe evidence; return upstream when the rendered frames or route trigger a blocking observation.
-5. Generate Azure narration or retain supplied audio according to [voice-contract.md](references/voice-contract.md), then map scene actions to actual cue windows, including the text beats and boundary handoffs specified in [motion-direction.md](references/motion-direction.md#storyboard-and-implementation). Never label segment timing or averaged character timing as word-level alignment.
-6. Build seek-safe HyperFrames sub-compositions with deterministic timelines, explicit semantic SVG groups, and clear handoff states.
-7. Select components from `collection.json.allowed`; try `collection.json.preferred` first when more than one component fits. Also require metadata status `validated`, unless a candidate is explicitly accepted for the current test. A component ID must resolve to the implementation named in its metadata.
-8. Classify supporting reusable assets before use and record their source and reason in the storyboard. Do not add text effects, transitions, charts, focus primitives or treatments to the relationship-component allow-list.
-9. If assembled scenes exhibit cross-scene targeting, runtime leakage, or a blank natural endpoint, read [lessons.md](references/lessons.md) before changing selectors or visibility ownership.
+## 检查与交付
 
-## Validate and hand off
+按 [quality.md](references/quality.md) 分别记录技术、风格遵循及艺术方向结果。完成版检查包括 CLI、关键状态截图、正常速度播放、自然结束与倒序 seek；静态提案只记录静态观察。
 
-Run HyperFrames checks, inspect representative frames from the opening, mechanism, transition, and conclusion, and start Studio preview. Before the final-look preview, run the built-preview and final-decision checkpoints in [quality.md](references/quality.md) using a contact sheet and normal-speed playback evidence. Once the builder has inspected that evidence, record `revise` for every blocking failure or `ready_for_review` when none remain in `ART-REVIEW.md`. Complete its required evidence fields, then run `node scripts/verify-art-review.mjs --project <project-directory>` from the Skill directory before handoff. Do not invent a waiting status or ask the user to discover the failure first. Fix observed problems without adding unrelated rules or effects. Render only when the active HyperFrames workflow and the user’s authorization allow it.
-
-A result is complete only when the project is editable, arbitrary-time seeking is correct, references are traceable to scenes, captions use honest timing, and the visible preview communicates the intended knowledge.
+完成版证据写入 `ART-REVIEW.md`，运行 `node scripts/verify-art-review.mjs --project <工程>`。制作者在问题解决后记 `ready_for_review`，用户的艺术决定绑定实际审看版本。按当前工作流与用户要求预览或导出。

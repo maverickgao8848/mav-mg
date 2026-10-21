@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-21",
+  "note": "Existing actual clips; cut and resized, no generated replacement frames. Paid style previews do not grant template or commercial rights. DeepSeek attribution checked against benchmark media-manifest.json and TEST-KIT.md. Other model identities unspecified.",
+  "clips": [
+    {
+      "id": "deepseek-cache",
+      "sourceId": "deepseek-cache",
+      "sourceSha256": "7e9718cb7ae59c94c46f67b8790b23718e4a41fced0b67e01405adddba75a0b5",
+      "sourceStart": 0,
+      "duration": 18,
+      "model": "DeepSeek",
+      "scope": "像素绿宝石 · 付费版展示",
+      "audio": "removed",
+      "mp4": "deepseek-cache.mp4",
+      "gif": "deepseek-cache.gif",
+      "poster": "deepseek-cache.jpg"
+    },
+    {
+      "id": "emerald-workflow",
+      "sourceFile": "glass lime.mp4",
+      "sourceSha256": "60e72fb538d6e5fe28c1fcfffd4146610e04607ec369a16a7329026c73b08371",
+      "sourceStart": 35.4,
+      "duration": 9.2,
+      "posterSourceTime": 43.7,
+      "posterSelection": "Actual completed layout selected after multi-timepoint visual inspection; not an arbitrary midpoint or a partially built frame.",
+      "model": "Unspecified",
+      "scope": "像素绿宝石 · 付费版展示",
+      "audio": "removed",
+      "mp4": "emerald-workflow.mp4",
+      "gif": "emerald-workflow.gif",
+      "poster": "emerald-workflow.jpg"
+    },
+    {
+      "id": "emerald-depth",
+      "sourceFile": "glass lime.mp4",
+      "sourceSha256": "60e72fb538d6e5fe28c1fcfffd4146610e04607ec369a16a7329026c73b08371",
+      "sourceStart": 68.8,
+      "duration": 15.1,
+      "posterSourceTime": 83.45,
+      "posterSelection": "Actual completed layout selected after multi-timepoint visual inspection; not an arbitrary midpoint or a partially built frame.",
+      "model": "Unspecified",
+      "scope": "像素绿宝石 · 付费版展示",
+      "audio": "removed",
+      "mp4": "emerald-depth.mp4",
+      "gif": "emerald-depth.gif",
+      "poster": "emerald-depth.jpg"
+    },
+    {
+      "id": "platinum-mechanism",
+      "sourceFile": "mav editorial kit.mp4",
+      "sourceSha256": "445e849e0120faff31309d1512d98c1af0b1bed41fc136d82ce14e7e60fbdd86",
+      "sourceStart": 57.5,
+      "duration": 10.7,
+      "posterSourceTime": 67.3,
+      "posterSelection": "Actual completed layout selected after multi-timepoint visual inspection; not an arbitrary midpoint or a partially built frame.",
+      "model": "Unspecified",
+      "scope": "像素白金 · 付费版展示",
+      "audio": "removed",
+      "mp4": "platinum-mechanism.mp4",
+      "gif": "platinum-mechanism.gif",
+      "poster": "platinum-mechanism.jpg"
+    },
+    {
+      "id": "platinum-handoff",
+      "sourceFile": "mav editorial kit.mp4",
+      "sourceSha256": "445e849e0120faff31309d1512d98c1af0b1bed41fc136d82ce14e7e60fbdd86",
+      "sourceStart": 181.0,
+      "duration": 7.8,
+      "posterSourceTime": 187.3,
+      "posterSelection": "Actual completed layout selected after multi-timepoint visual inspection; not an arbitrary midpoint or a partially built frame.",
+      "model": "Unspecified",
+      "scope": "像素白金 · 付费版展示",
+      "audio": "removed",
+      "mp4": "platinum-handoff.mp4",
+      "gif": "platinum-handoff.gif",
+      "poster": "platinum-handoff.jpg"
+    }
+  ],
+  "selectionUpdate": "User selected glass lime.mp4 and mav editorial kit.mp4 from 案例与作品/视频样片 for paid-style previews, and requested finished-layout stills. DeepSeek remains a separately attributed actual sample."
+}

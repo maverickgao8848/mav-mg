@@ -1,61 +1,89 @@
-# MAV-MG
+# Xiangsu MG · MAV-MG
 
-This release preserves the public Cobalt Grid and Editorial Forest styles, routes [Thiings objects](references/thiings-library.md), and incorporates the spatial-camera core in [motion-direction](references/motion-direction.md). Vermilion Theatre · Zhu Sha Letterpress is now a paid style; its specification, fonts, variants and reference assets are not included in the public repository or free download.
+**Turn Chinese explanations into editable motion graphics for concepts, mechanisms, relationships and processes.** Provide a script or timed material and continue editing the resulting HyperFrames project.
 
-[中文](README.md) · **English** · [Download the free public Skill](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.25/mav-mg-0.1.0-preview.25.zip) · [Download the original video](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.18/bank-run-v3-music.mp4) · [Skill entry](SKILL.md)
+[中文](README.md) · **English** · [Download the free noncommercial edition](https://github.com/maverickgao8848/mav-mg/releases/download/v0.1.0-preview.37/mav-mg-0.1.0-preview.37.zip) · [Pixel2All](https://pixel2all.cn/)
 
-**Turn Chinese narration into editable educational motion graphics.** Plan the teaching beats, choose a visual direction, demonstrate each mechanism on screen, and build a HyperFrames project for preview and rendering.
+## Free edition and paid styles
 
-https://github.com/user-attachments/assets/257d441e-305a-428f-a1b9-2fbf370635a9
+Seven styles are included for noncommercial experimentation. **Pixel Emerald (`glass-lime`) and Pixel Platinum (`baijin-black-texture`) are paid styles, excluded from the repository and free download.** Their previews demonstrate finished work, not included templates.
 
-**Sample video:** *Bank Run* v3 with music, 70.7 seconds at 1920×1080 and 30 fps. Play it directly on this page; use the link above to download the original.
+Personal study, research, experimentation and hobby projects are permitted under the [PolyForm Noncommercial License 1.0.0](LICENSE). Commercial applications need separate permission. Model and speech-provider charges remain the user's responsibility. See the [Chinese usage explanation](USAGE.zh-CN.md) and [third-party notices](THIRD-PARTY-NOTICES.md).
 
-## Choose a style visually
+## Made with DeepSeek
 
-These are actual HyperFrames preview frames and style references. **The public package contains Cobalt Grid and Editorial Forest.** Click an included style image to read its full `FRAME.md`. Vermilion Theatre, Open Code, Gable & Reed, Dell 1996 and Broadside are paid styles; this page shows covers only. Their style specifications, fonts, variants and reference assets are not included in the public repository or free download. The images show visual direction, not promised output or factual content for a new topic.
+Suitable for **DeepSeek with WorkBuddy or another agent client that reads skills, edits local files and executes tools**, and for Codex. DeepSeek is the model; WorkBuddy provides an execution environment. An ordinary web chat alone does not install or execute the skill.
 
-<table>
-<tr>
-<td colspan="2" align="center"><img src="assets/showcase/styles/vermilion-theatre.jpg" alt="Vermilion Theatre Zhu Sha Letterpress paid-style cover" width="720"><br><b>Vermilion Theatre · Zhu Sha Letterpress · Paid preview</b><br>Arguments, mechanisms, business and knowledge objects</td>
-</tr>
-<tr>
-<td width="50%"><a href="assets/styles/cobalt-grid/FRAME.md"><img src="assets/showcase/styles/cobalt-grid.jpg" alt="Cobalt Grid preview" width="480"></a><br><b>Cobalt Grid · Included</b><br>Research, data and systems<br><code>cobalt-grid</code></td>
-<td width="50%"><a href="assets/styles/editorial-forest/FRAME.md"><img src="assets/showcase/styles/editorial-forest.jpg" alt="Editorial Forest preview" width="480"></a><br><b>Editorial Forest · Included</b><br>Nature, materials and everyday science<br><code>editorial-forest</code></td>
-</tr>
-<tr>
-<td width="50%"><img src="assets/showcase/styles/opencode.png" alt="Open Code paid-style cover" width="480"><br><b>Open Code · Paid preview</b><br>Terminals, software and digital mechanisms</td>
-<td width="50%"><img src="assets/showcase/styles/gable-reed.png" alt="Gable & Reed paid-style cover" width="480"><br><b>Gable & Reed · Paid preview</b><br>Engineering, structures and technical diagrams</td>
-</tr>
-<tr>
-<td width="50%"><img src="assets/showcase/styles/dell-1996.png" alt="Dell 1996 paid-style cover" width="480"><br><b>Dell 1996 · Paid preview</b><br>Retro technology, indexes and internet culture</td>
-<td width="50%"><img src="assets/showcase/styles/broadside.png" alt="Broadside paid-style cover" width="480"><br><b>Broadside · Paid preview</b><br>Strong arguments, posters and typographic rhythm</td>
-</tr>
-</table>
+This actual 18-second DeepSeek-produced cache explainer uses **the paid Emerald style**, shown for demonstration. Attribution comes from recorded benchmark inputs. The silent GIF runs at original speed; click for MP4. An actual example demonstrates feasibility, not a universal quality or success-rate guarantee.
 
-## Get started
+[![DeepSeek cache explainer — paid Emerald style](assets/showcase/motion/deepseek-cache.gif)](https://github.com/maverickgao8848/mav-mg/raw/refs/heads/main/assets/showcase/motion/deepseek-cache.mp4)
 
-1. Download and unzip the package. Put `mav-mg` in `~/.codex/skills/` or your project's `.agents/skills/`.
-2. Install Node.js and HyperFrames. We recommend **`gpt-6-sol` or a more capable GPT-6 model**. Advanced mode also requires the runtime model check in the [input contract](references/input-contract.md). Voice generation additionally needs the voice tool selected for your project.
-3. In Codex, provide Chinese narration or timed cues and state your target duration and style:
+## Choose a public style
+
+| Included style | Style ID | Preview |
+| --- | --- | --- |
+| Vermilion Theatre | `vermilion-theatre` | [![Vermilion Theatre](assets/showcase/styles/vermilion-theatre.jpg)](assets/styles/vermilion-theatre/FRAME.md) |
+| Architectural Section | `architectural-section` | [![Architectural Section](assets/showcase/styles/architectural-section.jpg)](assets/styles/architectural-section/FRAME.md) |
+| Engineering Atlas | `gable-reed` | [![Engineering Atlas](assets/showcase/styles/gable-reed.png)](assets/styles/gable-reed/FRAME.md) |
+| Terminal Manual | `opencode` | [![Terminal Manual](assets/showcase/styles/opencode.png)](assets/styles/opencode/FRAME.md) |
+| Cobalt Grid | `cobalt-grid` | [![Cobalt Grid](assets/showcase/styles/cobalt-grid.jpg)](assets/styles/cobalt-grid/FRAME.md) |
+| Retro Computer Catalog | `dell-1996` | [![Retro Computer Catalog](assets/showcase/styles/dell-1996.png)](assets/styles/dell-1996/FRAME.md) |
+| Broadside | `broadside` | [![Broadside](assets/showcase/styles/broadside.png)](assets/styles/broadside/FRAME.md) |
+
+Architectural Section is a selected static direction; continuous motion is not verified. Historical styles retain their recorded scope. Editorial Forest is no longer in the catalog. Original reference-image sets without recorded redistribution permission are omitted; written specifications and permitted resources remain available.
+
+## Paid-style motion previews
+
+![Pixel Emerald — completed scene from the selected video](assets/showcase/styles/pixel-emerald.jpg)
+
+**Pixel Emerald — travelling through the production workflow:**
+
+[![Emerald production workflow — paid style](assets/showcase/motion/emerald-workflow.gif)](https://github.com/maverickgao8848/mav-mg/raw/refs/heads/main/assets/showcase/motion/emerald-workflow.mp4)
+
+**Pixel Emerald — spatial cards and reusable styles:**
+
+[![Emerald spatial cards and reuse — paid style](assets/showcase/motion/emerald-depth.gif)](https://github.com/maverickgao8848/mav-mg/raw/refs/heads/main/assets/showcase/motion/emerald-depth.mp4)
+
+![Pixel Platinum — completed mechanism scene](assets/showcase/styles/pixel-platinum.jpg)
+
+**Pixel Platinum — explaining a mechanism:**
+
+[![Platinum mechanism animation — paid style](assets/showcase/motion/platinum-mechanism.gif)](https://github.com/maverickgao8848/mav-mg/raw/refs/heads/main/assets/showcase/motion/platinum-mechanism.mp4)
+
+**Pixel Platinum — relationships and scene handoff:**
+
+[![Platinum relationship and handoff — paid style](assets/showcase/motion/platinum-handoff.gif)](https://github.com/maverickgao8848/mav-mg/raw/refs/heads/main/assets/showcase/motion/platinum-handoff.mp4)
+
+Emerald excerpts come from the author-selected `glass lime.mp4`; Platinum excerpts come from `mav editorial kit.mp4` in the same sample folder. Posters show completed layouts, rather than partially built frames. These are silent, original-speed excerpts. [Media provenance and cut ranges](assets/showcase/motion/sources.json). Commercial authorization, paid styles, tutorials and custom account styles are available separately through [Pixel2All](https://pixel2all.cn/).
+
+## Install
+
+Use Node.js 22+ and an AI client with local tool access. Extract the download and run at the package root:
+
+```sh
+node install.mjs
+```
+
+On Windows, `安装.cmd` runs the installer. It installs `xiangsu-mg` and 11 companion workflows, prepares the pinned runtime, Chrome and FFmpeg tools online, and preserves differing existing skills. For a clean project-local destination:
+
+```sh
+node install.mjs --destination <project>/.agents/skills
+```
+
+Reload your agent session and invoke `xiangsu-mg` with your script and chosen style. Default choices are Vermilion Theatre and Engineering Atlas:
 
 ```text
-Use mav-mg to make this Chinese narration into educational MG.
-Choose cobalt-grid and standard mode.
-Confirm the teaching beats and storyboard, then build an editable HyperFrames project.
+Use xiangsu-mg to turn this Chinese script into a knowledge explainer.
+Choose Vermilion Theatre. Preview a representative segment first.
+Keep the editable project, then export MP4 after review.
 ```
 
-From the Skill directory, apply an included style:
-
-```powershell
-node scripts/apply-style.mjs --style cobalt-grid --project <project-directory> --mode advanced
+```sh
+node scripts/apply-style.mjs --style vermilion-theatre --project <project>
 ```
 
-In the public edition, set `--style` to `cobalt-grid` or `editorial-forest`. Set `--mode` to `standard` or `advanced`. Cobalt Grid has a separate seven-image reference set for each mode, while Editorial Forest uses one common reference set. The tool checks resource hashes, writes the project `frame.md`, and copies selected references. Reconcile a conflicting existing project style before continuing.
+Objects are obtained on demand and frozen into the project with provenance. New narration needs the user's Azure Speech setup; supplied audio does not. No credentials or author-machine binaries are included. See [installation details](DELIVERY.md).
 
-## Technical preview boundary
+## Preview scope
 
-This package targets **Chinese educational explainers at 1920×1080 and 30 fps**. It accepts plain narration, fixed cues and reference cues, and produces an editable, seek-safe HyperFrames project. Advanced mode has a model prerequisite in the [input contract](references/input-contract.md). The [release scope](references/release-scope.md) records validated lengths and known visual limitations. Review each new project through real preview frames and normal-speed playback.
-
-## License and commercial use
-
-Repository code and public resources are provided under the [PolyForm Noncommercial License 1.0.0](LICENSE). Commercial use requires separate authorization. Check each asset's metadata for its own provenance and rights.
+Chinese, 1920×1080, 30 fps. Supports scripts, fixed timing and reference timing. Project/Studio evidence reaches 300 seconds; actual video-export evidence reaches 81.3 seconds. New topics still need visual and playback review. See [release scope](references/release-scope.md).

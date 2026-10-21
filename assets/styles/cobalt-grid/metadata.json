@@ -1,7 +1,8 @@
 {
   "schemaVersion": 1,
   "id": "cobalt-grid",
-  "revision": "p36-reference-catalog.1",
+  "displayName": "钴蓝网格",
+  "revision": "p36-reference-catalog.1.single.1",
   "provenance": {
     "kind": "user_supplied_style_pack",
     "sourceArchive": "cobalt-grid-frame-pack (1).zip",
@@ -40,65 +41,26 @@
   "files": [
     {
       "path": "FRAME.md",
-      "sha256": "082817a94704332b2eecc76dfa1a637966a28e732aeeabac380c37d797a6266c"
-    },
-    {
-      "path": "samples/sample-01.png",
-      "sha256": "26d7182a23317249d56b264ff12e685bd02d99b69d07e06a4ae391892f8a8d77"
-    },
-    {
-      "path": "samples/sample-02.png",
-      "sha256": "3939b7ec1d4c3ee6e4954b3fabdbc4e3ea08afcaa10b02e52e9cb73cb759c032"
-    },
-    {
-      "path": "samples/sample-03.png",
-      "sha256": "09edafd7552415879462248e3ad2ca379ac2714b4fe0c5fafa8d71c02c349366"
-    },
-    {
-      "path": "samples/sample-04.png",
-      "sha256": "cda04340bcf5d00a3b848f72f696ad42a1670a88d11e018402942ef89be674ff"
-    },
-    {
-      "path": "samples/sample-05.png",
-      "sha256": "b3053a56a4267e433a4326eb01c78e27d8142882e487bb49b922e86b746bb23e"
-    },
-    {
-      "path": "samples/sample-06.png",
-      "sha256": "6a0e317ebab4319ab1387ce581d9a50e31992c7e47fe1455ed495bd301f839d9"
-    },
-    {
-      "path": "samples/sample-07.png",
-      "sha256": "1115a82f49556216a31106cdb24ba1a7d2a571347c5ae1afb05b22c39a3c78a1"
+      "sha256": "194d3811a20a8ccbb0a107b2b3fbc179fab0b1c8b0cbbc832c804bb19647c178"
     }
   ],
-  "advancedFiles": [
-    {
-      "path": "advanced-samples/sample-01.png",
-      "sha256": "cc8c493801168e053bcc550ae000d3a74878af22d94ca9a42499aff8a73ecee0"
-    },
-    {
-      "path": "advanced-samples/sample-02.png",
-      "sha256": "c767a360252448de51ba2f7526f09a5848e1283d17b541f3237e882942fb8786"
-    },
-    {
-      "path": "advanced-samples/sample-03.png",
-      "sha256": "486da83208d75b1a4146a68a3ae831af1e03b743f9c7c06899e4126fdf1cb5d1"
-    },
-    {
-      "path": "advanced-samples/sample-04.png",
-      "sha256": "ef3dd0e9297e2ae5f62d776f8ac3ec8ba156d6ee932b29b2c4c12ddff61c5c61"
-    },
-    {
-      "path": "advanced-samples/sample-05.png",
-      "sha256": "b3d27732202a0035cf134692776370264a109c8821a1853eaa078d8b2ea96d47"
-    },
-    {
-      "path": "advanced-samples/sample-06.png",
-      "sha256": "ff32b644ab0793f2aa930f22624439160072898f9d99a5a61309291972d484c3"
-    },
-    {
-      "path": "advanced-samples/sample-07.png",
-      "sha256": "fb3b334499edc2241fc0bf683af02711b63c93afe4a9ac65afebe1b0b1876efd"
-    }
-  ]
+  "publicDistribution": {
+    "omittedReferenceImages": [
+      "samples/sample-01.png",
+      "samples/sample-02.png",
+      "samples/sample-03.png",
+      "samples/sample-04.png",
+      "samples/sample-05.png",
+      "samples/sample-06.png",
+      "samples/sample-07.png",
+      "mechanism-samples/sample-01.png",
+      "mechanism-samples/sample-02.png",
+      "mechanism-samples/sample-03.png",
+      "mechanism-samples/sample-04.png",
+      "mechanism-samples/sample-05.png",
+      "mechanism-samples/sample-06.png",
+      "mechanism-samples/sample-07.png"
+    ],
+    "reason": "Original reference-image redistribution permission is not recorded; use the public showcase and the written FRAME instead."
+  }
 }

@@ -1,52 +1,32 @@
 # Input contract
 
-## One entry confirmation
+## Confirm effective inputs
 
-At the start of a new production or a materially changed request, summarize the known specification once:
+For a new or materially changed production, reuse known decisions and ask only for missing choices affecting the result: audience and teaching goal; destination, duration and aspect ratio; source-text handling, narration and timing; style and references; captions and deliverables. Record confirmed choices in `BRIEF.md`.
 
-- audience and the one thing they should understand;
-- destination, aspect ratio, and target length;
-- source-text handling, voice choice, and timing mode;
-- current style, allowed component set, and supplied scene references;
-- captions, deliverables, and desired review points.
+Resolve style through [upstream-frame.md](upstream-frame.md): explicit user choice, existing project frame, nearest upstream frame for a new child, then the default choice in [style-contract.md](style-contract.md). The production approach is defined in [visual-grammar.md](visual-grammar.md).
 
-Ask only about missing decisions that change the result. For an existing project, read and reuse confirmed values. A user instruction to keep the previous specification and proceed is confirmation. Internal building, checking, and repair do not restart the interview.
+Record `object_source: pixel2all` on its own line and follow [object-library.md](object-library.md). Store the effective visual system in `frame.md` and beat-specific content in `STORYBOARD.md`.
 
-For `generated_voice`, the configured choice in [voice-contract.md](voice-contract.md) is already confirmed unless the user explicitly requests a different voice. Authentication is a runtime preflight, not a creative interview decision: request user setup only when the preflight reports that their Azure access is unavailable.
+## Sources and timing
 
-## Style and production mode
+Preserve user inputs under `assets/source/`; selected narration belongs in `SCRIPT.md`. Derived cue records identify the source and timing precision.
 
-For a new project, resolve these two choices in order: select the visual style first, then select `production_mode: standard | advanced`. Reuse an explicit choice already present in the request or project `BRIEF.md`; ask only for a missing choice. A style may recommend one mode, but both modes remain selectable unless the user gives a project-specific restriction.
+Each project has one active timing authority:
 
-Record the selected style identity and `production_mode` in `BRIEF.md`. Keep effective color, typography and material rules only in `frame.md`, and keep beat-level protagonists, SVG roles and custom graphics only in `STORYBOARD.md`. The mode selects a production strategy from [visual-grammar.md](visual-grammar.md); it does not create a second style source, motion contract, quality gate or HyperFrames implementation path.
+- `generated_voice`: selected narration is synthesized under [voice-contract.md](voice-contract.md); measured audio duration becomes authoritative.
+- `fixed`: supplied audio/video and its cue positions remain authoritative; fit the explanation within those windows.
+- `reference`: supplied timestamps describe the reference structure; newly generated audio supersedes them when adopted.
 
-`standard` permits an economical execution model. `advanced` requires a runtime-confirmed GPT-6 model before creative planning or production begins. Confirm the active model from host-provided model identity or configuration, and record that observed identity in `BRIEF.md`; a user request, model self-description or desired model name is not verification. If GPT-6 cannot be verified or selected, report the unmet prerequisite and pause advanced production. Do not claim a model switch, silently continue as `standard`, or label non-GPT-6 work as advanced.
+Use seconds and stable cue IDs. Record start, end, text, source and precision where available. Trusted word timestamps or alignment support word precision; synthesis segments and duration estimates use segment or planning precision. A fixed window that remains too short after reducing secondary motion requires a content/timing decision from the user.
 
-## Preserve sources
+## Duration assessment
 
-Copy or reference user inputs under `assets/source/`; never overwrite them. A selected narration belongs in `SCRIPT.md`. A derived cue file records its source path and precision.
+The supported engineering timeline is 300 seconds, including pauses and transitions. `scripts/normalize-input.mjs` assesses timed input by latest cue end; untimed narration uses four spoken units per second, counting each Han character and each non-Han word or number token as one unit. Reassess generated narration against measured audio.
 
-## Timing modes
-
-Each project has one active timing mode:
-
-- `generated_voice`: plain text or an article becomes selected narration; generated audio duration becomes authoritative.
-- `fixed`: source audio/video timing is authoritative. Keep cue positions and fit visuals inside them.
-- `reference`: supplied timestamps explain the old structure but may be superseded by newly generated audio. Once new audio exists, it is the only active timing source.
-
-Use seconds internally. Give every cue a stable ID. Record `start`, `end`, `text`, source, and precision when available. Word timing exists only when supplied by a trusted source or obtained through alignment; otherwise declare segment precision.
-
-If fixed windows cannot hold the narration or required explanation, reduce secondary motion first and report the remaining conflict. Do not silently accelerate speech, drop qualifications, or move fixed cues.
-
-## Duration limit decision
-
-The finished timeline is limited to 300 seconds, including the opening, pauses, transitions, and ending. Normalize every input before production and read `duration_assessment`. Timed input uses the latest cue end; untimed narration uses a planning estimate of four spoken units per second, where each Han character and each non-Han word or number token counts as one unit. Generated audio remains authoritative once it exists, so reassess against its real duration before building the final timeline.
-
-When `over_limit` is true, return the explicit `refine_or_split` decision and present both supplied suggestions: refine secondary explanation while preserving conclusions and qualifications, or split at stable cue IDs so each episode can fit. Keep every source cue and its final segment in the normalized record while the user decides; never implement the limit by truncating text.
+When `over_limit` is true, present `refine_or_split`: refine secondary explanation while retaining conclusions and qualifications, or split at stable cue IDs. Preserve the complete source and proposed episode mapping while the user decides.
 
 ## Normalized record
-
-`scripts/normalize-input.mjs` produces:
 
 ```json
 {
@@ -67,4 +47,4 @@ When `over_limit` is true, return the explicit `refine_or_split` decision and pr
 }
 ```
 
-This record is an adapter input, not a second editable timeline. Once `audio_meta.json` exists, downstream scene timing reads it.
+This is the input adapter record. Once adopted audio exists, downstream scenes read `audio_meta.json` for timing.

@@ -1,10 +1,6 @@
 # Art-direction quality gate
 
-This file is the single runtime authority for visual-quality review in `mav-mg`. Technical validity and fidelity to a design specification are necessary inputs, but neither one proves that the art direction is strong.
-
-## Independent outcomes
-
-Record these outcomes separately so one cannot silently promote another:
+This file owns visual review in Xiangsu MG. Record technical validity, style adherence and artistic judgment separately.
 
 ```yaml
 technical: not_reviewed | revise | pass
@@ -12,90 +8,64 @@ design_adherence: not_reviewed | revise | pass
 art_direction: not_reviewed | revise | ready_for_review | recommended | approved | accepted_with_deficit
 ```
 
-- `technical` reports HyperFrames lint, runtime, layout, motion, contrast, and seek behavior.
-- `design_adherence` reports whether the built frames follow the active `frame.md`.
-- `art_direction` reports whether the visible concept and execution are worth presenting as finished work.
-
-Keep `art_direction: revise` when the composition is technically valid but visually generic or under-resolved. Use `accepted_with_deficit` only when the user knowingly accepts a named visual deficit; it preserves the deficit and does not mean `approved`.
-Use `ready_for_review` only after the builder has inspected the required frame/time evidence and found no blocking observation. It is a handoff state, not a recommendation or approval.
-
 ## Review checkpoints
 
 ### Visual direction
 
-Before confirming a new or changed visual direction, state one creative premise that can be seen without reading the design explanation. Name the main knowledge object, the physical or graphic world it inhabits, the intended eye path, the type register, and the material/color behavior. Return to `frame.md` when these choices do not form one coherent premise.
+For a new or changed direction, inspect subject, world, eye path, typography, color and material together. A visual premise or metaphor is an optional way to develop that direction. When adopted, judge how it appears in the actual frame. Existing directions can retain their established visual logic.
 
 ### Storyboard keyframes
 
-Before building the full timeline, render the storyboard's planned focal states for the opening, each distinct causal stage of the main mechanism, any risk or failure state central to the script, and the conclusion. These can be stills from a minimal seekable draft; finish only the subject form needed to judge the plan. Inspect each at actual output size and as a small unlabeled thumbnail, beside the selected mode's adopted references at comparable size. Judge the seven observation areas below. In particular, identify the immediate focal subject, the mechanism visible without narration or explanatory paragraphs, and the meaningful composition change between adjacent stages. If any fails, revise the subject form or `STORYBOARD.md` and rerender the affected keyframes before proceeding. Return to `frame.md` when the weakness belongs to the whole visual language. Adding labels, rules, cards, or transitions does not resolve a weak subject or repeated composition.
+For inherited styles, run `node scripts/inherit-frame.mjs --project <project> --check`. Compare the rendered background, typography, palette and material with the adopted reference and record its frame hash. Compile inline CSS from frozen resources where the renderer requires it.
 
-For a multi-beat spatial route, also preview a rough, seekable route pass before building the finished timeline. Landmarks and focal objects may be simple placeholders; use the camera transform owner and poses intended for the finished composition to show their world positions at departure, passage and arrival. Watch the route at normal speed and inspect those three states at each consequential handoff. Apply the route-contrast and move-identity criteria in [motion-direction.md](motion-direction.md); a failed route returns to `STORYBOARD.md` for layout revision. This early pass tests the route, not the finish of the art.
+Complete the selected-source object preflight in [object-library.md](object-library.md): intent-led discovery, inspected candidate comparisons, staged images and planned use, or object-specific exceptions. Inspect rendered states, then run `node scripts/verify-thiings-review.mjs --project <project> --stage keyframes`.
+
+Render focal states for the opening, distinct causal stages, central risk/failure and conclusion. Inspect at output size and thumbnail size beside adopted style references. Save them under `snapshots/keyframes/` and record findings plus `storyboard_keyframes: ready_for_review | revise` in `ART-REVIEW.md` before constructing the finished timeline.
+
+When an unresolved transformation, contact, operation or handoff could cause substantial rework, preview its complete semantic unit with the active timing source and adopted narration. Include cause, main change, result, reading and onward handoff where applicable. Preserve the target's form, text size and key relationships closely enough to judge them. A multi-beat spatial route can share this draft; use its intended rig and inspect departure, passage, landing and focus transfer.
+
+Reuse existing process evidence when version, interval, behavior, material, timing and reading conditions remain applicable. Record that reuse in the same storyboard/review entry and confirm the adaptation in the first complete preview.
 
 ### Built preview
 
-Before showing the final-look preview, inspect a contact sheet and watch the mechanism and transition ranges at normal speed. Static frames reveal composition and finish; normal-speed playback reveals whether hierarchy, typography, material, and motion remain legible in time. Return to the composition or motion sidecar for implementation defects, and return upstream when the implementation faithfully exposes a weak visual plan.
+Complete a playable preview across the adopted cue range before fine polish. Inspect a contact sheet and watch mechanism/transition ranges at normal speed. Reconcile storyboard promises with rendered behavior. Fix implementation defects in the source; revise the storyboard or frame when the weakness belongs to the plan.
+
+Technical review includes CLI checks, natural playback through exact completion and a reverse seek. Keep screenshots of the last valid frame, natural stopped state and reverse-seek result. Log actual playback/seek times.
 
 ### Final decision
 
-The builder may set `revise` or `ready_for_review`. An independent reviewer may set `recommended` after reviewing frame/time evidence. The user, or a delegate explicitly named by the user, sets `approved`. If the user accepts a known weakness, record their words and use `accepted_with_deficit`; do not rewrite the weakness as a pass. A builder may clear local preflight issues but cannot self-upgrade the final art-direction result to `recommended` or `approved`.
+The builder records `revise` for observed blocking problems, `not_reviewed` for missing review evidence, or `ready_for_review` after resolving blockers and inspecting required evidence. An independent reviewer may record `recommended`. The user or an explicitly named delegate records `approved`, or `accepted_with_deficit` with the accepted weakness and their words. Bind the decision to the reviewed version.
 
-## Checkpoint completion
+## Evidence probes
 
-A checkpoint is complete only when its evidence has been inspected and its outcome uses the status vocabulary above. `not_reviewed` means the evidence has not yet been judged; `ready_for_review` means builder preflight found no blocking observation. Do not create variants such as `pending_user_review`.
+Use the semantic mapping in `STORYBOARD.md` as the review index. At keyframes inspect focal states; at built preview inspect the corresponding normal-speed ranges.
 
-For `storyboard_keyframes`, evidence is an actual rendered image or snapshot at the target aspect ratio for every required focal state above. Save these early frames under `snapshots/keyframes/` and record `storyboard_keyframes: ready_for_review` or `revise`, the inspected paths, and visible findings in `ART-REVIEW.md` before the full timeline is built. Preserve that record during the final review. Storyboard prose, named motifs, object inventories, CSS, and file existence do not prove the visual plan. If a rendered keyframe triggers a blocking observation, return to `STORYBOARD.md` or `frame.md` before building the full timeline.
-
-For `built_preview`, the builder must apply the reproducible failure signals below before user handoff. Any visible blocking signal sets `art_direction: revise` and returns the work upstream. The user review decides direction and approval; it is not the first line of quality control.
-
-### Evidence probes
-
-Use the existing sentence/beat mapping in `STORYBOARD.md` as the review index; do not create a second narration or focus plan. At the keyframe checkpoint, inspect the planned focal states. At built-preview review, verify their actual changes at normal speed using these probes. Store findings in the existing evidence record, with the applicable observation-area criterion.
-
-| Probe | Evidence to inspect and decision |
+| Probe | Observable result |
 |---|---|
-| Teaching emphasis | For each consequential question, principle and conclusion identified in the beat mapping, inspect before/focus/after frames and the intervening playback range. Name where the eye is led, what becomes dominant, and how attention passes to the explanation. A heading appearing beside an unchanged dominant diagram does not demonstrate that handoff. Mark missing or ineffective emphasis as blocking. |
-| Mechanism legibility | For each central causal claim, inspect the part, interface, state change or relationship that establishes it at playback size. Temporarily disregard narration and explanatory paragraphs, retaining necessary labels: the visual must supply the claimed relationship, rather than require the prose to assert it. Simplification is valid only while that evidence remains visible. A moving object alone is insufficient when the claim concerns an unresolved internal interaction. |
-| Subject finish | Compare actual hero/detail frames with the active style references at comparable display size, within their adopted scope. Identify concrete strengths or gaps in contour construction, meaningful internal detail, spatial hierarchy and typography. A matching palette/font or a recognizable silhouette alone cannot establish finish. Without a supplied reference, judge those same qualities against the diagram's explanatory responsibility. Do not import reference subject matter or add ornamental detail to satisfy this probe. |
-| Explanatory progression | Inspect adjacent beats together, naming what becomes newly understandable from their visible difference. Reusing a view is valid for a comparison or reversal when it exposes that difference. When a new concept needs a different level of detail but receives only changed text, paper color or whole-object travel, mark it blocking and return to the storyboard. No fixed camera, shot-count or zoom quota is implied. |
-| Authored text and spatial continuity | Audit the [motion contract](motion-direction.md) against the existing beat/boundary mapping and rough route pass. Inspect departures, travel midpoints, reading windows and returns at normal speed. Can the eye follow the anchor to the next destination, recognize an earlier detail inside its parent and read the required claim? Inspect direction/velocity seams, occlusion, grouping and detail handoffs. Compare each claimed move with the finished camera transform channels and rendered anchor behavior at departure, midpoint and arrival; record mismatches such as a claimed push-in whose final path only changes horizontal position. A promised route that is absent from the finished timeline is blocking and returns to the composition, or to `STORYBOARD.md` when the layout caused it. Distinguish new text entrances from distant landmarks and revisits; reverse-seek before each authored entrance to verify its concealed state. Cite actual text-internal changes and spatial travel. Unexplained teleporting, repeated token zooms without a narrative reason, missing required choreography or unreadable focal states are blocking. A recipe citation, tween count, midpoint sheet or technical pass alone is insufficient. |
+| Object selection | The selected entity/state makes the beat legible compared with inspected alternatives; recent reuse serves continuity or the current explanation. Missing metadata matches prompt query expansion, not an unsupported claim of no suitable metaphor |
+| Teaching emphasis | Important questions/principles/conclusions receive a readable focus, with a visible handoff into their explanation |
+| Mechanism legibility | The relevant part, interface, state change or relationship supplies the causal evidence, supported by concise necessary labels |
+| Subject finish | Contours, internal detail, scale and typography meet the explanatory responsibility and adopted reference scope |
+| Explanatory progression | Each changed view or purposeful hold contributes to understanding; a shared process can cover several sentences |
+| Text and spatial continuity | Rendered actors, channels, path direction, focus, grouping and detail match the planned handoff and reading window; new text, landmarks and revisits behave as authored |
 
-For every probe, cite actual files/times and the visible finding, including gaps; statements such as “topic-specific,” “clear hierarchy” or “consistent style” without that evidence do not complete review. Reconcile planned events with rendered events: an emphasis or detail described in the storyboard but absent or unreadable in playback is a failure, not evidence of compliance. Missing required evidence keeps the checkpoint `not_reviewed`; an observed failure makes it `revise`. Neither may be promoted to `ready_for_review`.
-
-At handoff, the receiving reviewer must inspect the evidence and apply these probes before endorsing or presenting the result as review-ready; copying the builder's verdict does not constitute review. Record any disagreement against the current version. This is a review responsibility, not authorization to create another agent or task.
-
-Technical completion also includes natural playback through the exact stop and a reverse seek to an earlier scene. Retain screenshots of the last valid frame, natural stopped state and reverse-seek result. A requested endpoint seek may be clamped before the stop; log the actual time and do not substitute it for natural completion. A blank endpoint or stale end layer sets `technical: revise` even if the CLI sample grid passes.
+Cite actual files/times, visible findings, severity and disposition. A missing or unreadable planned mechanism, focus or route is a blocking observation. The receiving reviewer inspects the evidence before endorsing it.
 
 ## Seven observation areas
 
-Review every area with a specific frame or time range. These are lenses for judgment, not additive points or an element-count quota.
-
 | Area | Observable result |
 |---|---|
-| Concept visibility | The premise is recognizable in the image itself; the design explanation names what the viewer can already see. |
-| Hierarchy and spatial composition | One primary focus leads to meaningful secondary information through scale, placement, depth, and negative space. |
-| Subject-specific form | Silhouettes, diagrams, environments, and visual metaphors belong to this topic and preserve the taught relationship. |
-| Typographic role | Display, explanation, data, and annotation voices are intentional, readable at playback size, and active in the composition rather than pasted on top. |
-| Color and material | Palette, texture, light, line, and surface behavior create a coherent world and make the current teaching focus visible. |
-| Cross-scene unity and variation | Recurring objects keep their meaning while successive scenes change framing, density, scale, or viewpoint for a reason. |
-| Finish in motion | Entrances, transformations, handoffs, and holds preserve hierarchy at normal speed and make the chosen visual character perceptible over time. |
+| Concept visibility | The current teaching idea is evident; an adopted visual premise is expressed in the frame |
+| Hierarchy and space | A primary focus leads to meaningful secondary information through scale, placement, depth and negative space |
+| Subject-specific form | Diagram, environment and metaphor preserve the taught relationship |
+| Typography | Display, explanation, data and annotation have purposeful, readable roles |
+| Color and material | Texture, light, line and surface form a coherent world and clarify focus |
+| Unity and variation | Recurring objects retain meaning as framing, density, scale or view changes for the explanation |
+| Finish in motion | Entrances, transformations, handoffs and holds retain hierarchy at normal speed |
 
-## Reproducible failure signals
+Observed weak subject form, unrelated decoration, repeated layouts that obscure changing relationships, lost focus, unreadable required text or missing causal evidence return the work to revision. Diagnose the particular frame/process and revise its cause.
 
-Mark `art_direction: revise` when frame/time evidence shows any of these conditions:
-
-- The named creative premise is not visible without explanatory prose.
-- The primary composition could be exchanged with an unrelated topic without meaningful redesign.
-- Small metadata, thin rules, or interface chrome supplies most of the apparent detail while the teaching object remains visually weak.
-- Nearby scenes repeat the same webpage, dashboard, card-grid, or centered-stack skeleton without a semantic reason.
-- Decoration has no relationship to the knowledge object, hierarchy, transition, or chosen material world.
-- The main focus or required text cannot be followed at normal playback speed.
-- Any evidence probe above exposes an unresolved blocking gap in emphasis, mechanism legibility, subject finish or explanatory progression.
-
-Treat these as diagnoses, not a banned-style list. A deliberate interface, card, or centered composition can pass when the subject calls for it and the evidence shows a specific visual purpose.
-
-## Evidence record
-
-For each checkpoint, keep a compact record:
+## Evidence record and verification
 
 ```yaml
 checkpoint: visual_direction | storyboard_keyframes | built_preview | final_decision
@@ -109,8 +79,8 @@ evidence:
     disposition: keep | revise_frame | revise_storyboard | revise_motion | revise_implementation
 ```
 
-Use paths relative to the project. Evidence must point to a real snapshot, contact sheet frame, or playback range. For each final verdict, record `build_sha256` for the reviewed `index.html` and `check_sha256`, `check_error_count`, and `check_warning_count` for the current `evidence-check.json`. List snapshot paths in full. The early `snapshots/keyframes/` evidence must predate the finished build; final-preview snapshots must follow it. Run `node scripts/verify-art-review.mjs --project <project-directory>` from the Skill directory on the completed record before handoff. A failed provenance audit cannot support `ready_for_review`; missing evidence remains `not_reviewed`, while an observed visual failure remains `revise`. The audit checks provenance and counts, while the builder still judges the visible frames and playback. Scores, pixel differences, CSS-token compliance, and motion counts may help locate a problem, but they cannot decide `art_direction` on their own.
+Use project-relative evidence paths and actual playback intervals. For final verdicts record `build_sha256` of `index.html`, plus `check_sha256`, `check_error_count` and `check_warning_count` of current `evidence-check.json`. Cite snapshots with full project-relative paths. Early keyframes predate the finished build; final-preview snapshots follow it. The verifier requires at least three cited keyframes and three finished-build snapshots for `ready_for_review`.
 
-## Exit condition
+Run `node scripts/verify-art-review.mjs --project <project>` before completed-video handoff. It verifies current provenance, selected-source object evidence, checks and snapshot chronology. Visual and playback judgments remain the reviewer's responsibility. Preserve review history and accepted deficits; later user decisions supersede earlier verdicts for that version.
 
-Builder `ready_for_review` permits a review handoff only after the required probes have been inspected and blocking observations resolved. An independent endorsement requires `recommended` evidence; final artistic acceptance requires `approved` evidence from the user or their explicitly named delegate. Bind each verdict to the reviewed version hash. A later rejection supersedes the earlier handoff status for that version; preserve the earlier record as history. Preserve every `accepted_with_deficit` item in the handoff and in the next iteration's baseline.
+For an explicitly requested static direction proposal, inspect rendered composition, typography, material and object use, and record those observations. Playback and finished-video verification apply when that proposal becomes a timed composition.

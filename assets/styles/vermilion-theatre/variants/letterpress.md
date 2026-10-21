@@ -1,0 +1,1 @@
+选择：**A 厚宋活字 / letterpress**。中文主标题用 **Noto Serif SC 900**，本地 `assets/references/styles/vermilion-theatre/fonts/noto-serif-sc.ttf`。重宋体的横竖粗细与楔形收笔提供铅字、旧印刷品的气质。标题从约 164px、行高 1.22、字距 0 开始；蓝灰侧面约 10–14px，沿右下统一偏移；最深接触边约 2px，远影再软化。细横画不靠加粗描边补强，以真实 900 字重保持字形。适合知识命题和成熟、沉稳的解释视频。

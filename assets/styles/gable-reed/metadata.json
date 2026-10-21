@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "gable-reed",
+  "displayName": "工程图册",
+  "revision": "p32.3-motion.1.single.1",
+  "provenance": {
+    "kind": "user_supplied_style_pack",
+    "sourceDesign": "Gable-Reed-Two-Plates-Only-DESIGN.md",
+    "sourceDesignSha256": "247449a9f6ffde634b2c81414529bfc51e82eb0359c81e7a052f4231094a322f",
+    "license": "not_supplied; user reference image redistribution rights not supplied",
+    "repository": null,
+    "commit": null
+  },
+  "selection": {
+    "kind": "planned_style_intake",
+    "roadmapStage": "P32"
+  },
+  "adaptationNotes": [
+    "Dark samples and source background token govern the effective dark video frame; contradictory light-mode and secondary-text declarations remain provenance.",
+    "Square geometry resolves incompatible website corner tokens. Local Noto Sans SC and DM Mono replace remote Inter and support Chinese video-size typography.",
+    "Scrolling, pointer interaction, network Three.js imports, WebGL and Two Plates Only are source-page context, not video runtime rules.",
+    "Shared camera, text timing and continuity rules are owned by motion-direction; historical project reviews retain their original scope and do not approve this motion revision."
+  ],
+  "validationScope": {
+    "basis": "P32 new-topic video; preview.13 motion-direction adaptation",
+    "crossTopic": "passed_new_topic_standard_mode_preview",
+    "productionArtDirection": "approved",
+    "userReview": "User approved the hash-bound P32.3 22-second standard-mode arch-load-path video with '通过' on 2026-09-23; approval does not extend to advanced mode, other topics, or general production art direction.",
+    "advancedMode": "passed_six_second_key_mechanism_probe",
+    "standardProject": "videos/arch-load-path-p32",
+    "standardIndexSha256": "1d87cf9530355ef730a17b14cf75cd3516fb56b376443d8b0ba019b5b08c0a81"
+  },
+  "files": [
+    {
+      "path": "FRAME.md",
+      "sha256": "6585706e665af3c31705981670bfacf66b0c2436ddf9634a76e266cf54554a0c"
+    }
+  ],
+  "publicDistribution": {
+    "omittedReferenceImages": [
+      "samples/sample-01.png",
+      "samples/sample-02.png",
+      "samples/sample-03.png",
+      "samples/sample-04.png",
+      "samples/sample-05.png",
+      "samples/sample-06.png",
+      "samples/sample-07.png",
+      "mechanism-samples/sample-01.png",
+      "mechanism-samples/sample-02.png",
+      "mechanism-samples/sample-03.png",
+      "mechanism-samples/sample-04.png",
+      "mechanism-samples/sample-05.png",
+      "mechanism-samples/sample-06.png",
+      "mechanism-samples/sample-07.png"
+    ],
+    "reason": "Original reference-image redistribution permission is not recorded; use the public showcase and the written FRAME instead."
+  }
+}

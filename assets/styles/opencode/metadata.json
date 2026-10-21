@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "opencode",
+  "displayName": "终端手册",
+  "revision": "p29.2-motion.1.single.1",
+  "provenance": {
+    "kind": "user_supplied_style_pack",
+    "sourceArchive": null,
+    "sourceDesign": "DESIGN-opencode.ai.md",
+    "sourceDesignSha256": "d1a8893c4b8ac90b1e86230eee2effa8bd15add3582853477920e32432336dda",
+    "originalFrameSha256": "1fb09ca3ecd1752dc69563a9597906328a9b50007db9866ba914c65b5fd0d29f",
+    "license": "not_supplied; user reference image redistribution rights not supplied",
+    "repository": null,
+    "commit": null
+  },
+  "selection": {
+    "kind": "planned_style_intake",
+    "roadmapStage": "P29",
+    "historicalCandidate": "recommended_and_user_shortlisted"
+  },
+  "adaptationNotes": [
+    "The effective FRAME is a Chinese knowledge-video adaptation; the source website analysis and earlier video FRAME remain pinned as provenance rather than traveling as parallel rule sources.",
+    "Local DM Mono owns Latin, ASCII, numerals, commands and node IDs; local Noto Sans SC owns Chinese display and explanation, with full-width Chinese aligned to the character-cell grid.",
+    "The warm paper, near-black ink, terminal inversion, hairline relation diagrams, bracketed states and square editorial geometry are retained.",
+    "Website navigation, pricing, forms, scrolling, remote fonts and marketing copy are outside the runtime style contract.",
+    "Motion remains project-specific and follows the shared deterministic motion-direction contract instead of treating the static samples as timing evidence.",
+    "Shared camera, text timing and continuity rules are owned by motion-direction; historical project reviews retain their original scope and do not approve this motion revision."
+  ],
+  "validationScope": {
+    "basis": "P9 same-content candidate is historical input; P29 adds a new-topic standard-mode Chinese build",
+    "transfer": "passed_historical_same_content_candidate",
+    "crossTopic": "passed_new_topic_standard_mode",
+    "productionArtDirection": "approved_new_topic_standard_mode",
+    "userReview": {
+      "verdict": "approved",
+      "date": "2026-09-21",
+      "project": "videos/deleted-file-recovery-p29",
+      "revision": "p29.2",
+      "boundIndexSha256": "ca33e33955b8e513ccf93610e1726041ef9abab52877a4d2c5535b1d8763f47c",
+      "scope": "this new-topic 28-second standard-mode project only"
+    }
+  },
+  "files": [
+    {
+      "path": "FRAME.md",
+      "sha256": "b052b2125d7b2dd9402e01e426ec4a1c8ca2d3240d9517eb55a218154f01bbf6"
+    }
+  ],
+  "publicDistribution": {
+    "omittedReferenceImages": [
+      "samples/sample-01.png",
+      "samples/sample-02.png",
+      "samples/sample-03.png",
+      "samples/sample-04.png",
+      "samples/sample-05.png",
+      "samples/sample-06.png",
+      "samples/sample-07.png",
+      "mechanism-samples/sample-01.png",
+      "mechanism-samples/sample-02.png",
+      "mechanism-samples/sample-03.png",
+      "mechanism-samples/sample-04.png",
+      "mechanism-samples/sample-05.png",
+      "mechanism-samples/sample-06.png",
+      "mechanism-samples/sample-07.png"
+    ],
+    "reason": "Original reference-image redistribution permission is not recorded; use the public showcase and the written FRAME instead."
+  }
+}

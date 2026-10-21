@@ -149,7 +149,7 @@ function setupHelp() {
     "then set AZURE_SPEECH_ENDPOINT and AZURE_SPEECH_RESOURCE_ID in your shell.",
     "Alternative: set AZURE_SPEECH_ENDPOINT and AZURE_SPEECH_API_KEY.",
     "Do not paste credentials into project files or chat.",
-    "See references/voice-contract.md in the MAV-MG Skill.",
+    "See references/voice-contract.md in the 像素 MG Skill.",
   ].join("\n");
 }
 
@@ -193,7 +193,7 @@ export async function synthesizeNarration({
         ...auth.headers,
         "Content-Type": "application/ssml+xml",
         "X-Microsoft-OutputFormat": config.output_format,
-        "User-Agent": "mav-mg-azure-tts",
+        "User-Agent": "xiangsu-mg-azure-tts",
       },
       body: buildSsml(cue.text, config),
     });

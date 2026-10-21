@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "architectural-section",
+  "displayName": "建筑剖面轴测 · 三维意境",
+  "revision": "static-selection.1",
+  "provenance": {
+    "kind": "local_static_direction_adaptation",
+    "referenceUrl": "https://lemomo-ai.github.io/lemo-opuscar/opuscar98/#no-92",
+    "project": "projects/xiangsu-opuscar-probes-20261020",
+    "sourceFiles": [
+      "build-probes.mjs",
+      "render-frame.js",
+      "section.html"
+    ],
+    "sample": "samples/knowledge-building.png"
+  },
+  "selection": {
+    "kind": "user-selected-static-direction",
+    "confirmedOn": "2026-10-20",
+    "userResponse": "建筑这个保留，然后editorial forest风格删掉，然后其他被暂定的frame保留"
+  },
+  "validationScope": {
+    "staticBrowser": "fonts, objects, text bounds and real WebGL geometry checked",
+    "userArtReview": "selected_static_direction",
+    "videoMotion": "not_verified",
+    "crossTopicVideo": "not_verified"
+  },
+  "frameResources": [
+    "fonts/noto-serif-sc.ttf",
+    "fonts/noto-sans-sc.ttf",
+    "fonts/notoserifsc-OFL.txt",
+    "fonts/notosanssc-OFL.txt",
+    "samples/knowledge-building.png"
+  ],
+  "files": [
+    {
+      "path": "FRAME.md",
+      "sha256": "eb89e02268bc3592fac69b0cb9292265e9f0e8c8e2a58fad06ec39e57cf2efbe"
+    },
+    {
+      "path": "fonts/noto-serif-sc.ttf",
+      "sha256": "050080d9255a86808f2945bffac582b31ef32bc36411ce29563b4961670c66f9"
+    },
+    {
+      "path": "fonts/noto-sans-sc.ttf",
+      "sha256": "a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da"
+    },
+    {
+      "path": "fonts/notoserifsc-OFL.txt",
+      "sha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6"
+    },
+    {
+      "path": "fonts/notosanssc-OFL.txt",
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "path": "samples/knowledge-building.png",
+      "sha256": "bfc1997c6f2b45cf4d2bb16d8e02d1bfd7d62ed63f5e22655232e943bb80d6ef"
+    }
+  ]
+}

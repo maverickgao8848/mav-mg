@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "id": "dell-1996",
+  "displayName": "复古电脑目录",
+  "revision": "p33.2-two-mode.1.single.1",
+  "provenance": {
+    "kind": "source_library_adaptation",
+    "sourceFrame": "assets/library/frames/dell-1996/FRAME.md",
+    "sourceFrameSha256": "b3bece48512cd3bc5407fb48ceb5ef1b2694bfb2f60c34f5d4d42267e4f21d5b",
+    "sourceShowcase": "assets/showcase/frames/dell-1996.svg",
+    "sourceShowcaseSha256": "960a2a0dc614577f96f16e87783f588c1968f128a00d04cccbe6c2f3afaf87f2",
+    "license": "PolyForm Noncommercial 1.0.0; local research and validation scope",
+    "licenseUrl": "https://polyformproject.org/licenses/noncommercial/1.0.0/",
+    "repository": "https://github.com/maverickgao8848/mav-mg",
+    "commit": "8013812076e726a7c23c04bdfb79768525906bf4"
+  },
+  "selection": {
+    "kind": "planned_style_intake",
+    "roadmapStage": "P33"
+  },
+  "adaptationNotes": [
+    "The source frame and showcase are provenance; the bundled FRAME is the only effective project style authority.",
+    "Brand phone, purchase CTA, English product names, and fixed seven-scene structure remain source examples, not generated teaching content.",
+    "Chinese display and explanatory roles use local Noto Sans SC and Noto Serif SC with verified weights.",
+    "Shared camera, text timing and boundary behavior remain owned by motion-direction."
+  ],
+  "validationScope": {
+    "basis": "P33 new-topic 21-second standard-mode index explainer",
+    "crossTopic": "passed_new_topic_standard_mode_preview",
+    "productionArtDirection": "approved_for_bound_p33_standard_mode",
+    "userReview": "User approved the hash-bound 21-second standard-mode index-card explainer with '通过' on 2026-09-24; approval does not extend to advanced mode, other topics, or general production art direction.",
+    "standardProject": "videos/index-card-p33",
+    "standardIndexSha256": "b2b287e34db5348ffda256bd871f89faf30219a647c5b7092a342793131036bd",
+    "advancedMode": "passed_eight_second_key_mechanism_probe",
+    "advancedProject": "videos/index-card-p33-advanced-probe",
+    "advancedIndexSha256": "ac1b70d4deb826bb089980597945639d1c10d40a0f8d7b3ecf082343ee7dc8ee"
+  },
+  "files": [
+    {
+      "path": "FRAME.md",
+      "sha256": "21530a2af90faaa9b2927e3d8dda59d2621c8246770cbf211f62b920a5076990"
+    },
+    {
+      "path": "samples/catalog-study.svg",
+      "sha256": "960a2a0dc614577f96f16e87783f588c1968f128a00d04cccbe6c2f3afaf87f2"
+    },
+    {
+      "path": "mechanism-samples/sample-01.png",
+      "sha256": "7337610db460b16bff35a667fcbd2b4f95cc3b7720f599f955b6deb663c3f32a"
+    },
+    {
+      "path": "mechanism-samples/sample-02.png",
+      "sha256": "1ace98c663077e35350b4fd74bd5786f0fd13adaa393fb9a0edfa14ee30b6e66"
+    },
+    {
+      "path": "mechanism-samples/sample-03.png",
+      "sha256": "ad776a93fa2b247ecf6bdd32195914a606a630020b15df2ec09352e050e77d2d"
+    },
+    {
+      "path": "mechanism-samples/sample-04.png",
+      "sha256": "05150a3a28ad9a8154af5db8abdad75fb232de0252fa225ea2af8c00813b7676"
+    },
+    {
+      "path": "mechanism-samples/sample-05.png",
+      "sha256": "09f0923849976fb300b9b401c3f2f6ee81cb4f4980e5831ce8829cdcd4b3533f"
+    },
+    {
+      "path": "mechanism-samples/sample-06.png",
+      "sha256": "3cf2435e817610e9a230906301070a6648e90e7cadc80e76c5989ba1b4f7af01"
+    },
+    {
+      "path": "mechanism-samples/sample-07.png",
+      "sha256": "1b761425be9e482289f2a0bdeac8971fb6391d9e4b5f08cdc410ed423dc95310"
+    }
+  ]
+}
