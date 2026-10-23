@@ -32,6 +32,8 @@ Use an existing object, heading, value or container to lead into the next idea. 
 
 Coordinate actor, camera and arriving composition. The next structure may form while the actor departs or changes role; time attention transfer from its visible action. [Actor handoffs](../recipes/actor-handoffs.md) supplies reference-grounded authoring examples, with [asset-routing.md](asset-routing.md) selecting implementations.
 
+For the content-led share of the piece, derive the handoff from the current mechanism under [content-led-variation.md](content-led-variation.md#转场从当前内容长出来). Preserve its reasoning and continuity rather than repeating a sample's prop or camera route.
+
 ## Trajectory, rhythm and handoff
 
 For each important crossing, preserve relevant identity, projected position/size, orientation/detail, occlusion owner, direction and velocity trend. Connect path waypoints with coherent tangent and speed; reserve purposeful deceleration for observation, operation and reading. A visible reversal or retreat can supply its own continuity.
@@ -63,5 +65,7 @@ Extend the existing beat entry with cue window/discovery; current → next atten
 Reuse appropriate HyperFrames primitives and existing rigs. Carry the reviewed process draft's identities, state changes, poses and transform owners into the finished timeline, retimed to measured cues. Use planar wrappers, shared perspective or real geometry according to the view. Camera, local object motion, text and focus each have a property owner. Glyph/group transforms implement animated spacing predictably.
 
 Drive grouping, detail, focus and local motion from the same seekable composition time, preserving framework clip lifecycle. Apply CSS focus to leaf visuals so the depth rig retains its projection. Photographic media use framework media treatments. Edit the generator and regenerate its HTML/motion data when the project is generated.
+
+For procedural SVG mechanisms, derive labels, paths and moving actors from the same state/projection. When the motion diagnostic cannot identify a dynamically created actor, expose its real position/scale through selector-addressable keyframes, preserving one transform owner. Check the actor's painted attachment and occlusion at contact; a proxy changing internally is not visible-motion evidence.
 
 Review normal-speed travel, changes of visible surface, readable landings, returns, natural completion and reverse/random seek under [quality.md](quality.md). Test a consequential handoff with the intended camera/projection before refining unresolved geometry. Content replacement requires recalculating affected landings and reading windows.

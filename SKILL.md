@@ -2,7 +2,7 @@
 name: xiangsu-mg
 description: 把中文文稿、带时间码口播与分镜参考制作为可编辑的 HyperFrames 知识解释动画，表现机制、关系、比较与流程。
 metadata:
-  version: "0.1.0-preview.37"
+  version: "0.1.0-preview.38"
 ---
 
 # 像素 MG · Xiangsu MG
@@ -15,7 +15,7 @@ metadata:
 
 1. 读取项目 `AGENTS.md` 及已有 `BRIEF.md`、`SCRIPT.md`、`STORYBOARD.md`、`frame.md`、`audio_meta.json`。按 [input-contract.md](references/input-contract.md) 补齐影响结果的缺失决策，已确认内容写入 BRIEF 后沿用。
 2. 按 [style-contract.md](references/style-contract.md) 确定风格；Editorial 子工程通过 [upstream-frame.md](references/upstream-frame.md) 继承完整 frame 和资源。无指定风格时提供朱砂活字剧场/工程图册二选一。像素绿宝石与像素白金为付费风格，本公开包不提供其资源。
-3. 按 [visual-grammar.md](references/visual-grammar.md) 组织教学重点、语义拍点和构图，按 [motion-direction.md](references/motion-direction.md) 设计文字、对象与相机的变化。新方向的静态构图探索可先于配音进行。
+3. 按 [visual-grammar.md](references/visual-grammar.md) 组织教学重点、语义拍点和构图，并读 [content-led-variation.md](references/content-led-variation.md)：约 70% 延续当前风格与成熟表达，约 30% 按内容设计机制、空间和转场；这是整片创作配比，不是逐镜头配额。按 [motion-direction.md](references/motion-direction.md) 编排实际动作。新方向的静态构图探索可先于配音进行。
 
 ## 制作
 

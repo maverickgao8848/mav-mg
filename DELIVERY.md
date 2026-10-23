@@ -1,6 +1,8 @@
-# 免费体验版安装与运行 · preview.37
+# 免费体验版安装与运行 · 源码 preview.38
 
 本包包含七套非商业体验风格及 11 个 HyperFrames 配套工作流。像素绿宝石与像素白金只展示效果，不包含完整风格资源。许可见 [中文说明](USAGE.zh-CN.md) 与 [LICENSE](LICENSE)。
+
+当前main源码已更新内容驱动的制作与审看方法，见 [content-led-variation.md](references/content-led-variation.md)。约70%保留所选风格、约30%按内容发挥，样段不作为固定模板。已发布preview.37下载包保持其原始内容；本次仅同步源码。
 
 ## 安装
 

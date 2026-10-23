@@ -12,6 +12,8 @@ Use stable object IDs and semantic groups across changes in detail, grouping and
 
 Build around a visible teaching mechanism using suitable relationship components, deliberate typography and reusable subject graphics. Customize content, hierarchy, spacing and handoffs where they improve understanding. Repeated primitives can form one coherent diagram; project-specific geometry supplies essential shapes and internal parts.
 
+Balance familiar expression with content-led variation through [content-led-variation.md](content-led-variation.md). Choose the consequential semantic turns before choosing their novel treatment; material finish and spatial coherence apply throughout.
+
 Let filtering, feedback, comparison or another taught relationship suggest the action. Carry a useful object or gesture forward so its development connects the explanation. Resolve palette, fonts and materials through [style-contract.md](style-contract.md) and the effective frame. The selected public FRAME and its examples supply adoptable guidance. Paid style resources are not bundled.
 
 Source concrete entities through [object-library.md](object-library.md); use SVG for controllable paths, parts and structural changes. Record PNGs as `object_format: png` and `object_role: hero | companion`.

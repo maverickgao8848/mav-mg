@@ -56,6 +56,12 @@ Architectural Section is a selected static direction; continuous motion is not v
 
 Emerald excerpts come from the author-selected `glass lime.mp4`; Platinum excerpts come from `mav editorial kit.mp4` in the same sample folder. Posters show completed layouts, rather than partially built frames. These are silent, original-speed excerpts. [Media provenance and cut ranges](assets/showcase/motion/sources.json). Commercial authorization, paid styles, tutorials and custom account styles are available separately through [Pixel2All](https://pixel2all.cn/).
 
+## Content-led variation
+
+Retain roughly 70% of the chosen visual language and mature expression, and use roughly 30% for topic-specific mechanisms, spatial action and handoffs where they improve understanding. Finish and readability apply throughout. These are creative priorities, not time quotas; the cache and negative-feedback studies are not fixed templates. See the [production guidance](references/content-led-variation.md).
+
+The current main-branch method is preview.38; the download link still points to the published preview.37 archive.
+
 ## Install
 
 Use Node.js 22+ and an AI client with local tool access. Extract the download and run at the package root:

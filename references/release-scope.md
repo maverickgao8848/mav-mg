@@ -11,6 +11,7 @@
 - 项目及上游完整 frame 与依赖继承、逐场景图片参考、项目专用语义图形和字幕。
 - 风格、素材与组件分别以 [style-contract.md](style-contract.md)、[object-library.md](object-library.md)、[component-contract.md](component-contract.md) 为准。
 - 采用成熟结构与必要定制相结合的制作方法，具体分镜、运镜与评审分别见 visual-grammar、motion-direction、quality。
+- 约70%延续所选风格、约30%按内容发挥的方法见 [content-led-variation.md](content-led-variation.md)；比例用于创作重心，不是逐镜头计数。
 - 安装入口及 11 个 HyperFrames 配套 Skill 见 [DELIVERY.md](../DELIVERY.md)。
 
 ## 已验证范围
@@ -28,6 +29,8 @@
 | 其他历史风格 | 已审看短片及遗留缺陷见各风格 metadata，保留其版本和来源记录 |
 
 技术探针、静态提案、单条样片和内容替换验证各自记录实际范围。新选题的艺术结果按本期预览判断；跨选题复用以替换验证为依据。真实三维绕拍及 dolly zoom 按项目素材和实现单独验证。
+
+本轮方法已在作者本地以自定义继承frame完成24秒缓存与28秒负反馈的无配音预览：后者改用偏差、反向调节和空间轨迹展开，用户决定先保留当前样段。证据随各自工程保存；这不代表所有风格或新选题都已通过艺术评审，也不增加视频导出验证范围。两例的具体物件和转场均不作为默认模板。
 
 当前交付规格为上述中文横屏工程与已验证导出范围。其他画幅、语言、五分钟导出、逐场景 HTML 导入和音乐生成属于另行验证的扩展。用户要求的 HTML 静态风格提案可独立制作，其结果记录为静态探索。
 

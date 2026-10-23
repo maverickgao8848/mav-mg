@@ -46,6 +46,9 @@ Use the semantic mapping in `STORYBOARD.md` as the review index. At keyframes in
 | Teaching emphasis | Important questions/principles/conclusions receive a readable focus, with a visible handoff into their explanation |
 | Mechanism legibility | The relevant part, interface, state change or relationship supplies the causal evidence, supported by concise necessary labels |
 | Subject finish | Contours, internal detail, scale and typography meet the explanatory responsibility and adopted reference scope |
+| Material and spatial construction | Exposed faces, thickness, contact, support and occlusion remain coherent through the actual operation; necessary object identities and state changes remain traceable |
+| Content-led variation | The piece retains its adopted visual language while selected semantic turns receive content-specific treatment under [content-led-variation.md](content-led-variation.md); variation improves explanation rather than filling a numerical quota |
+| Representation continuity | A mechanism becoming a curve, section or overview retains the intended object/state/quantity correspondence, direction, units and qualifications through the actual transition |
 | Explanatory progression | Each changed view or purposeful hold contributes to understanding; a shared process can cover several sentences |
 | Text and spatial continuity | Rendered actors, channels, path direction, focus, grouping and detail match the planned handoff and reading window; new text, landmarks and revisits behave as authored |
 
@@ -64,6 +67,8 @@ Cite actual files/times, visible findings, severity and disposition. A missing o
 | Finish in motion | Entrances, transformations, handoffs and holds retain hierarchy at normal speed |
 
 Observed weak subject form, unrelated decoration, repeated layouts that obscure changing relationships, lost focus, unreadable required text or missing causal evidence return the work to revision. Diagnose the particular frame/process and revise its cause.
+
+At selected innovation ranges, compare the storyboard's content rationale with normal-speed behavior. Check whether changing only labels would leave the same mechanism and handoff usable for an unrelated topic; retain useful shared primitives, and revise focal actions that lack a reason in the current content. Watch for repeated foreground passes, needless viewpoint changes or inadequate reading after the landing. Record the actual finding in ART-REVIEW, without inventing an exact 70/30 compliance score.
 
 ## Evidence record and verification
 
